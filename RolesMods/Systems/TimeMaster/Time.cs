@@ -2,13 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using RolesMods.Utility;
 using UnityEngine;
 
 namespace RolesMods.Systems.TimeMaster {
     public static class Time {
 
-        public static float recordTime = 10f;
+        public static float recordTime = RolesMods.TimeMasterDuration.GetValue();
         public static bool isRewinding = false;
         private static List<TimePoint> pointsInTime = new List<TimePoint>();
         private static long deadtime;
@@ -21,17 +20,17 @@ namespace RolesMods.Systems.TimeMaster {
 
             if (PlayerControl.LocalPlayer != null) {
                 pointsInTime.Insert(0, new TimePoint(
-                    Player.LocalPlayer.PlayerControl.transform.position,
+                    PlayerControl.LocalPlayer.transform.position,
                     PlayerControl.LocalPlayer.gameObject.GetComponent<Rigidbody2D>().velocity,
                     DateTimeOffset.Now.ToUnixTimeSeconds()
                 ));
 
-                if (Player.LocalPlayer.PlayerData.IsDead && !isDead) {
+                if (PlayerControl.LocalPlayer.Data.IsDead && !isDead) {
                     isDead = true;
                     deadtime = DateTimeOffset.Now.ToUnixTimeSeconds();
                 }
 
-                if (!Player.LocalPlayer.PlayerData.IsDead && isDead) {
+                if (!PlayerControl.LocalPlayer.Data.IsDead && isDead) {
                     isDead = false;
                     deadtime = 0;
                 }
@@ -42,11 +41,12 @@ namespace RolesMods.Systems.TimeMaster {
             if (pointsInTime.Count > 0) {
                 TimePoint currentTimePoint = pointsInTime[0];
 
-                Player.LocalPlayer.PlayerControl.transform.position = currentTimePoint.Position;
+                PlayerControl.LocalPlayer.transform.position = currentTimePoint.Position;
                 PlayerControl.LocalPlayer.gameObject.GetComponent<Rigidbody2D>().velocity = currentTimePoint.Velocity;
-                if (isDead && currentTimePoint.Unix < deadtime && PlayerControl.LocalPlayer.Data.IsDead) {
-                    Player.LocalPlayer.Revive();
-                    var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == Player.LocalPlayer.PlayerId);
+
+                if (isDead && currentTimePoint.Unix < deadtime && PlayerControl.LocalPlayer.Data.IsDead && RolesMods.EnableReiveTimeMaster.GetValue()) {
+                    PlayerControl.LocalPlayer.Revive();
+                    var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == PlayerControl.LocalPlayer.PlayerId);
 
                     if (body != null)
                         UnityEngine.Object.Destroy(body.gameObject);
@@ -67,7 +67,7 @@ namespace RolesMods.Systems.TimeMaster {
 
         public static void StartRewind() {
             isRewinding = true;
-            Player.LocalPlayer.PlayerControl.moveable = false;
+            PlayerControl.LocalPlayer.moveable = false;
             HudManager.Instance.FullScreen.color = new Color(0f, 0.5f, 0.8f, 0.3f);
             HudManager.Instance.FullScreen.enabled = true;
 
@@ -77,7 +77,7 @@ namespace RolesMods.Systems.TimeMaster {
 
         public static void StopRewind() {
             isRewinding = false;
-            Player.LocalPlayer.PlayerControl.moveable = true;
+            PlayerControl.LocalPlayer.moveable = true;
             HudManager.Instance.FullScreen.enabled = false;
         }
     }

@@ -39,9 +39,9 @@ namespace RolesMods.Patch {
             // Lighter
             else if (HelperRoles.IsLighter(localPlayerId)) {
                 __instance.__this.Title.Text = "Lighter";
-                __instance.__this.Title.Color = new Color(186, 91, 19, 255);
+                __instance.__this.Title.Color = new Color(0.729f, 0.356f, 0.074f, 1f);
                 __instance.__this.ImpostorText.Text = "You have maximum vision, all the time.";
-                __instance.__this.BackgroundBar.material.color = new Color(186, 91, 19, 255);
+                __instance.__this.BackgroundBar.material.color = new Color(0.729f, 0.356f, 0.074f, 1f);
             }
         }
     }

@@ -9,17 +9,22 @@ namespace RolesMods.Patch {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.HandleRpc))]
     class HandleRpcPatch {
 
-        public static bool Prefix(byte callId, MessageReader reader) {
+        public static bool Prefix([HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader) {
             if (callId == (byte) CustomRPC.SetInvestigator) {
-                byte readByte = reader.ReadByte();
-                foreach (PlayerControl player in PlayerControl.AllPlayerControls)
-                    if (player.PlayerId == readByte)
-                        GlobalVariable.Investigator = player;
+                GlobalVariable.InvestigatorsList.Clear();
+                int readInt = reader.ReadInt32();
+
+                byte readByte;
+                for (int i = 0; i < readInt; i++) {
+                    readByte = reader.ReadByte();
+                    GlobalVariable.InvestigatorsList.Add(PlayerControlUtils.FromPlayerId(readByte));
+                }
 
                 return false;
             }
 
             if (callId == (byte) CustomRPC.SetTimeMaster) {
+                GlobalVariable.TimeMaster = null;
                 byte readByte = reader.ReadByte();
                 foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
                     if (player.PlayerId == readByte) {
@@ -31,11 +36,13 @@ namespace RolesMods.Patch {
             }
 
             if (callId == (byte) CustomRPC.SetLighter) {
-                byte readByte = reader.ReadByte();
-                foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
-                    if (player.PlayerId == readByte) {
-                        GlobalVariable.Lighter = player;
-                    }
+                GlobalVariable.LightersList.Clear();
+                int readInt = reader.ReadInt32();
+
+                byte readByte;
+                for (int i = 0; i < readInt; i++) {
+                    readByte = reader.ReadByte();
+                    GlobalVariable.LightersList.Add(PlayerControlUtils.FromPlayerId(readByte));
                 }
 
                 return false;
@@ -43,14 +50,14 @@ namespace RolesMods.Patch {
 
             if (callId == (byte) CustomRPC.TimeRewind) {
                 Systems.TimeMaster.Time.isRewinding = true;
-                Player.LocalPlayer.PlayerControl.moveable = false;
+                PlayerControl.LocalPlayer.moveable = false;
                 HudManager.Instance.FullScreen.color = new Color(0f, 0.5f, 0.8f, 0.3f);
                 HudManager.Instance.FullScreen.enabled = true;
                 return false;
             }
 
             if (callId == (byte) CustomRPC.TimeRevive) {
-                Player player = Player.FromPlayerId(reader.ReadByte());
+                PlayerControl player = PlayerControlUtils.FromPlayerId(reader.ReadByte());
                 player.Revive();
                 var body = Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == player.PlayerId);
 

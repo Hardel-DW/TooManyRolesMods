@@ -23,19 +23,21 @@ namespace RolesMods.Systems.Investigator {
             this.footPrintDuration = footPrintDuration;
             this.player = player;
             this.footPrintUnixTime = (int) DateTimeOffset.Now.ToUnixTimeSeconds();
+
+            if (RolesMods.AnonymousFootPrint.GetValue())
+                this.footPrintColor = new Color(0.5f, 0.5f, 0.5f, 1f);
+
             Start();
         }
 
         private void Start() {
-            Color playerColor = Palette.PlayerColors[(int) player.Data.ColorId];
-
             footPrint = new GameObject("FootPrint");
             footPrint.transform.position = footPrintPosition;
             footPrint.transform.localPosition = footPrintPosition;
             footPrint.transform.SetParent(player.transform.parent);
             spriteRenderer = footPrint.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = HelperSprite.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Circle.png", footPrintSize);
-            spriteRenderer.color = new Color(playerColor.r, playerColor.g, playerColor.b, playerColor.a);
+            spriteRenderer.color = footPrintColor;
 
             footPrint.SetActive(true);
             allFootprint.Add(this);

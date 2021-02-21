@@ -22,6 +22,8 @@ namespace RolesMods.Patch {
     public static class EndGameCommons {
         public static void ResetGlobalVariable() {
             GlobalVariable.isGameStarted = false;
+            Systems.Investigator.FootPrint.allFootprint.Clear();
+            HelperRoles.ClearRoles();
         }
     }
 }

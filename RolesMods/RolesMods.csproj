@@ -11,7 +11,8 @@
 
     <ItemGroup>
         <Deobfuscate Include="$(AmongUs)\BepInEx\plugins\Reactor-$(GameVersion).dll" />
-
+        <EmbeddedResource Include="Resources\Rewind.png"></EmbeddedResource>
+        <EmbeddedResource Include="Resources\Circle.png"></EmbeddedResource>
         <PackageReference Include="Reactor.OxygenFilter.MSBuild" Version="0.2.3" />
     </ItemGroup>
 
@@ -25,10 +26,6 @@
       <Reference Include="Essentials">
         <HintPath>$(AmongUs)\BepInEx\plugins\Essentials-$(GameVersion).dll</HintPath>
       </Reference>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Systems\TimeMaster\" />
     </ItemGroup>
 
     <Target Name="Copy" AfterTargets="Reobfuscate">
