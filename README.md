@@ -19,19 +19,18 @@ TimeMaster, Investigator and Lighter.
 
 ![Install](https://i.imgur.com/pvBAyZN.png)
 
-# Roles :
-## Investigator :
-
-### Description
+# Roles Investigator :
+ 
+### Description :
 The investigator, is a role allowing to see the movements of the players.  
 When a player moves, he leaves a footprint on the ground, it disappears after a while...  
 The investigator can see this footprint.
 
-### Note
+### Note :
 This role is given only to the Crewmate.  
 One footprint cannot appear on another foorprint.
 
-### Associated Game Options 
+### Associated Game Options :
 | Name | Description | Type |
 |----------|:-------------:|------:|
 | Enable Investigator | Allows you to activate the role. | Toggle |
@@ -44,18 +43,18 @@ One footprint cannot appear on another foorprint.
 
 -----------------------
 
-## TimeMaster :
-### Description
+# Roles TimeMaster :
+### Description :
 The Time Master has a button, by pressing it all the players go back in time gradually.  
 If a player is dead during this time, he comes back to life.
 
-### Note
+### Note :
 This role is available for crewmate and impostor.  
 Reviving a player can be disabled.  
 Tasks, Door, Sabotag and eOther button are not impacted.  
 It is limited to 1 player maximum.
 
-### Associated Game Options 
+### Associated Game Options :
 | Name | Description | Type |
 |----------|:-------------:|------:|
 | Enable Time Master | Allows you to activate the role. | Toggle |
@@ -65,17 +64,17 @@ It is limited to 1 player maximum.
 
 ---------------------------
 
-## Lighter :
-### Description
+# Roles Lighter :
+### Description :
 This is a role, having a different vision than a normal player, he can see during the light sabotage. if the option is activated 
 
-### Note
+### Note :
 The light calculation is based on the crewmate's vision.  
 For example: If the crewmates have a vision of 0.75, and Lighter has a multiplier of 2  
 The Lighter will have a vision of 1.5.  
 The multiplicative option can be less than 1.  
 
-### Associated Game Options 
+### Associated Game Options :
 | Name | Description | Type |
 |----------|:-------------:|------:|
 | Enable Lighter | Allows you to activate the role. | Toggle |
