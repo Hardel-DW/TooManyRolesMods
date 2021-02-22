@@ -82,6 +82,8 @@ The multiplicative option can be less than 1.
 | Lighter Multiplier | Defines the multiplication of the vision in relation to the crewmate vision. | Number |
 | Lighter sees during electrical sabotage | Allows you to see during the sabotage when the lights are off. | Toggle |
 
+---------------
+
 # Bugs/Feature suggestions
 If you need to contact me, to request additional functionality, or make bug or change requests.  
 Come on this discord server [Discord](...), or create a ticker on Github.
@@ -98,7 +100,3 @@ https://github.com/Galster-dev/CrowdedSheriff For code snippters.
 
 # Special Thanks
 Thank you, to the discordant server Reactor. [Reactor Discord](https://discord.gg/3a6U7Nsv)
-
-Beta Testing :  
-**Hardel#7401**  
-**Evan#8831**  
