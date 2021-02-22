@@ -1,5 +1,3 @@
-![Install](https://cdn.discordapp.com/attachments/790517195003527189/813239176412659752/Sans_titre.png)
-
 # Roles Mods by Hardel
 
 The "Too Many Roles Mod", is a mod for among Us, adding roles and perssonalization options.
@@ -7,28 +5,22 @@ The "Too Many Roles Mod", is a mod for among Us, adding roles and perssonalizati
 And currently has 3 roles :
 TimeMaster, Investigator and Lighter
 
+![Install](https://cdn.discordapp.com/attachments/790517195003527189/813239176412659752/Sans_titre.png)
 
 # Installation
-
-Download the zip file on the right side of Github.
+#### Download the zip file on the right side of Github.
 1. Find the folder of your game, for steams players you can right click in steam, on the game, a menu will appear proposing you to go to the folders.
 2. Make a copy of your game, it's not obligatory but advise, put it where you want, I advise you to put it in the __commun__ folder of steam.
 3. Drag or extract the files from the zip into your game, at the .exe level.
 4. Turn on the game.
 5. Play the game.
 
+**Note: No private server is required, You can play on the official servers.**
+
 ![Install](https://i.imgur.com/pvBAyZN.png)
 
-## Server
-
-No private server is required.
-You can play on the official servers.
-
------------------------
-
-# Roles
-## Investigator
-![Install](https://i.imgur.com/1DWRaZb.png)
+# Roles :
+## Investigator :
 
 ### Description
 The investigator, is a role allowing to see the movements of the players.
@@ -52,9 +44,7 @@ One footprint cannot appear on another foorprint.
 
 -----------------------
 
-## TimeMaster
-![Install](https://i.imgur.com/SdrZvw7.png)
-![Install](https://i.imgur.com/vRzRls0.png)
+## TimeMaster :
 
 ### Description
 The Time Master has a button, by pressing it all the players go back in time gradually.
@@ -76,8 +66,7 @@ It is limited to 1 player maximum.
 
 -----------------------
 
-## Lighter
-![Install](https://i.imgur.com/UkLsW8z.png)
+## Lighter :
 
 ### Description
 This is a role, having a different vision than a normal player, he can see during the light sabotage. if the option is activated 
@@ -105,14 +94,14 @@ Come on this discord server [Discord](...), or create a ticker on Github.
 -----------------------
 
 # Resources
-https://github.com/NuclearPowered/Reactor The framework the mod uses.
-https://github.com/BepInEx For hooking game functions.
-https://github.com/DorCoMaNdO/Reactor-Essentials For creating custom game options easily.
-https://github.com/NotHunter101/ExtraRolesAmongUs For creating custom role.
-https://github.com/Woodi-dev/Among-Us-Sheriff-Mod For code snippets.
-https://github.com/tomozbot/AmongUsCustomRoles For code snippets.
-https://github.com/Aeolic/CultistMod For code snippets.
-https://github.com/Galster-dev/CrowdedSheriff For code snippters.
+* https://github.com/NuclearPowered/Reactor The framework the mod uses.
+* https://github.com/BepInEx For hooking game functions.
+* https://github.com/DorCoMaNdO/Reactor-Essentials For creating custom game options easily.
+* https://github.com/NotHunter101/ExtraRolesAmongUs For creating custom role.
+* https://github.com/Woodi-dev/Among-Us-Sheriff-Mod For code snippets.
+* https://github.com/tomozbot/AmongUsCustomRoles For code snippets.
+* https://github.com/Aeolic/CultistMod For code snippets.
+* https://github.com/Galster-dev/CrowdedSheriff For code snippters.
 
 # Special Thanks
 Thank you, to the discordant server Reactor. [Reactor Discord](https://discord.gg/3a6U7Nsv)
