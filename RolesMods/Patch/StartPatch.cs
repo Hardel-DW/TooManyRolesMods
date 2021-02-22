@@ -5,6 +5,8 @@ namespace RolesMods.Patch {
     class GameEndedPatch {
         public static void Postfix(ShipStatus __instance) {
             GlobalVariable.isGameStarted = true;
+            Systems.TimeMaster.Time.pointsInTime.Clear();
+            Systems.Investigator.FootPrint.allFootprint.Clear();
 
             if (GlobalVariable.TimeMaster != null) {
                 if (HelperRoles.IsTimeMaster(PlayerControl.LocalPlayer.PlayerId)) {

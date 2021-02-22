@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using RolesMods.Utility;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace RolesMods {
     public static class GlobalVariable {
@@ -10,7 +12,6 @@ namespace RolesMods {
 
         //  Misc
         public static bool isGameStarted = false;
-        public static List<int> footprintSizeValues = new List<int>() {4096, 3072, 2048, 1536, 1024, 820, 705, 600, 550, 512 };
 
         // Button
         internal static CooldownButton buttonTime;

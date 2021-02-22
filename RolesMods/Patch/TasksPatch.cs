@@ -1,4 +1,6 @@
 ﻿using HarmonyLib;
+using System;
+using System.Diagnostics;
 using UnityEngine;
 
 namespace RolesMods.Patch {
@@ -10,7 +12,7 @@ namespace RolesMods.Patch {
                 if (GlobalVariable.InvestigatorsList != null && HelperRoles.IsInvestigator(PlayerControl.LocalPlayer.PlayerId)) {
                     ImportantTextTask ImportantTasks = new GameObject("InvestigatorTasks").AddComponent<ImportantTextTask>();
                     ImportantTasks.transform.SetParent(__instance.transform, false);
-                    ImportantTasks.Text = "[2EADFFFF]You are an RolesMods, you can see everyone's footprint.[]";
+                    ImportantTasks.Text = "[2EADFFFF]You are an Investigator, you can see everyone's footprint.[]";
                     __instance.myTasks.Insert(0, ImportantTasks);
                 }
 
@@ -24,7 +26,7 @@ namespace RolesMods.Patch {
                 if (GlobalVariable.LightersList != null && HelperRoles.IsLighter(PlayerControl.LocalPlayer.PlayerId)) {
                     ImportantTextTask ImportantTasks = new GameObject("LighterTasks").AddComponent<ImportantTextTask>();
                     ImportantTasks.transform.SetParent(__instance.transform, false);
-                    ImportantTasks.Text = "[BA5B13FF]Lighter: You have max visibility all the game[]";
+                    ImportantTasks.Text = "[BA5B13FF]Lighter: Your vision is better than crewmate[]";
                     __instance.myTasks.Insert(0, ImportantTasks);
                 }
             }

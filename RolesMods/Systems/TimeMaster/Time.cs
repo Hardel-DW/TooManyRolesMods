@@ -9,10 +9,10 @@ namespace RolesMods.Systems.TimeMaster {
 
         public static float recordTime = RolesMods.TimeMasterDuration.GetValue();
         public static bool isRewinding = false;
-        private static List<TimePoint> pointsInTime = new List<TimePoint>();
+        internal static List<TimePoint> pointsInTime = new List<TimePoint>();
         private static long deadtime;
         private static bool isDead = false;
-            
+
         public static void Record() {
             if (pointsInTime.Count > Mathf.Round(recordTime / UnityEngine.Time.fixedDeltaTime)) {
                 pointsInTime.RemoveAt(pointsInTime.Count - 1);

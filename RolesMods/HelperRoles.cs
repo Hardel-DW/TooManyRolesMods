@@ -9,8 +9,8 @@
             bool isLighter = false;
 
             if (GlobalVariable.LightersList != null) {
-                foreach (var lighter in GlobalVariable.LightersList) {
-                    if (playerId == lighter.PlayerId)
+                for (int i = 0; i < GlobalVariable.LightersList.Count; i++) {
+                    if (playerId == GlobalVariable.LightersList[i].PlayerId)
                         isLighter = true;
                 }
             }
@@ -22,8 +22,8 @@
             bool isInvestigator = false;
 
             if (GlobalVariable.InvestigatorsList != null) {
-                foreach (var investigator in GlobalVariable.InvestigatorsList) {
-                    if (playerId == investigator.PlayerId)
+                for (int i = 0; i < GlobalVariable.InvestigatorsList.Count; i++) {
+                    if (playerId == GlobalVariable.InvestigatorsList[i].PlayerId)
                         isInvestigator = true;
                 }
             }

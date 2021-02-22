@@ -9,18 +9,11 @@ namespace RolesMods.Patch {
                 if (player.NameText.Text == GlobalVariable.TimeMaster.name && HelperRoles.IsTimeMaster(PlayerControl.LocalPlayer.PlayerId))
                     player.NameText.Color = new Color(0.49f, 0.49f, 0.49f, 1f);
 
-                if (PlayerControl.AllPlayerControls != null && PlayerControl.AllPlayerControls.Count > 1 && PlayerControl.LocalPlayer != null) {
-                    foreach (var playerControl in PlayerControl.AllPlayerControls) {
+                if (PlayerControl.LocalPlayer.Data.PlayerName == player.NameText.Text && HelperRoles.IsInvestigator(PlayerControl.LocalPlayer.PlayerId))
+                    player.NameText.Color = new Color(0.180f, 0.678f, 1f, 1f);
 
-                        if (HelperRoles.IsInvestigator(playerControl.PlayerId) && HelperRoles.IsInvestigator(PlayerControl.LocalPlayer.PlayerId))
-                            if (playerControl.Data.PlayerName == player.NameText.Text)
-                                player.NameText.Color = new Color(0.180f, 0.678f, 1f, 1f);
-
-                        if (HelperRoles.IsLighter(playerControl.PlayerId) && HelperRoles.IsLighter(PlayerControl.LocalPlayer.PlayerId))
-                            if (playerControl.Data.PlayerName == player.NameText.Text)
-                                player.NameText.Color = new Color(0.729f, 0.356f, 0.074f, 1f);
-                    }
-                }
+                if (PlayerControl.LocalPlayer.Data.PlayerName == player.NameText.Text && HelperRoles.IsLighter(PlayerControl.LocalPlayer.PlayerId))
+                    player.NameText.Color = new Color(0.729f, 0.356f, 0.074f, 1f);
             }
         }
     }
@@ -32,14 +25,16 @@ namespace RolesMods.Patch {
             if (MeetingHud.Instance != null)
                 HudPatch.UpdateMeetingHUD(MeetingHud.Instance);
 
-            if (PlayerControl.AllPlayerControls.Count > 1 && GlobalVariable.InvestigatorsList != null && HelperRoles.IsInvestigator(PlayerControl.LocalPlayer.PlayerId))
-                PlayerControl.LocalPlayer.nameText.Color = new Color(0.180f, 0.678f, 1f, 1f);
+            if (PlayerControl.LocalPlayer != null) {
+                if (PlayerControl.AllPlayerControls.Count > 1 && GlobalVariable.InvestigatorsList != null && HelperRoles.IsInvestigator(PlayerControl.LocalPlayer.PlayerId))
+                    PlayerControl.LocalPlayer.nameText.Color = new Color(0.180f, 0.678f, 1f, 1f);
 
-            if (PlayerControl.AllPlayerControls.Count > 1 && GlobalVariable.TimeMaster != null && HelperRoles.IsTimeMaster(PlayerControl.LocalPlayer.PlayerId))
-                PlayerControl.LocalPlayer.nameText.Color = new Color(0.49f, 0.49f, 0.49f, 1f);
+                if (PlayerControl.AllPlayerControls.Count > 1 && GlobalVariable.TimeMaster != null && HelperRoles.IsTimeMaster(PlayerControl.LocalPlayer.PlayerId))
+                    PlayerControl.LocalPlayer.nameText.Color = new Color(0.49f, 0.49f, 0.49f, 1f);
 
-            if (PlayerControl.AllPlayerControls.Count > 1 && GlobalVariable.LightersList != null && HelperRoles.IsLighter(PlayerControl.LocalPlayer.PlayerId))
-                PlayerControl.LocalPlayer.nameText.Color = new Color(0.729f, 0.356f, 0.074f, 1f);
+                if (PlayerControl.AllPlayerControls.Count > 1 && GlobalVariable.LightersList != null && HelperRoles.IsLighter(PlayerControl.LocalPlayer.PlayerId))
+                    PlayerControl.LocalPlayer.nameText.Color = new Color(0.729f, 0.356f, 0.074f, 1f);
+            }
 
             CooldownButton.HudUpdate();
         }

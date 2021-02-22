@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using Hazel;
 using RolesMods.Utility;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -10,15 +11,13 @@ namespace RolesMods.Patch {
     class HandleRpcPatch {
 
         public static bool Prefix([HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader) {
+
             if (callId == (byte) CustomRPC.SetInvestigator) {
                 GlobalVariable.InvestigatorsList.Clear();
-                int readInt = reader.ReadInt32();
+                List<byte> selectedPlayers = reader.ReadBytesAndSize().ToList();
 
-                byte readByte;
-                for (int i = 0; i < readInt; i++) {
-                    readByte = reader.ReadByte();
-                    GlobalVariable.InvestigatorsList.Add(PlayerControlUtils.FromPlayerId(readByte));
-                }
+                for (int i = 0; i < selectedPlayers.Count; i++)
+                    GlobalVariable.InvestigatorsList.Add(PlayerControlUtils.FromPlayerId(selectedPlayers[i]));
 
                 return false;
             }
@@ -37,13 +36,10 @@ namespace RolesMods.Patch {
 
             if (callId == (byte) CustomRPC.SetLighter) {
                 GlobalVariable.LightersList.Clear();
-                int readInt = reader.ReadInt32();
+                List<byte> selectedPlayers = reader.ReadBytesAndSize().ToList();
 
-                byte readByte;
-                for (int i = 0; i < readInt; i++) {
-                    readByte = reader.ReadByte();
-                    GlobalVariable.LightersList.Add(PlayerControlUtils.FromPlayerId(readByte));
-                }
+                for (int i = 0; i < selectedPlayers.Count; i++)
+                    GlobalVariable.LightersList.Add(PlayerControlUtils.FromPlayerId(selectedPlayers[i]));
 
                 return false;
             }

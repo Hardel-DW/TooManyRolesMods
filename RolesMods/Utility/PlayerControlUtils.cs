@@ -20,9 +20,9 @@ namespace RolesMods.Utility {
         }
 
         public static PlayerControl FromPlayerId(byte id) {
-            foreach (var player in PlayerControl.AllPlayerControls)
-                if (player.PlayerId == id)
-                    return player;
+            for (int i = 0; i < PlayerControl.AllPlayerControls.Count; i++)
+                if (PlayerControl.AllPlayerControls[i].PlayerId == id)
+                    return PlayerControl.AllPlayerControls[i];
 
             return null;
         }

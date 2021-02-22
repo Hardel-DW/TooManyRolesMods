@@ -7,14 +7,14 @@ namespace RolesMods.Systems.Investigator {
     class FootPrint {
         public static List<FootPrint> allFootprint = new List<FootPrint>();
 
-        private float footPrintSize;
+        private readonly float footPrintSize;
         private Color footPrintColor;
         private Vector3 footPrintPosition;
-        private float footPrintDuration;
-        private int footPrintUnixTime;
+        private readonly float footPrintDuration;
+        private readonly int footPrintUnixTime;
         private GameObject footPrint;
-        private PlayerControl player;
         private SpriteRenderer spriteRenderer;
+        private readonly PlayerControl player;
 
         public FootPrint(float footPrintSize, float footPrintDuration, PlayerControl player) {
             this.footPrintSize = footPrintSize;
@@ -25,7 +25,7 @@ namespace RolesMods.Systems.Investigator {
             this.footPrintUnixTime = (int) DateTimeOffset.Now.ToUnixTimeSeconds();
 
             if (RolesMods.AnonymousFootPrint.GetValue())
-                this.footPrintColor = new Color(0.5f, 0.5f, 0.5f, 1f);
+                this.footPrintColor = new Color(0.2f, 0.2f, 0.2f, 1f);
 
             Start();
         }
@@ -36,7 +36,7 @@ namespace RolesMods.Systems.Investigator {
             footPrint.transform.localPosition = footPrintPosition;
             footPrint.transform.SetParent(player.transform.parent);
             spriteRenderer = footPrint.AddComponent<SpriteRenderer>();
-            spriteRenderer.sprite = HelperSprite.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Circle.png", footPrintSize);
+            spriteRenderer.sprite = HelperSprite.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Circle.png", 400f + (float) (footPrintSize * 128 + Math.Pow(Math.Pow(footPrintSize, 1.75d), 2d)));
             spriteRenderer.color = footPrintColor;
 
             footPrint.SetActive(true);
@@ -52,9 +52,8 @@ namespace RolesMods.Systems.Investigator {
             int currentUnixTime = (int) DateTimeOffset.Now.ToUnixTimeSeconds();
             float alpha = Mathf.Max((1f - ((currentUnixTime - footPrintUnixTime) / footPrintDuration)), 0f);
             
-            if (alpha < 0 || alpha > 1) {
+            if (alpha < 0 || alpha > 1)
                 alpha = 0;
-            }
 
             footPrintColor = new Color(footPrintColor.r, footPrintColor.g, footPrintColor.b, alpha);
             spriteRenderer.color = footPrintColor;
@@ -63,24 +62,8 @@ namespace RolesMods.Systems.Investigator {
                 DestroyThis();
         }
 
-        public float FootPrintSize {
-            get => footPrintSize;
-            set => footPrintSize = value;
-        }
-
-        public Color FootPrintColor {
-            get => footPrintColor;
-            set => footPrintColor = value;
-        }
-
         public Vector3 FootPrintPosition {
             get => footPrintPosition;
-            set => footPrintPosition = value;
-        }
-
-        public float FootPrintDuration {
-            get => footPrintDuration;
-            set => footPrintDuration = value;
         }
     }
 }

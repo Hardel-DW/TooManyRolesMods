@@ -13,26 +13,6 @@ namespace RolesMods.Patch {
             List<PlayerControl> playersList = PlayerControl.AllPlayerControls.ToArray().ToList();
             HelperRoles.ClearRoles();
 
-            // Investigator
-            if (playersList != null && playersList.Count > 0 && RolesMods.EnableInvestigator.GetValue()) {
-                MessageWriter messageWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte) CustomRPC.SetInvestigator, SendOption.None, -1);
-
-                messageWriter.Write(RolesMods.NumberInvestigator.GetValue());
-                for (int i = 0; i < RolesMods.NumberInvestigator.GetValue(); i++) {
-                    List<PlayerControl> crewmateList = playersList.FindAll(x => !x.Data.IsImpostor).ToArray().ToList();
-                    
-                    if (crewmateList != null && crewmateList.Count > 0) {
-                        Random random = new Random();
-                        PlayerControl selectedPlayer = crewmateList[random.Next(0, crewmateList.Count)];
-                        GlobalVariable.InvestigatorsList.Add(selectedPlayer);
-                        playersList.Remove(selectedPlayer);
-                        messageWriter.Write(selectedPlayer.PlayerId);
-                    }
-                }
-
-                AmongUsClient.Instance.FinishRpcImmediately(messageWriter);
-            }
-
             // TimeMaster
             if (playersList != null && playersList.Count > 0 && RolesMods.EnableTimeMaster.GetValue()) {
                 Random random = new Random();
@@ -44,11 +24,32 @@ namespace RolesMods.Patch {
                 AmongUsClient.Instance.FinishRpcImmediately(messageWriter);
             }
 
+            // Investigator
+            if (playersList != null && playersList.Count > 0 && RolesMods.EnableInvestigator.GetValue()) {
+                MessageWriter messageWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte) CustomRPC.SetInvestigator, SendOption.None, -1);
+                List<byte> playerSelected = new List<byte>();
+
+                for (int i = 0; i < RolesMods.NumberInvestigator.GetValue(); i++) {
+                    List<PlayerControl> crewmateList = playersList.FindAll(x => !x.Data.IsImpostor).ToArray().ToList();
+                    
+                    if (crewmateList != null && crewmateList.Count > 0) {
+                        Random random = new Random();
+                        PlayerControl selectedPlayer = crewmateList[random.Next(0, crewmateList.Count)];
+                        GlobalVariable.InvestigatorsList.Add(selectedPlayer);
+                        playersList.Remove(selectedPlayer);
+                        playerSelected.Add(selectedPlayer.PlayerId);
+                    }
+                }
+
+                messageWriter.WriteBytesAndSize(playerSelected.ToArray());
+                AmongUsClient.Instance.FinishRpcImmediately(messageWriter);
+            }
+
             // Lighter
             if (playersList != null && playersList.Count > 0 && RolesMods.EnableLighter.GetValue()) {
                 MessageWriter messageWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte) CustomRPC.SetLighter, SendOption.None, -1);
+                List<byte> playerSelected = new List<byte>();
 
-                messageWriter.Write(RolesMods.NumberLighter.GetValue());
                 for (int i = 0; i < RolesMods.NumberLighter.GetValue(); i++) {
                     List<PlayerControl> crewmateList = playersList.FindAll(x => !x.Data.IsImpostor).ToArray().ToList();
                     
@@ -57,10 +58,11 @@ namespace RolesMods.Patch {
                         PlayerControl selectedPlayer = crewmateList[random.Next(0, crewmateList.Count)];
                         GlobalVariable.LightersList.Add(selectedPlayer);
                         playersList.Remove(selectedPlayer);
-                        messageWriter.Write(selectedPlayer.PlayerId);
+                        playerSelected.Add(selectedPlayer.PlayerId);
                     }
                 }
 
+                messageWriter.WriteBytesAndSize(playerSelected.ToArray());
                 AmongUsClient.Instance.FinishRpcImmediately(messageWriter);
             }
         }

@@ -23,7 +23,7 @@ namespace RolesMods.Patch {
         [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Update))]
         class Update {
             static void Postfix(ref GameOptionsMenu __instance) {
-                __instance.GetComponentInParent<Scroller>().YBounds.max = 13.5f;
+                __instance.GetComponentInParent<Scroller>().YBounds.max = 14f;
             }
         }
     }
