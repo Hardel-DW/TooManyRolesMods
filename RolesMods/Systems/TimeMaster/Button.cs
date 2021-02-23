@@ -15,7 +15,7 @@ namespace RolesMods.Systems.TimeMaster {
                 new Vector2(0f, 0f),
                 Visibility.Everyone,
                 __instance,
-                RolesMods.TimeMasterDuration.GetValue(),
+                RolesMods.TimeMasterDuration.GetValue() / 2,
                 () => OnEffectEnd(),
                 () => OnUpdate(GlobalVariable.buttonTime)
             );

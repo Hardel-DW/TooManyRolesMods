@@ -10,7 +10,7 @@ namespace RolesMods {
     [BepInProcess("Among Us.exe")]
     [BepInDependency(ReactorPlugin.Id)]
     public class RolesMods : BasePlugin {
-        public const string Id = "fr.hardel.rolesmodes";
+        public const string Id = "fr.hardel.toomanyrolesmodes";
         public static ManualLogSource Logger;
         public Harmony Harmony { get; } = new Harmony(Id);
 

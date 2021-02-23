@@ -7,13 +7,9 @@ namespace RolesMods.Patch {
             GlobalVariable.isGameStarted = true;
             Systems.TimeMaster.Time.pointsInTime.Clear();
             Systems.Investigator.FootPrint.allFootprint.Clear();
-
-            if (GlobalVariable.TimeMaster != null) {
-                if (HelperRoles.IsTimeMaster(PlayerControl.LocalPlayer.PlayerId)) {
-                    GlobalVariable.buttonTime.MaxTimer = RolesMods.TimeMasterCooldown.GetValue();
-                    GlobalVariable.buttonTime.EffectDuration = RolesMods.TimeMasterDuration.GetValue() / 2;
-                }
-            }
+            GlobalVariable.buttonTime.MaxTimer = RolesMods.TimeMasterCooldown.GetValue();
+            GlobalVariable.buttonTime.EffectDuration = RolesMods.TimeMasterDuration.GetValue() / 2;
+            Systems.TimeMaster.Time.recordTime = RolesMods.TimeMasterDuration.GetValue();
         }
     }
 }

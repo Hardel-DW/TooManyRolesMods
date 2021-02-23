@@ -14,9 +14,8 @@ namespace RolesMods.Systems.TimeMaster {
         private static bool isDead = false;
 
         public static void Record() {
-            if (pointsInTime.Count > Mathf.Round(recordTime / UnityEngine.Time.fixedDeltaTime)) {
+            if (pointsInTime.Count > Mathf.Round(recordTime / UnityEngine.Time.fixedDeltaTime))
                 pointsInTime.RemoveAt(pointsInTime.Count - 1);
-            }
 
             if (PlayerControl.LocalPlayer != null) {
                 pointsInTime.Insert(0, new TimePoint(
@@ -39,30 +38,31 @@ namespace RolesMods.Systems.TimeMaster {
 
         public static void Rewind() {
             if (pointsInTime.Count > 0) {
-                TimePoint currentTimePoint = pointsInTime[0];
 
-                PlayerControl.LocalPlayer.transform.position = currentTimePoint.Position;
-                PlayerControl.LocalPlayer.gameObject.GetComponent<Rigidbody2D>().velocity = currentTimePoint.Velocity;
+                if (!PlayerControl.LocalPlayer.inVent) {
+                    TimePoint currentTimePoint = pointsInTime[0];
 
-                if (isDead && currentTimePoint.Unix < deadtime && PlayerControl.LocalPlayer.Data.IsDead && RolesMods.EnableReiveTimeMaster.GetValue()) {
-                    PlayerControl.LocalPlayer.Revive();
-                    var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == PlayerControl.LocalPlayer.PlayerId);
+                    PlayerControl.LocalPlayer.transform.position = currentTimePoint.Position;
+                    PlayerControl.LocalPlayer.gameObject.GetComponent<Rigidbody2D>().velocity = currentTimePoint.Velocity;
 
-                    if (body != null)
-                        UnityEngine.Object.Destroy(body.gameObject);
+                    if (isDead && currentTimePoint.Unix < deadtime && PlayerControl.LocalPlayer.Data.IsDead && RolesMods.EnableReiveTimeMaster.GetValue()) {
+                        PlayerControl.LocalPlayer.Revive();
+                        var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == PlayerControl.LocalPlayer.PlayerId);
 
-                    deadtime = 0;
-                    isDead = false;
+                        if (body != null)
+                            UnityEngine.Object.Destroy(body.gameObject);
 
-                    MessageWriter write = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte) CustomRPC.TimeRevive, SendOption.None, -1);
-                    write.Write(PlayerControl.LocalPlayer.PlayerId);
-                    AmongUsClient.Instance.FinishRpcImmediately(write);
+                        deadtime = 0;
+                        isDead = false;
+
+                        MessageWriter write = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte) CustomRPC.TimeRevive, SendOption.None, -1);
+                        write.Write(PlayerControl.LocalPlayer.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(write);
+                    }
                 }
 
                 pointsInTime.RemoveAt(0);
-            } else {
-                StopRewind();
-            }
+            } else StopRewind();
         }
 
         public static void StartRewind() {
