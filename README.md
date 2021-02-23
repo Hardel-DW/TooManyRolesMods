@@ -1,4 +1,4 @@
-# Roles Mods by Hardel
+# Too Many Roles Mods by Hardel
 
 The "Too Many Roles Mod", is a mod for among Us, adding roles and perssonalization options.  
 15 options are configurable in the lobby.  
@@ -86,7 +86,7 @@ The multiplicative option can be less than 1.
 
 # Bugs/Feature suggestions
 If you need to contact me, to request additional functionality, or make bug or change requests.  
-Come on this discord server [Discord](...), or create a ticker on Github.
+Come on this discord server [Discord](https://discord.gg/s2TgC8Uj), or create a ticker on Github.
 
 # Resources
 https://github.com/NuclearPowered/Reactor The framework the mod uses.  
