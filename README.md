@@ -3,18 +3,26 @@
 # Too Many Roles Mods by Hardel
 
 The "Too Many Roles Mod", is a mod for among Us, adding roles and perssonalization options.  
-15 options are configurable in the lobby.  
-And currently has 3 roles :  
-TimeMaster, Investigator and Lighter.
+16 Game options are configurable in the lobby, They allow you to create the adjustments according to your needs.  
+And currently has 3 roles : TimeMaster, Investigator and Lighter.
+Several roles will be added in the future.
 
+![Install](https://cdn.discordapp.com/attachments/790517195003527189/813239176412659752/Sans_titre.png)
+
+# Releases :
 | Among Us - Version| Mod Version | Link |
-|----------|:-------------:|------:|
+|----------|-------------|-----------------|
 | 2020.12.19s | V1.2.1 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V1.2.1/Among.Us.-.Too.Many.Roles.Modszip.zip) |
 | 2020.12.19s | V1.2.0 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V1.2/Among.Us.-.Too.Many.Roles.Mods.zip) |
 | 2020.12.19s | V1.1.0 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V1.1/Among.Us.-.ToManyRolesMods.zip) |
-
-
-![Install](https://cdn.discordapp.com/attachments/790517195003527189/813239176412659752/Sans_titre.png)
+<details>
+  <summary>Changelog</summary>
+    <h2>Version 1.2.1</h2>
+    <h3>Feature :</h3>
+    <p>Added discord to PinkTracker.</p>
+    <h3>Bug Correction :</h3>
+    <p>  "Server didn't respond to modded handshake" was fixed</p>
+</details>
 
 # Installation
 **Download the zip file on the right side of Github.**  
@@ -119,9 +127,6 @@ https://github.com/Woodi-dev/Among-Us-Sheriff-Mod For code snippets.
 https://github.com/tomozbot/AmongUsCustomRoles For code snippets.  
 https://github.com/Aeolic/CultistMod For code snippets.  
 https://github.com/Galster-dev/CrowdedSheriff For code snippters.  
-
-# Special Thanks
-Thank you, to the discordant server Reactor. [Reactor Discord](https://discord.gg/3a6U7Nsv)
 
 # License
 This software is distributed under the GNU GPLv3 License. BepinEx is distributed under LGPL-2.1 License.
