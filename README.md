@@ -8,6 +8,7 @@ And currently has 3 roles :
 TimeMaster, Investigator and Lighter.
 
 | Among Us - Version| Mod Version | Link |
+|----------|:-------------:|------:|
 | 2020.12.19s | V1.2.1 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V1.2.1/Among.Us.-.Too.Many.Roles.Modszip.zip) |
 | 2020.12.19s | V1.2.0 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V1.2/Among.Us.-.Too.Many.Roles.Mods.zip) |
 | 2020.12.19s | V1.1.0 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V1.1/Among.Us.-.ToManyRolesMods.zip) |
