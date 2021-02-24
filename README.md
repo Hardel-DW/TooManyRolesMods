@@ -1,9 +1,16 @@
+[![Hardel](https://discord.com/assets/192cb9459cbc0f9e73e2591b700f1857.svg)](https://discord.gg/AP9axbXXNC)
+
 # Too Many Roles Mods by Hardel
 
 The "Too Many Roles Mod", is a mod for among Us, adding roles and perssonalization options.  
 15 options are configurable in the lobby.  
 And currently has 3 roles :  
-TimeMaster, Investigator and Lighter.  
+TimeMaster, Investigator and Lighter.
+
+| Among Us - Version| Mod Version | Link |
+| 2020.12.19s | V1.2.1 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V1.2.1/Among.Us.-.Too.Many.Roles.Modszip.zip) |
+| 2020.12.19s | V1.2.0 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V1.2/Among.Us.-.Too.Many.Roles.Mods.zip) |
+| 2020.12.19s | V1.1.0 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V1.1/Among.Us.-.ToManyRolesMods.zip) |
 
 
 ![Install](https://cdn.discordapp.com/attachments/790517195003527189/813239176412659752/Sans_titre.png)
@@ -84,6 +91,20 @@ The multiplicative option can be less than 1.
 
 ---------------
 
+# Q&A
+## Can you play Proximity Chat (Crewlink) with it?
+Yes, Crewlink supports Among Us Modifications
+
+## Can you get banned for playing on public Servers?
+At the current state of the game there is no perma ban system for the game. The mod is designed in a way, that it does not send prohibited server requests. You are also able to join your own custom server to be safe [(Impostor)](https://github.com/Impostor/Impostor)
+
+## Do my friends need to install the mod to play it together?
+Yes. Every player in the lobby must have the mod installed.
+
+If you'd like to contact me about anything else:
+Discord: Hardel#7401
+Discord Server: https://hardel.fr/discord
+
 # Bugs/Feature suggestions
 If you need to contact me, to request additional functionality, or make bug or change requests.  
 Come on this discord server [Discord](https://discord.gg/s2TgC8Uj), or create a ticker on Github.
@@ -100,3 +121,6 @@ https://github.com/Galster-dev/CrowdedSheriff For code snippters.
 
 # Special Thanks
 Thank you, to the discordant server Reactor. [Reactor Discord](https://discord.gg/3a6U7Nsv)
+
+# License
+This software is distributed under the GNU GPLv3 License. BepinEx is distributed under LGPL-2.1 License.
