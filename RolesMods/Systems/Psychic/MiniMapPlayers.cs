@@ -12,7 +12,7 @@ namespace RolesMods.Systems.Psychic {
 
 			if (GlobalVariable.ispsychicActivated && HelperRoles.IsPsychic(PlayerControl.LocalPlayer.PlayerId)) {
 				MiniMapPlayers.ClearAllPlayers();
-				__instance.ColorControl.SetColor(Palette.Purple);
+				__instance.ColorControl.SetColor(new Color(0.894f, 0f, 1f, 1f));
 
 				var temp = new List<SpriteRenderer>();
 				foreach (var player in PlayerControl.AllPlayerControls) {
