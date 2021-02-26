@@ -5,7 +5,7 @@ namespace RolesMods.Patch {
     [HarmonyPatch(typeof(GameOptionsData), nameof(GameOptionsData.Method_24))]
     class GameSettingsPatch {
         static void Postfix(ref string __result) {
-            DestroyableSingleton<HudManager>.Instance.GameSettings.scale = 0.5f;
+            DestroyableSingleton<HudManager>.Instance.GameSettings.scale = 0.425f;
         }
     }
 
@@ -23,7 +23,7 @@ namespace RolesMods.Patch {
         [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Update))]
         class Update {
             static void Postfix(ref GameOptionsMenu __instance) {
-                __instance.GetComponentInParent<Scroller>().YBounds.max = 14f;
+                __instance.GetComponentInParent<Scroller>().YBounds.max = 18f;
             }
         }
     }

@@ -65,6 +65,27 @@ namespace RolesMods.Patch {
                 messageWriter.WriteBytesAndSize(playerSelected.ToArray());
                 AmongUsClient.Instance.FinishRpcImmediately(messageWriter);
             }
+
+            // Psychic
+            if (playersList != null && playersList.Count > 0 && RolesMods.EnablePsychic.GetValue()) {
+                MessageWriter messageWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte) CustomRPC.SetPsychic, SendOption.None, -1);
+                List<byte> playerSelected = new List<byte>();
+
+                for (int i = 0; i < RolesMods.NumberPsychic.GetValue(); i++) {
+                    List<PlayerControl> crewmateList = playersList.FindAll(x => !x.Data.IsImpostor).ToArray().ToList();
+
+                    if (crewmateList != null && crewmateList.Count > 0) {
+                        Random random = new Random();
+                        PlayerControl selectedPlayer = crewmateList[random.Next(0, crewmateList.Count)];
+                        GlobalVariable.PsychicList.Add(selectedPlayer);
+                        playersList.Remove(selectedPlayer);
+                        playerSelected.Add(selectedPlayer.PlayerId);
+                    }
+                }
+
+                messageWriter.WriteBytesAndSize(playerSelected.ToArray());
+                AmongUsClient.Instance.FinishRpcImmediately(messageWriter);
+            }
         }
     }
 }

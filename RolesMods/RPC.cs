@@ -38,6 +38,7 @@
         SetTimeMaster = 81,
         TimeRewind = 82,
         TimeRevive = 63,
-        SetLighter = 64
+        SetLighter = 64,
+        SetPsychic = 83
     }
 }

@@ -14,6 +14,9 @@ namespace RolesMods.Patch {
 
                 if (PlayerControl.LocalPlayer.Data.PlayerName == player.NameText.Text && HelperRoles.IsLighter(PlayerControl.LocalPlayer.PlayerId))
                     player.NameText.Color = new Color(0.729f, 0.356f, 0.074f, 1f);
+
+                if (PlayerControl.LocalPlayer.Data.PlayerName == player.NameText.Text && HelperRoles.IsPsychic(PlayerControl.LocalPlayer.PlayerId))
+                    player.NameText.Color = new Color(0.73f, 0, 0.73f, 1f);
             }
         }
     }
@@ -34,6 +37,9 @@ namespace RolesMods.Patch {
 
                 if (PlayerControl.AllPlayerControls.Count > 1 && GlobalVariable.LightersList != null && HelperRoles.IsLighter(PlayerControl.LocalPlayer.PlayerId))
                     PlayerControl.LocalPlayer.nameText.Color = new Color(0.729f, 0.356f, 0.074f, 1f);
+
+                if (PlayerControl.AllPlayerControls.Count > 1 && GlobalVariable.PsychicList != null && HelperRoles.IsPsychic(PlayerControl.LocalPlayer.PlayerId))
+                    PlayerControl.LocalPlayer.nameText.Color = new Color(0.73f, 0f, 0.73f, 1f);
             }
 
             CooldownButton.HudUpdate();

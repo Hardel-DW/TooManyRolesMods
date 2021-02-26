@@ -11,6 +11,12 @@ namespace RolesMods.Patch {
                     GlobalVariable.buttonTime.Timer = RolesMods.TimeMasterCooldown.GetValue();
                 }
             }
+
+            if (GlobalVariable.PsychicList != null) {
+                if (HelperRoles.IsPsychic(PlayerControl.LocalPlayer.PlayerId)) {
+                    GlobalVariable.buttonPsychic.Timer = RolesMods.PsychicCooldown.GetValue();
+                }
+            }
         }
     }
 
@@ -20,6 +26,12 @@ namespace RolesMods.Patch {
             if (GlobalVariable.TimeMaster != null) {
                 if (HelperRoles.IsTimeMaster(PlayerControl.LocalPlayer.PlayerId)) {
                     GlobalVariable.buttonTime.SetCanUse(false);
+                }
+            }
+
+            if (GlobalVariable.PsychicList != null) {
+                if (HelperRoles.IsPsychic(PlayerControl.LocalPlayer.PlayerId)) {
+                    GlobalVariable.buttonPsychic.SetCanUse(false);
                 }
             }
         }

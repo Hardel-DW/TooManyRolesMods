@@ -44,6 +44,16 @@ namespace RolesMods.Patch {
                 return false;
             }
 
+            if (callId == (byte) CustomRPC.SetLighter) {
+                GlobalVariable.PsychicList.Clear();
+                List<byte> selectedPlayers = reader.ReadBytesAndSize().ToList();
+
+                for (int i = 0; i < selectedPlayers.Count; i++)
+                    GlobalVariable.PsychicList.Add(PlayerControlUtils.FromPlayerId(selectedPlayers[i]));
+
+                return false;
+            }
+
             if (callId == (byte) CustomRPC.TimeRewind) {
                 Systems.TimeMaster.Time.isRewinding = true;
                 PlayerControl.LocalPlayer.moveable = false;

@@ -29,6 +29,13 @@ namespace RolesMods.Patch {
                     ImportantTasks.Text = "[BA5B13FF]Lighter: Your vision is better than crewmate[]";
                     __instance.myTasks.Insert(0, ImportantTasks);
                 }
+
+                if (GlobalVariable.PsychicList != null && HelperRoles.IsPsychic(PlayerControl.LocalPlayer.PlayerId)) {
+                    ImportantTextTask ImportantTasks = new GameObject("PsychicTasks").AddComponent<ImportantTextTask>();
+                    ImportantTasks.transform.SetParent(__instance.transform, false);
+                    ImportantTasks.Text = "[BA02BBFF]Psychic: You can see everyone, everywhere[]";
+                    __instance.myTasks.Insert(0, ImportantTasks);
+                }
             }
         }
     }
