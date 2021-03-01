@@ -16,6 +16,7 @@ namespace RolesMods {
         public static bool ispsychicActivated = false;
         public static List<SpriteRenderer> herePoints = new List<SpriteRenderer>();
         public static List<TextRenderer> texts = new List<TextRenderer>();
+        public static GameObject psychicOverlay;
 
         // Button
         internal static CooldownButton buttonTime;

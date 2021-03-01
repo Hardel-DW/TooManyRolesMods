@@ -21,7 +21,7 @@ namespace RolesMods.Patch {
     }
 
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Update))]
-    public static class MeetingStartPatch {
+    public static class MeetingUpdatePatch {
         public static void Postfix(MeetingHud __instance) {
             if (GlobalVariable.TimeMaster != null) {
                 if (HelperRoles.IsTimeMaster(PlayerControl.LocalPlayer.PlayerId)) {
@@ -34,6 +34,14 @@ namespace RolesMods.Patch {
                     GlobalVariable.buttonPsychic.SetCanUse(false);
                 }
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Awake))]
+    public static class MeetingStartPatch {
+        public static void Postfix(MeetingHud __instance) {
+            Systems.TimeMaster.Time.StopRewind();
+            Systems.Psychic.MiniMapPlayers.OverlaySystem(false);
         }
     }
 }

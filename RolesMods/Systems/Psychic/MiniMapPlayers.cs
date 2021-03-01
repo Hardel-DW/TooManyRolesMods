@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using Hazel;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,13 +9,14 @@ namespace RolesMods.Systems.Psychic {
 	[HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.ShowNormalMap))]
 	public static class MapBehaviourShowNormalMapPatch {
 		public static void Postfix(MapBehaviour __instance) {
-			if (!ShipStatus.Instance) { return; }
+			if (!ShipStatus.Instance)
+				return;
 
 			if (GlobalVariable.ispsychicActivated && HelperRoles.IsPsychic(PlayerControl.LocalPlayer.PlayerId)) {
 				MiniMapPlayers.ClearAllPlayers();
 				__instance.ColorControl.SetColor(new Color(0.894f, 0f, 1f, 1f));
 
-				var temp = new List<SpriteRenderer>();
+				var playerSpriteIcon = new List<SpriteRenderer>();
 				foreach (var player in PlayerControl.AllPlayerControls) {
 					if (!player.Data.IsDead) {				
 						SpriteRenderer herePoint = Object.Instantiate(__instance.HerePoint, __instance.HerePoint.transform.parent);
@@ -32,10 +34,10 @@ namespace RolesMods.Systems.Psychic {
 							GlobalVariable.texts.Add(text);
 						}
 
-						temp.Add(herePoint);
+						playerSpriteIcon.Add(herePoint);
 					}
 				}
-				GlobalVariable.herePoints = temp;
+				GlobalVariable.herePoints = playerSpriteIcon;
 			}
 		}
 	}
@@ -66,9 +68,7 @@ namespace RolesMods.Systems.Psychic {
 	[HarmonyPatch(typeof(MapBehaviour), nameof(MapBehaviour.Close))]
 	public static class MapBehaviourClosePatch {
 		public static void Postfix(MapBehaviour __instance) {
-			try {
-				MiniMapPlayers.ClearAllPlayers();
-			} catch { }
+			MiniMapPlayers.ClearAllPlayers();
 		}
 	}
 
@@ -80,6 +80,15 @@ namespace RolesMods.Systems.Psychic {
 				GlobalVariable.herePoints.Clear();
 				GlobalVariable.texts.Clear();
             } catch {}
+		}
+
+		public static void SyncOverlay(bool show) {
+			MessageWriter write = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte) CustomRPC.SendOverlayPsychic, SendOption.None, -1);
+			write.Write(show);
+			AmongUsClient.Instance.FinishRpcImmediately(write);
+
+			if (GlobalVariable.psychicOverlay != null)
+				GlobalVariable.psychicOverlay.SetActive(show);
 		}
 	}
 }

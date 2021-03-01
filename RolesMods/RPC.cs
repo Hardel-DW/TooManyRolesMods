@@ -39,6 +39,7 @@
         TimeRewind = 82,
         TimeRevive = 63,
         SetLighter = 64,
-        SetPsychic = 83
+        SetPsychic = 83,
+        SendOverlayPsychic = 84
     }
 }

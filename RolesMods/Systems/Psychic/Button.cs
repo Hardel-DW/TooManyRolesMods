@@ -24,13 +24,13 @@ namespace RolesMods.Systems.Psychic {
             GlobalVariable.ispsychicActivated = false;
             MiniMapPlayers.ClearAllPlayers();
 
-            if (MapBehaviour.Instance != null) {
+            if (MapBehaviour.Instance != null) 
                 MapBehaviour.Instance.ColorControl.SetColor(new Color(0.05f, 0.2f, 1f, 1f));
-            }
         }
 
         private static void OnClick() {
             GlobalVariable.ispsychicActivated = true;
+            MiniMapPlayers.OverlaySystem(true);
             if (MapBehaviour.Instance != null)
                 MapBehaviour.Instance.ShowNormalMap();
         }

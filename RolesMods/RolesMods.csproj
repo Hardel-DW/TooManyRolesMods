@@ -14,6 +14,7 @@
         <EmbeddedResource Include="Resources\Rewind.png"></EmbeddedResource>
         <EmbeddedResource Include="Resources\Circle.png"></EmbeddedResource>
         <EmbeddedResource Include="Resources\Psychic.png"></EmbeddedResource>
+        <EmbeddedResource Include="Resources\Overlay.png"></EmbeddedResource>
         <PackageReference Include="Reactor.OxygenFilter.MSBuild" Version="0.2.3" />
     </ItemGroup>
 

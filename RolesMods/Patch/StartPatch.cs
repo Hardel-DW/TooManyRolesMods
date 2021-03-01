@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using UnityEngine;
 
 namespace RolesMods.Patch {
     [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Start))]
@@ -17,6 +18,17 @@ namespace RolesMods.Patch {
 
             GlobalVariable.buttonPsychic.MaxTimer = RolesMods.PsychicCooldown.GetValue();
             GlobalVariable.buttonPsychic.EffectDuration = RolesMods.PsychicDuration.GetValue();
+
+            // Create Overaly for Psychic
+            GlobalVariable.psychicOverlay = new GameObject { layer = 5, name = "Overlay" };
+            var renderer = GlobalVariable.psychicOverlay.AddComponent<SpriteRenderer>();
+            renderer.sprite = Utility.HelperSprite.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Overlay.png", 102);
+
+            GlobalVariable.psychicOverlay.transform.SetParent(Camera.main.transform);
+            GlobalVariable.psychicOverlay.transform.localPosition = new Vector3(0f, 0f, 0f);
+            GlobalVariable.psychicOverlay.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+
+            GlobalVariable.psychicOverlay.SetActive(false);
         }
     }
 }

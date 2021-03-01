@@ -72,6 +72,15 @@ namespace RolesMods.Patch {
                 return false;
             }
 
+            if (callId == (byte) CustomRPC.SendOverlayPsychic) {
+                bool show = reader.ReadBoolean();
+
+                if (GlobalVariable.psychicOverlay != null)
+                    GlobalVariable.psychicOverlay.SetActive(show);
+
+                return false;
+            }
+
             return true;
         }
     }
