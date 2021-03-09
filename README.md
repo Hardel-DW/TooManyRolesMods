@@ -1,4 +1,4 @@
-[![Hardel](https://discord.com/assets/192cb9459cbc0f9e73e2591b700f1857.svg)](https://discord.gg/AP9axbXXNC)
+[![Hardel](https://discord.com/assets/e4923594e694a21542a489471ecffa50.svg)](https://discord.gg/AP9axbXXNC)
 
 # Too Many Roles Mods by Hardel
 
