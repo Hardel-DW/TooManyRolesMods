@@ -1,7 +1,4 @@
 ﻿using HarmonyLib;
-using RolesMods.Utility;
-using System;
-using System.Diagnostics;
 
 namespace RolesMods.Systems.Lighter {
 

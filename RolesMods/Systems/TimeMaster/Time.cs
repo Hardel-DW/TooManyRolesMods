@@ -59,6 +59,12 @@ namespace RolesMods.Systems.TimeMaster {
                         write.Write(PlayerControl.LocalPlayer.PlayerId);
                         AmongUsClient.Instance.FinishRpcImmediately(write);
                     }
+
+                    if (Minigame.Instance) {
+                        try {
+                            Minigame.Instance.Close();
+                        } catch { }
+                    }
                 }
 
                 pointsInTime.RemoveAt(0);

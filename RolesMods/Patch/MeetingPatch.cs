@@ -41,7 +41,7 @@ namespace RolesMods.Patch {
     public static class MeetingStartPatch {
         public static void Postfix(MeetingHud __instance) {
             Systems.TimeMaster.Time.StopRewind();
-            Systems.Psychic.MiniMapPlayers.OverlaySystem(false);
+            Systems.Psychic.MiniMapPlayers.SyncOverlay(false);
         }
     }
 }

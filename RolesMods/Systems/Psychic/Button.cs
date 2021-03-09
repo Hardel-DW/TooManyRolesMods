@@ -1,6 +1,8 @@
 ﻿using HarmonyLib;
+using Hazel;
 using RolesMods.Utility.Enumerations;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RolesMods.Systems.Psychic {
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Start))]
@@ -10,7 +12,7 @@ namespace RolesMods.Systems.Psychic {
                 (() => OnClick(),
                 RolesMods.PsychicCooldown.GetValue(),
                 "RolesMods.Resources.Psychic.png",
-                128f,
+                1008f,
                 new Vector2(0f, 0f),
                 Visibility.Everyone,
                 __instance,
@@ -23,14 +25,16 @@ namespace RolesMods.Systems.Psychic {
         private static void OnEffectEnd() {
             GlobalVariable.ispsychicActivated = false;
             MiniMapPlayers.ClearAllPlayers();
-
+            GlobalVariable.psychicOverlay.SetActive(false);
+            MiniMapPlayers.SyncOverlay(false);
+                
             if (MapBehaviour.Instance != null) 
                 MapBehaviour.Instance.ColorControl.SetColor(new Color(0.05f, 0.2f, 1f, 1f));
         }
 
         private static void OnClick() {
             GlobalVariable.ispsychicActivated = true;
-            MiniMapPlayers.OverlaySystem(true);
+            MiniMapPlayers.SyncOverlay(true);
             if (MapBehaviour.Instance != null)
                 MapBehaviour.Instance.ShowNormalMap();
         }

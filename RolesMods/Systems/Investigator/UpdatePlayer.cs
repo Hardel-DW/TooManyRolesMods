@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using RolesMods.Utility;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -26,12 +27,11 @@ namespace RolesMods.Systems.Investigator {
                                 bool canPlace = true;
 
                                 foreach (var footprint in FootPrint.allFootprint)
-                                    if (Vector3.Distance(footprint.FootPrintPosition, PlayerControlUtils.Position(player)) < 0.5f)
+                                    if (player.PlayerId == footprint.Player.PlayerId && Vector3.Distance(footprint.FootPrintPosition, PlayerControlUtils.Position(player)) < 0.25f)
                                         canPlace = false;
 
                                 if (!RolesMods.VentFootprintVisible.GetValue() && ShipStatus.Instance != null)
                                     foreach (var vent in ShipStatus.Instance.AllVents.ToList())
-                                        //RolesMods.Logger.LogInfo($"DistanceBeetwenn: {Vector3.Distance(vent.gameObject.transform.position, PlayerControlUtils.Position(player))}, VentId: {vent.Id}, Player: {player.nameText.Text}; VentPositin: {vent.gameObject.transform.position.x}, {vent.gameObject.transform.position.y}, {vent.gameObject.transform.position.z}, PlayerPosition: {PlayerControlUtils.Position(player).x}, {PlayerControlUtils.Position(player).y}");
                                         if (Vector2.Distance(vent.gameObject.transform.position, PlayerControlUtils.Position(player)) < 1f)
                                             canPlace = false;
 

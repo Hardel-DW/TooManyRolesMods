@@ -11,7 +11,7 @@ namespace RolesMods.Systems.TimeMaster {
                 (() => OnClick(),
                 RolesMods.TimeMasterCooldown.GetValue(),
                 "RolesMods.Resources.Rewind.png",
-                500f,
+                250f,
                 new Vector2(0f, 0f),
                 Visibility.Everyone,
                 __instance,

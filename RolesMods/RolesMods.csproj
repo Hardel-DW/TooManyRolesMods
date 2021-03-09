@@ -12,16 +12,11 @@
     <ItemGroup>
         <Deobfuscate Include="$(AmongUs)\BepInEx\plugins\Reactor-$(GameVersion).dll" />
         <EmbeddedResource Include="Resources\Rewind.png"></EmbeddedResource>
-        <EmbeddedResource Include="Resources\Circle.png"></EmbeddedResource>
         <EmbeddedResource Include="Resources\Psychic.png"></EmbeddedResource>
+        <EmbeddedResource Include="Resources\Footprint.png"></EmbeddedResource>
         <EmbeddedResource Include="Resources\Overlay.png"></EmbeddedResource>
+        <EmbeddedResource Include="Resources\psychic"></EmbeddedResource>
         <PackageReference Include="Reactor.OxygenFilter.MSBuild" Version="0.2.3" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="Assembly-CSharp">
-        <HintPath>..\Libs\Assembly-CSharp.dll</HintPath>
-      </Reference>
     </ItemGroup>
 
     <ItemGroup>

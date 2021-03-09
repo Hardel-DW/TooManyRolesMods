@@ -1,12 +1,11 @@
 ﻿using HarmonyLib;
 using UnityEngine;
-using IntroCutScene = PENEIDJGGAF.CKACLKCOJFO;
 
 namespace RolesMods.Patch {
 
-    [HarmonyPatch(typeof(IntroCutScene), nameof(IntroCutScene.MoveNext))]
+    [HarmonyPatch(typeof(IntroCutscene.CoBegin__d), nameof(IntroCutscene.CoBegin__d.MoveNext))]
     public static class IntroCutScenePatch {
-        public static void Postfix(IntroCutScene __instance) {
+        public static void Postfix(IntroCutscene.CoBegin__d __instance) {
             byte localPlayerId = PlayerControl.LocalPlayer.PlayerId;
             bool isImpostor = PlayerControl.LocalPlayer.Data.IsImpostor;
 

@@ -13,6 +13,7 @@ namespace RolesMods.Systems.Investigator {
         private readonly float footPrintDuration;
         private readonly int footPrintUnixTime;
         private GameObject footPrint;
+        private Vector2 velocity;
         private SpriteRenderer spriteRenderer;
         private readonly PlayerControl player;
 
@@ -21,6 +22,7 @@ namespace RolesMods.Systems.Investigator {
             this.footPrintColor = Palette.PlayerColors[(int) player.Data.ColorId];
             this.footPrintPosition = player.transform.position;
             this.footPrintDuration = footPrintDuration;
+            this.velocity = player.gameObject.GetComponent<Rigidbody2D>().velocity;
             this.player = player;
             this.footPrintUnixTime = (int) DateTimeOffset.Now.ToUnixTimeSeconds();
 
@@ -34,9 +36,11 @@ namespace RolesMods.Systems.Investigator {
             footPrint = new GameObject("FootPrint");
             footPrint.transform.position = footPrintPosition;
             footPrint.transform.localPosition = footPrintPosition;
+            footPrint.transform.localScale = new Vector2(footPrintSize, footPrintSize);
             footPrint.transform.SetParent(player.transform.parent);
+            footPrint.transform.Rotate(Vector3.forward * Vector2.SignedAngle(Vector2.up, velocity));
             spriteRenderer = footPrint.AddComponent<SpriteRenderer>();
-            spriteRenderer.sprite = HelperSprite.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Circle.png", 400f + (float) (footPrintSize * 128 + Math.Pow(Math.Pow(footPrintSize, 1.75d), 2d)));
+            spriteRenderer.sprite = HelperSprite.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Footprint.png", 100f);
             spriteRenderer.color = footPrintColor;
 
             footPrint.SetActive(true);
@@ -51,7 +55,8 @@ namespace RolesMods.Systems.Investigator {
         public void Update() {
             int currentUnixTime = (int) DateTimeOffset.Now.ToUnixTimeSeconds();
             float alpha = Mathf.Max((1f - ((currentUnixTime - footPrintUnixTime) / footPrintDuration)), 0f);
-            
+            this.footPrintColor = Palette.PlayerColors[(int) player.Data.ColorId];
+
             if (alpha < 0 || alpha > 1)
                 alpha = 0;
 
@@ -65,5 +70,7 @@ namespace RolesMods.Systems.Investigator {
         public Vector3 FootPrintPosition {
             get => footPrintPosition;
         }
+
+        public PlayerControl Player => player;
     }
 }
