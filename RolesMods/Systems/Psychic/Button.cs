@@ -11,10 +11,9 @@ namespace RolesMods.Systems.Psychic {
             GlobalVariable.buttonPsychic = new CooldownButton
                 (() => OnClick(),
                 RolesMods.PsychicCooldown.GetValue(),
-                "RolesMods.Resources.Psychic.png",
-                1008f,
+                "RolesMods.Resources.Foresight.png",
+                1000,
                 new Vector2(0f, 0f),
-                Visibility.Everyone,
                 __instance,
                 RolesMods.PsychicDuration.GetValue(),
                 () => OnEffectEnd(),

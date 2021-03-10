@@ -23,7 +23,6 @@ namespace RolesMods.Patch {
 
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public static class HudUpdatePatch {
-
         public static void Postfix(HudManager __instance) {
             if (MeetingHud.Instance != null)
                 HudPatch.UpdateMeetingHUD(MeetingHud.Instance);
@@ -41,8 +40,6 @@ namespace RolesMods.Patch {
                 if (PlayerControl.AllPlayerControls.Count > 1 && GlobalVariable.PsychicList != null && HelperRoles.IsPsychic(PlayerControl.LocalPlayer.PlayerId))
                     PlayerControl.LocalPlayer.nameText.Color = new Color(0.73f, 0f, 0.73f, 1f);
             }
-
-            CooldownButton.HudUpdate();
         }
     }
 }

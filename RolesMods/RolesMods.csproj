@@ -20,11 +20,9 @@
 
     <ItemGroup>
         <Deobfuscate Include="$(AmongUs)\BepInEx\plugins\Reactor-$(GameVersion).dll" />
+        <EmbeddedResource Include="Resources\bundle-toomanyrole"></EmbeddedResource>
+        <EmbeddedResource Include="Resources\Foresight.png"></EmbeddedResource>
         <EmbeddedResource Include="Resources\Rewind.png"></EmbeddedResource>
-        <EmbeddedResource Include="Resources\Psychic.png"></EmbeddedResource>
-        <EmbeddedResource Include="Resources\Footprint.png"></EmbeddedResource>
-        <EmbeddedResource Include="Resources\Overlay.png"></EmbeddedResource>
-        <EmbeddedResource Include="Resources\psychic"></EmbeddedResource>
         <PackageReference Include="Reactor.OxygenFilter.MSBuild" Version="0.2.9" />
     </ItemGroup>
 
