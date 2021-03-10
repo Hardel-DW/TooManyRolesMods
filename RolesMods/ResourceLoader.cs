@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Reactor.Extensions;
-using Reactor.Unstrip;
 using UnityEngine;
 
 namespace RolesMods {
@@ -15,7 +14,6 @@ namespace RolesMods {
 
             Overlay = assetBundle.LoadAsset<GameObject>("Overlay.prefab").DontDestroy();
             OverlaySprite = assetBundle.LoadAsset<Sprite>("Overlay").DontDestroy();
-            assetBundle.Dispose();
         }
     }
 }

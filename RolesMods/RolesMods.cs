@@ -2,10 +2,11 @@
 using BepInEx.IL2CPP;
 using HarmonyLib;
 using Reactor;
-using Essentials.CustomOptions;
 using BepInEx.Logging;
+using Essentials.Options;
 
 namespace RolesMods {
+
     [BepInPlugin(Id)]
     [BepInProcess("Among Us.exe")]
     [BepInDependency(ReactorPlugin.Id)]
