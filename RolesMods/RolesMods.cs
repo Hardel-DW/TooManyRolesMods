@@ -44,7 +44,6 @@ namespace RolesMods {
         public static CustomToggleOption AnonymousPlayerMinimap = CustomOption.AddToggle("Anonymous player on minimap", false);
         public static CustomToggleOption DeadBodyVisible = CustomOption.AddToggle("Dead body visible", false);
 
-
         public override void Load() {
             Logger = Log;
             Logger.LogInfo("Mods RolesMods is ready !");

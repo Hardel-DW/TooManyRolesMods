@@ -45,7 +45,7 @@ namespace RolesMods.Patch {
             }
 
             // Psychic
-            else if (HelperRoles.IsLighter(localPlayerId)) {
+            else if (HelperRoles.IsPsychic(localPlayerId)) {
                 __instance.__this.Title.Text = "Psychic";
                 __instance.__this.Title.Color = new Color(0.73f, 0f, 0.73f, 1f);
                 __instance.__this.ImpostorText.Text = "Your can see everyone, everywhere";
