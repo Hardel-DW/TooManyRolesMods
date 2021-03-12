@@ -12,16 +12,33 @@ Several roles will be added in the future.
 # Releases :
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2020.3.5s | V2.0.0 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V2.0/Among.Us.zip) |
 | 2020.12.19s | V1.2.1 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V1.2.1/Among.Us.-.Too.Many.Roles.Modszip.zip) |
 | 2020.12.19s | V1.2.0 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V1.2/Among.Us.-.Too.Many.Roles.Mods.zip) |
 | 2020.12.19s | V1.1.0 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V1.1/Among.Us.-.ToManyRolesMods.zip) |
-<details>
-  <summary>Changelog</summary>
-    <h2>Version 1.2.1</h2>
-    <h3>Feature :</h3>
-    <p>Added discord to PinkTracker.</p>
-    <h3>Bug Correction :</h3>
-    <p>  "Server didn't respond to modded handshake" was fixed</p>
+<details> <summary>Changelog</summary>
+<p>
+# Version 2.0 - Among us 2021.5.3s
+
+## Version 2.0 - Among us 2021.5.3s
+
+## Features & Changelog :
+- Too many roles is now in 2021.3.5s.
+- Added new roles, the Psychic.
+- The footprint has new textures and is now oriented according to the direction of the player.
+- Rewinding closes mini-games.
+- Rewind no longer affects players in vents.
+- The rewind effect is no longer affected by the internet connection, movement and reanimation are now perfectly smooth.
+- The footprint now supports player color changes.
+- The update of the footprint is now more realistic.
+- New button textures.
+
+## Psychic :
+- The psychic, can see the position of all players in real time
+- All players are alerted when this power is activated,
+- The dead are not displayed.
+- Players can be anonymous
+</p>
 </details>
 
 # Installation
@@ -99,6 +116,32 @@ The multiplicative option can be less than 1.
 | Lighter sees during electrical sabotage | Allows you to see during the sabotage when the lights are off. | Toggle |
 
 ---------------
+
+# Roles Psychic :
+ 
+### Description :
+The psychic, is a role allowing to see the movements of the players.  
+A special minimap opens showing the position of all players in real time.
+All players receive an indication when the power of the psychic is activated.
+The colors of the players can be anonymous.
+The dead are not displayed.
+
+### Note :
+This role is given only to the Crewmate.
+The minimap is opened automatically on activation.
+When the power ends, the special minimap becomes a normal minimap.
+
+### Associated Game Options :
+| Name | Description | Type |
+|----------|:-------------:|------:|
+| Enable Psychic | Allows you to activate the role. | Toggle |
+| Number Psychic | Allows you to define the number of players that can have the role. | Number |
+| Psychic Duration | This is the duration of the psychic power in second. | Number |
+| Psychic Cooldown | The cooldown of pshychic button | Toggle |
+| Anonymous Player Minimap | Allows to make the colors of the players anonymous on the minimap. | Toggle |
+| Dead Body Visible  | Disables deaths on the psychic minimap. | Toggle |
+
+-----------------------
 
 # Q&A
 ## Can you play Proximity Chat (Crewlink) with it?
