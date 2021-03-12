@@ -12,6 +12,7 @@ Several roles will be added in the future.
 # Releases :
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2020.3.5s | V2.0.1 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V2.1/Among.Us.rar) |
 | 2020.3.5s | V2.0.0 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V2.0/Among.Us.zip) |
 | 2020.12.19s | V1.2.1 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V1.2.1/Among.Us.-.Too.Many.Roles.Modszip.zip) |
 | 2020.12.19s | V1.2.0 | [Download](https://github.com/Hardel-DW/TooManyRolesMods/releases/download/V1.2/Among.Us.-.Too.Many.Roles.Mods.zip) |
