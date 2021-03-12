@@ -33,12 +33,11 @@ namespace RolesMods.Systems.TimeMaster {
                 if (PlayerControl.LocalPlayer.PlayerId == GlobalVariable.TimeMaster.PlayerId)
                     if (PlayerControl.LocalPlayer.Data.IsDead)
                         button.SetCanUse(false);
-                    else
-                        button.SetCanUse(true);
+                    else button.SetCanUse(true);
 
             if (Time.isRewinding)
                 for (int i = 0; i < 2; i++)
-                    Time.Rewind();
+                Time.Rewind();
             else
                 Time.Record();
         }

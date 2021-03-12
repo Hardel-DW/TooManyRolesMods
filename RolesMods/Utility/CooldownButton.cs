@@ -65,6 +65,7 @@ namespace RolesMods {
             startColorText = killButtonManager.TimerText.Color;
             killButtonManager.gameObject.SetActive(true);
             killButtonManager.renderer.enabled = true;
+            killButtonManager.renderer.sprite = sprite;
             PassiveButton button = killButtonManager.GetComponent<PassiveButton>();
             button.OnClick.RemoveAllListeners();
             button.OnClick.AddListener((UnityEngine.Events.UnityAction) listener);

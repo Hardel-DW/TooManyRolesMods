@@ -18,7 +18,7 @@ namespace RolesMods {
         // Investigator CustomOptions
         public static CustomToggleOption EnableInvestigator = CustomOption.AddToggle("Enable Investigator", false);
         public static CustomNumberOption NumberInvestigator = CustomOption.AddNumber("Number Investigator", 1f, 1f, 10f, 1f);
-        public static CustomNumberOption footPrintSize = CustomOption.AddNumber("Footprint Size", 0.25f, 0.5f, 0.05f, 0.05f);
+        public static CustomNumberOption footPrintSize = CustomOption.AddNumber("Footprint Size", 0.75f, 0.3f, 1f, 0.1f);
         public static CustomNumberOption fontPrintInterval = CustomOption.AddNumber("Footprint Interval", 1f, 0.25f, 5f, 0.25f);
         public static CustomNumberOption fontPrintDuration = CustomOption.AddNumber("Footprint Duration", 10f, 3f, 30f, 1f);
         public static CustomToggleOption AnonymousFootPrint = CustomOption.AddToggle("Anonymous Footprint", false);

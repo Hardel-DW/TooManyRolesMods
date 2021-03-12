@@ -24,7 +24,7 @@ namespace RolesMods.Patch {
             GlobalVariable.isGameStarted = false;
             Systems.Investigator.FootPrint.allFootprint.Clear();
             HelperRoles.ClearRoles();
-            Systems.TimeMaster.Time.pointsInTime.Clear();
+            Systems.TimeMaster.Time.ClearGameHistory();
         }
     }
 }

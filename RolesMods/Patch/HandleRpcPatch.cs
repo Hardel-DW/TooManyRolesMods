@@ -44,7 +44,7 @@ namespace RolesMods.Patch {
                 return false;
             }
 
-            if (callId == (byte) CustomRPC.SetLighter) {
+            if (callId == (byte) CustomRPC.SetPsychic) {
                 GlobalVariable.PsychicList.Clear();
                 List<byte> selectedPlayers = reader.ReadBytesAndSize().ToList();
 
@@ -62,15 +62,6 @@ namespace RolesMods.Patch {
                 return false;
             }
 
-            if (callId == (byte) CustomRPC.TimeRevive) {
-                PlayerControl player = PlayerControlUtils.FromPlayerId(reader.ReadByte());
-                player.Revive();
-                var body = Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == player.PlayerId);
-
-                if (body != null)
-                    Object.Destroy(body.gameObject);
-                return false;
-            }
 
             if (callId == (byte) CustomRPC.SendOverlayPsychic) {
                 bool show = reader.ReadBoolean();

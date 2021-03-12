@@ -10,7 +10,7 @@ namespace RolesMods.Patch {
             GlobalVariable.texts.Clear();
             GlobalVariable.herePoints.Clear();
 
-            Systems.TimeMaster.Time.pointsInTime.Clear();
+            Systems.TimeMaster.Time.ClearGameHistory();
             Systems.Investigator.FootPrint.allFootprint.Clear();
             GlobalVariable.buttonTime.MaxTimer = RolesMods.TimeMasterCooldown.GetValue();
             GlobalVariable.buttonTime.EffectDuration = RolesMods.TimeMasterDuration.GetValue() / 2;
