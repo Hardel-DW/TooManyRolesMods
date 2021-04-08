@@ -1,8 +1,6 @@
 ﻿using HarmonyLib;
 using Hazel;
-using RolesMods.Utility;
-using System.Collections.Generic;
-using System.Linq;
+using RolesMods.Systems.Psychic;
 using UnityEngine;
 
 namespace RolesMods.Patch {
@@ -11,49 +9,6 @@ namespace RolesMods.Patch {
     class HandleRpcPatch {
 
         public static bool Prefix([HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader) {
-
-            if (callId == (byte) CustomRPC.SetInvestigator) {
-                GlobalVariable.InvestigatorsList.Clear();
-                List<byte> selectedPlayers = reader.ReadBytesAndSize().ToList();
-
-                for (int i = 0; i < selectedPlayers.Count; i++)
-                    GlobalVariable.InvestigatorsList.Add(PlayerControlUtils.FromPlayerId(selectedPlayers[i]));
-
-                return false;
-            }
-
-            if (callId == (byte) CustomRPC.SetTimeMaster) {
-                GlobalVariable.TimeMaster = null;
-                byte readByte = reader.ReadByte();
-                foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
-                    if (player.PlayerId == readByte) {
-                        GlobalVariable.TimeMaster = player;
-                    }
-                }
-
-                return false;
-            }
-
-            if (callId == (byte) CustomRPC.SetLighter) {
-                GlobalVariable.LightersList.Clear();
-                List<byte> selectedPlayers = reader.ReadBytesAndSize().ToList();
-
-                for (int i = 0; i < selectedPlayers.Count; i++)
-                    GlobalVariable.LightersList.Add(PlayerControlUtils.FromPlayerId(selectedPlayers[i]));
-
-                return false;
-            }
-
-            if (callId == (byte) CustomRPC.SetPsychic) {
-                GlobalVariable.PsychicList.Clear();
-                List<byte> selectedPlayers = reader.ReadBytesAndSize().ToList();
-
-                for (int i = 0; i < selectedPlayers.Count; i++)
-                    GlobalVariable.PsychicList.Add(PlayerControlUtils.FromPlayerId(selectedPlayers[i]));
-
-                return false;
-            }
-
             if (callId == (byte) CustomRPC.TimeRewind) {
                 Systems.TimeMaster.Time.isRewinding = true;
                 PlayerControl.LocalPlayer.moveable = false;
@@ -62,12 +17,11 @@ namespace RolesMods.Patch {
                 return false;
             }
 
-
             if (callId == (byte) CustomRPC.SendOverlayPsychic) {
                 bool show = reader.ReadBoolean();
 
-                if (GlobalVariable.psychicOverlay != null)
-                    GlobalVariable.psychicOverlay.SetActive(show);
+                if (PsychicSystems.psychicOverlay != null)
+                    PsychicSystems.psychicOverlay.SetActive(show);
 
                 return false;
             }

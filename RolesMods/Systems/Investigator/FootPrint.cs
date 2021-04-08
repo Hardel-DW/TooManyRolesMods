@@ -18,7 +18,7 @@ namespace RolesMods.Systems.Investigator {
             this.footPrintColor = Palette.PlayerColors[(int) player.Data.ColorId];
             this.player = player;
             this.position = player.transform.position;
-            if (RolesMods.AnonymousFootPrint.GetValue())
+            if (Roles.Investigator.AnonymousFootPrint.GetValue())
                 this.footPrintColor = new Color(0.2f, 0.2f, 0.2f, 1f);
 
             footPrint = new GameObject("FootPrint");

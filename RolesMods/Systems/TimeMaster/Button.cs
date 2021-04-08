@@ -6,17 +6,19 @@ namespace RolesMods.Systems.TimeMaster {
 
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Start))]
     public static class Button {
+        public static CooldownButton buttonTime;
+
         public static void Postfix(HudManager __instance) {
-            GlobalVariable.buttonTime = new CooldownButton
+            buttonTime = new CooldownButton
                 (() => OnClick(),
-                RolesMods.TimeMasterCooldown.GetValue(),
+                Roles.TimeMaster.TimeMasterCooldown.GetValue(),
                 "RolesMods.Resources.Rewind.png",
                 250,
                 new Vector2(0f, 0f),
                 __instance,
-                RolesMods.TimeMasterDuration.GetValue() / 2,
+                Roles.TimeMaster.TimeMasterDuration.GetValue() / 2,
                 () => OnEffectEnd(),
-                () => OnUpdate(GlobalVariable.buttonTime)
+                () => OnUpdate(buttonTime)
             );
         }
 
@@ -29,8 +31,8 @@ namespace RolesMods.Systems.TimeMaster {
         }
 
         private static void OnUpdate(CooldownButton button) {
-            if (GlobalVariable.TimeMaster != null && PlayerControl.LocalPlayer != null)
-                if (PlayerControl.LocalPlayer.PlayerId == GlobalVariable.TimeMaster.PlayerId)
+            if (Roles.TimeMaster.Instance.AllPlayers != null && PlayerControl.LocalPlayer != null)
+                if (Roles.TimeMaster.Instance.HasRole(PlayerControl.LocalPlayer.PlayerId))
                     if (PlayerControl.LocalPlayer.Data.IsDead)
                         button.SetCanUse(false);
                     else button.SetCanUse(true);

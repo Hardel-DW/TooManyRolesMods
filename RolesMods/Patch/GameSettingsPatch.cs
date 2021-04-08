@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+﻿/*using HarmonyLib;
 using UnityEngine;
 
 namespace RolesMods.Patch {
@@ -16,7 +16,7 @@ namespace RolesMods.Patch {
         [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Update))]
         class Update {
             static void Postfix(ref GameOptionsMenu __instance) {
-                __instance.GetComponentInParent<Scroller>().YBounds.max = 18f;
+                __instance.GetComponentInParent<Scroller>().YBounds.max = 19f;
             }
         }
     }
@@ -24,7 +24,7 @@ namespace RolesMods.Patch {
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public static class HudGameOptionsPatch {
         public const float increment = 0.2f;
-        public static FloatRange scrollBounds = new FloatRange(2.9f, 7.2f);
+        public static FloatRange scrollBounds = new FloatRange(2.9f, 7.8f);
 
         public static void Postfix(HudManager __instance) {
             if (PlayerControl.LocalPlayer == null || !PlayerControl.LocalPlayer.CanMove)
@@ -41,3 +41,4 @@ namespace RolesMods.Patch {
         }
     }
 }
+*/

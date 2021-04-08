@@ -9,7 +9,7 @@ namespace RolesMods.Systems.TimeMaster {
         public static Dictionary<byte, List<GameHistory>> PlayersPositions = new Dictionary<byte, List<GameHistory>>();
         public static Dictionary<byte, DateTime> DeadPlayers = new Dictionary<byte, DateTime>();
 
-        public static float recordTime = RolesMods.TimeMasterDuration.GetValue();
+        public static float recordTime = 5f;
         public static bool isRewinding = false;
 
         public static void Record() {
@@ -18,10 +18,11 @@ namespace RolesMods.Systems.TimeMaster {
                     PlayersPositions[player.PlayerId] = new List<GameHistory>();
 
                 var currentPlayer = PlayersPositions.FirstOrDefault(d => d.Key == player.PlayerId);
-                while (currentPlayer.Value.Count >= Mathf.Round(RolesMods.TimeMasterDuration.GetValue() / UnityEngine.Time.fixedDeltaTime))
+                while (currentPlayer.Value.Count >= Mathf.Round(recordTime / UnityEngine.Time.fixedDeltaTime))
                     currentPlayer.Value.RemoveAt(currentPlayer.Value.Count - 1);
                 currentPlayer.Value.Insert(0, new GameHistory(player.transform.position, DateTime.UtcNow, player.gameObject.GetComponent<Rigidbody2D>().velocity));
 
+                //Plugin.Logger.LogInfo($"Player: {player.nameText.Text}, Total: {currentPlayer.Value.Count}, Time: {recordTime}, DeltaTime: {UnityEngine.Time.fixedDeltaTime}");
                 if (player.Data.IsDead && !DeadPlayers.ContainsKey(player.PlayerId))
                     DeadPlayers[player.PlayerId] = DateTime.UtcNow;
             }
@@ -40,7 +41,7 @@ namespace RolesMods.Systems.TimeMaster {
                         player.transform.position = currentGemeHistory.position;
                         player.gameObject.GetComponent<Rigidbody2D>().velocity = currentGemeHistory.velocity;
 
-                        if (RolesMods.EnableReiveTimeMaster.GetValue() && player.Data.IsDead)
+                        if (Roles.TimeMaster.EnableReiveTimeMaster.GetValue() && player.Data.IsDead)
                             if (DeadPlayers.ContainsKey(player.PlayerId))
                                 if (currentGemeHistory.positionTime < DeadPlayers[player.PlayerId])
                                     TimeMasterRevive(player.PlayerId);
@@ -71,8 +72,6 @@ namespace RolesMods.Systems.TimeMaster {
         }
 
         public static void StartRewind() {
-            RolesMods.Logger.LogInfo(RolesMods.EnableReiveTimeMaster.GetValue());
-
             isRewinding = true;
             PlayerControl.LocalPlayer.moveable = false;
             HudManager.Instance.FullScreen.color = new Color(0f, 0.5f, 0.8f, 0.3f);

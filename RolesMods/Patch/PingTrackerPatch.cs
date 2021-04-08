@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using InnerNet;
 using UnityEngine;
 
 namespace RolesMods.Patch {
@@ -9,7 +10,7 @@ namespace RolesMods.Patch {
         private static Vector3 lastDist = Vector3.zero;
 
         public static void Postfix(ref PingTracker __instance) {
-            if (!GlobalVariable.isGameStarted) {
+            if (!(AmongUsClient.Instance.GameState == InnerNetClient.GameStates.Started)) {
                 AspectPosition aspect = __instance.text.gameObject.GetComponent<AspectPosition>();
                 if (aspect.DistanceFromEdge != lastDist) {
                     aspect.DistanceFromEdge += new Vector3(0.6f, 0);

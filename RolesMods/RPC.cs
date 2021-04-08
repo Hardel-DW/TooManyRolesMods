@@ -1,12 +1,9 @@
 ﻿namespace RolesMods {
     public enum CustomRPC {
-        SetInvestigator = 80,
-        SetTimeMaster = 81,
-        TimeRewind = 82,
-        TimeRevive = 63,
-        SetLighter = 64,
-        SetPsychic = 83,
-        SendOverlayPsychic = 84
+        TimeRewind = 80,
+        TimeRevive = 81,
+        SendOverlayPsychic = 82,
+        SetRole = 83
     }
 
     public enum NormalRPC {
