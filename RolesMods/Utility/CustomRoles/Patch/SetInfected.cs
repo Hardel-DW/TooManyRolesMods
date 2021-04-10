@@ -24,7 +24,7 @@ namespace RolesMods.Utility.CustomRoles.Patch {
                 Plugin.Logger.LogInfo($"Role: {Role.Name}, Active: {Role.RoleActive}, PercentApparition: {Role.PercentApparition}, Number Player: {Role.NumberPlayers}");
                 if (playersList != null && playersList.Count > 0 && Role.RoleActive && Role.PercentApparition >= PercentApparition) {
 
-                    MessageWriter messageWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte) CustomRPC.SetRole, SendOption.None, -1);
+                    MessageWriter messageWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, 250, SendOption.None, -1);
                     messageWriter.Write(Role.RoleId);
                     List<byte> playerSelected = new List<byte>();
 

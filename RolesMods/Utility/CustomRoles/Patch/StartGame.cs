@@ -6,6 +6,7 @@ namespace RolesMods.Utility.CustomRoles.Patch {
     public static class ShipStatusStart {
         public static void Postfix(ShipStatus __instance) {
             foreach (var Role in RoleManager.AllRoles) {
+                Role.TaskAreRemove = false;
                 Role.OnGameStart();
             }
         }

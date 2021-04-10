@@ -17,20 +17,28 @@ namespace RolesMods.Utility.CustomRoles {
         public bool ShowIntroCutScene = true;
         public bool CanHasOtherRole = false;
         public bool RoleActive = true;
+        public bool HasTask = true;
+        /*public bool CanReport = true;
+        public bool CanCallMeeting = true;
+        public bool CanKill = false;
+        public bool CanVent = false;*/
         public Color Color = new Color(1f, 0f, 0f, 1f);
         public PlayerSide Side = PlayerSide.Crewmate;
         public PlayerSide VisibleBy = PlayerSide.Self;
         public Moment GiveTasksAt = Moment.StartGame;
         public Moment GiveRoleAt = Moment.StartGame;
+        private System.Type ClassType;
+        public bool TaskAreRemove = false;
 
         public virtual List<IAbility> Abilities { get; set; } = null;
 
         public virtual List<CooldownButton> Button { get; set; } = null;
 
-        protected RoleManager() {
+        protected RoleManager(System.Type type) {
+            ClassType = type;
             RoleId = GetAvailableRoleId();
             AllRoles.Add(this);
-            Plugin.Logger.LogInfo($"Role: {Name} Loaded, RoleID: {RoleId}");
+            Plugin.Logger.LogInfo($"Role: {type.Name} Loaded, RoleID: {RoleId}");
         }
 
         private byte GetAvailableRoleId() {
@@ -117,6 +125,8 @@ namespace RolesMods.Utility.CustomRoles {
         public virtual void OnGameEnded() { }
 
         public virtual void OnMeetingStart() { }
+
+        public virtual void OnMeetingEnd() { }
 
         public virtual void OnInfectedStart() { }
 

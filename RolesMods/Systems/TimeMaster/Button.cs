@@ -7,6 +7,7 @@ namespace RolesMods.Systems.TimeMaster {
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Start))]
     public static class Button {
         public static CooldownButton buttonTime;
+        public static int UseNumber = 1;
 
         public static void Postfix(HudManager __instance) {
             buttonTime = new CooldownButton
@@ -27,7 +28,10 @@ namespace RolesMods.Systems.TimeMaster {
         }
 
         private static void OnClick() {
-            Time.StartRewind();
+            if (UseNumber > 0) {
+                Time.StartRewind();
+                UseNumber--;
+            }
         }
 
         private static void OnUpdate(CooldownButton button) {

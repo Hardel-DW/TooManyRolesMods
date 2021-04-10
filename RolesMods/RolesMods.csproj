@@ -23,10 +23,6 @@
       </Reference>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Utility\CustomRoles\Ability\" />
-    </ItemGroup>
-
     <Target Name="Copy" AfterTargets="Reobfuscate">
         <Copy SourceFiles="$(OutputPath)reobfuscated/$(AssemblyName)-$(GameVersion).dll" DestinationFolder="$(AmongUs)/BepInEx/plugins/" Condition="'$(Configuration)' == 'Debug'" />
     </Target>

@@ -4,6 +4,7 @@ using HarmonyLib;
 using Reactor;
 using BepInEx.Logging;
 using Essentials.Options;
+using RolesMods.Utility.CustomRoles;
 
 namespace RolesMods {
 
@@ -22,6 +23,7 @@ namespace RolesMods {
             Harmony.PatchAll();
             CustomOption.ShamelessPlug = false;
             ResourceLoader.LoadAssets();
+            RegisterInCustomRolesAttribute.Register();
         }
     }
 }

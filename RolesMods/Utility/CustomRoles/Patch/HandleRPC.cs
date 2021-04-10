@@ -8,7 +8,7 @@ namespace RolesMods.Utility.CustomRoles.Patch {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.HandleRpc))]
     public static class HandleRpcPatch {
         public static bool Prefix([HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader) {
-            if (callId == (byte) CustomRPC.SetRole) {
+            if (callId == 250) {
                 RoleManager Role = RoleManager.GerRoleById(reader.ReadByte());
                 List<byte> selectedPlayers = reader.ReadBytesAndSize().ToList();
 

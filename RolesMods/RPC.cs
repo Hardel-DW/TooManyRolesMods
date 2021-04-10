@@ -3,7 +3,7 @@
         TimeRewind = 80,
         TimeRevive = 81,
         SendOverlayPsychic = 82,
-        SetRole = 83
+        DebileWin = 83
     }
 
     public enum NormalRPC {

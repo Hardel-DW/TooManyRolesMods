@@ -9,22 +9,24 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Investigator))]
     public class Investigator : CustomRole<Investigator> {
         // Color: 2EADFFFF
-        public static CustomOptionHeader InvestigatorHeader = CustomOptionHeader.AddHeader("\n[2EADFFFF]Investigator Options :[]");
-        public static CustomToggleOption EnableInvestigator = CustomOption.AddToggle("Enable Investigator", false);
+        public static CustomOptionHeader InvestigatorHeader = CustomOptionHeader.AddHeader("[2EADFFFF]Investigator Options :[]");
+        public static CustomNumberOption InvestigatorPercent = CustomOption.AddNumber("Investigator Apparition", 0f, 0f, 100f, 5f);
         public static CustomNumberOption NumberInvestigator = CustomOption.AddNumber("Number Investigator", 1f, 1f, 10f, 1f);
-        public static CustomNumberOption footPrintSize = CustomOption.AddNumber("Footprint Size", 0.75f, 0.3f, 1f, 0.1f);
-        public static CustomNumberOption fontPrintInterval = CustomOption.AddNumber("Footprint Interval", 1f, 0.25f, 5f, 0.25f);
+        public static CustomNumberOption footPrintSize = CustomOption.AddNumber("Footprint Size", 0.5f, 0.3f, 1f, 0.1f);
+        public static CustomNumberOption fontPrintInterval = CustomOption.AddNumber("Footprint Interval", 3f, 1f, 5f, 0.25f);
         public static CustomNumberOption fontPrintDuration = CustomOption.AddNumber("Footprint Duration", 10f, 3f, 30f, 1f);
         public static CustomToggleOption AnonymousFootPrint = CustomOption.AddToggle("Anonymous Footprint", false);
         public static CustomToggleOption VentFootprintVisible = CustomOption.AddToggle("Footprint are visible arround vent", false);
 
         public Investigator() : base() {
-            NumberInvestigator.HudStringFormat = (option, name, value) => $"{name}: {value}%";
+            GameOptionFormat();
             Side = PlayerSide.Crewmate;
+            RoleActive = true;
+            GiveTasksAt = Moment.StartGame;
             Color = new Color(0.180f, 0.678f, 1f, 1f);
             Name = "Investigator";
             IntroDescription = "Find all imposters by examining footprints";
-            TasksDescription = "[2EADFFFF]You are an Investigator, you can see everyone's footprint.[]";
+            TasksDescription = "[2EADFFFF]Investigator: You can see everyone's footprint.[]";
         }
 
         public override void OnGameEnded() {
@@ -36,8 +38,18 @@ namespace RolesMods.Roles {
         }
 
         public override void OnInfectedStart() {
-            RoleActive = EnableInvestigator.GetValue();
+            PercentApparition = (int) InvestigatorPercent.GetValue();
             NumberPlayers = (int) NumberInvestigator.GetValue();
+        }
+
+        private void GameOptionFormat() {
+            InvestigatorHeader.HudStringFormat = (option, name, value) => $"\n{name}";
+
+            InvestigatorPercent.ValueStringFormat = (option, value) => $"{value}%";
+            NumberInvestigator.ValueStringFormat = (option, value) => $"{value} players";
+            footPrintSize.ValueStringFormat = (option, value) => $"{value} unit";
+            fontPrintInterval.ValueStringFormat = (option, value) => $"{value}s";
+            fontPrintDuration.ValueStringFormat = (option, value) => $"{value}s";
         }
     }
 }

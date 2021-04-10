@@ -17,12 +17,22 @@ namespace RolesMods.Patch {
                 return false;
             }
 
-            if (callId == (byte) CustomRPC.SendOverlayPsychic) {
-                bool show = reader.ReadBoolean();
+            if (callId == (byte) CustomRPC.DebileWin) {
+                foreach (var player in Roles.Jester.Instance.AllPlayers) {
+                    player.Revive();
+                    player.Data.IsDead = false;
+                    player.Data.IsImpostor = true;
+                }
 
-                if (PsychicSystems.psychicOverlay != null)
-                    PsychicSystems.psychicOverlay.SetActive(show);
+                foreach (var player in PlayerControl.AllPlayerControls) {
+                    if (!Roles.Jester.Instance.HasRole(player.PlayerId)) {
+                        player.RemoveInfected();
+                        player.Die(DeathReason.Exile);
+                        player.Data.IsImpostor = false;
+                    }
+                }
 
+                Systems.Jester.ExiledPatch.JesterForceEndGame = true;
                 return false;
             }
 

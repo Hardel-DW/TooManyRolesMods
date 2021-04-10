@@ -15,22 +15,17 @@ namespace RolesMods.Systems.Spirit {
                 if (__instance.discussionTimer == 0 && SpiritHasVoteds.Count < PlayerControl.AllPlayerControls.ToArray().ToList().Count)
                     SpiritHasVoteds.AddRange(Enumerable.Repeat(default(bool), PlayerControl.AllPlayerControls.ToArray().ToList().Count - SpiritHasVoteds.Count));
 
-
-                if (Roles.Spirit.Instance.HasRole(PlayerControl.LocalPlayer.PlayerId) && PlayerControl.LocalPlayer.Data.IsDead) {
-                    if (!SpiritHasVoteds[PlayerControl.LocalPlayer.PlayerId] && __instance.discussionTimer == 0) {
+                if (Roles.Spirit.Instance.HasRole(PlayerControl.LocalPlayer.PlayerId) && PlayerControl.LocalPlayer.Data.IsDead)
+                    if (!SpiritHasVoteds[PlayerControl.LocalPlayer.PlayerId] && __instance.discussionTimer == 0)
                         __instance.SkipVoteButton.gameObject.SetActive(true);
-                    }
-                }
             }
         }
+
         [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Confirm))]
         class MeetingVotePatch {
-
             static void Prefix(MeetingHud __instance, [HarmonyArgument(0)] sbyte suspectIdx) {
-                if (Roles.Spirit.Instance.HasRole(PlayerControl.LocalPlayer.PlayerId) && PlayerControl.LocalPlayer.Data.IsDead) {
-
+                if (Roles.Spirit.Instance.HasRole(PlayerControl.LocalPlayer.PlayerId) && PlayerControl.LocalPlayer.Data.IsDead)
                     __instance.CmdCastVote(PlayerControl.LocalPlayer.PlayerId, suspectIdx);
-                }
             }
         }
 
@@ -59,17 +54,12 @@ namespace RolesMods.Systems.Spirit {
 
                     foreach (PlayerVoteArea player in __instance.playerStates) {
                         if (player.TargetPlayerId == srcPlayerId) {
-                            if (!Roles.Spirit.CanVoteMultipleTime.GetValue() && !SpiritHasVoteds[srcPlayerId]) {
-                                player.didVote = true;
-                                player.votedFor = suspectPlayerId;
-                                //player.Flag.enabled = true;
-
+                            if (!Roles.Spirit.CanVoteMultipleTime.GetValue() && !SpiritHasVoteds[srcPlayerId])
                                 SpiritHasVoteds[srcPlayerId] = true;
-                            } else if (Roles.Spirit.CanVoteMultipleTime.GetValue()) {
-                                player.didVote = true;
-                                player.votedFor = suspectPlayerId;
-                                //player.Flag.enabled = true;
-                            }
+
+                            player.didVote = true;
+                            player.votedFor = suspectPlayerId;
+                            player.Flag.enabled = true;
                         }
                     }
                 }
@@ -85,11 +75,8 @@ namespace RolesMods.Systems.Spirit {
                     foreach (PlayerVoteArea player in MeetingInstance.playerStates)
                         player.Buttons.SetActive(false);
 
-                    //MeetingInstance.SkipVoteButton.gameObject.SetActive(false);
-
-                    if (!__instance.isDead && __instance.Parent.state != MeetingHud.VoteStates.Discussion && !MeetingInstance.DidVote(PlayerControl.LocalPlayer.PlayerId) && !SpiritHasVoteds[PlayerControl.LocalPlayer.PlayerId]) {
+                    if (!__instance.isDead && __instance.Parent.state != MeetingHud.VoteStates.Discussion && !MeetingInstance.DidVote(PlayerControl.LocalPlayer.PlayerId) && !SpiritHasVoteds[PlayerControl.LocalPlayer.PlayerId])
                         __instance.Buttons.SetActive(true);
-                    }
                 }
             }
         }
@@ -105,6 +92,5 @@ namespace RolesMods.Systems.Spirit {
                 return true;
             }
         }
-
     }
 }

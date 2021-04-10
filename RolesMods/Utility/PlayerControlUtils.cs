@@ -75,5 +75,21 @@ namespace RolesMods.Utility {
         public static bool AmHost() {
             return AmongUsClient.Instance.AmHost;
         }
+
+        public static PlayerControl GetClosestPlayer(PlayerControl PlayerReference) {
+            double distance = double.MaxValue;
+            PlayerControl result = null;
+
+            foreach (var player in PlayerControl.AllPlayerControls) {
+                float distanceBeetween = Vector2.Distance(player.transform.position, PlayerReference.transform.position);
+                if (player.Data.IsDead || player.PlayerId != PlayerReference.PlayerId || distanceBeetween < distance)
+                    continue;
+
+                distance = distanceBeetween;
+                result = player;
+            }
+
+            return result;
+        }
     }
 }

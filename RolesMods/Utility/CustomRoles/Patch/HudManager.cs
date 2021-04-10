@@ -8,11 +8,14 @@ namespace RolesMods.Utility.CustomRoles.Patch {
         public static void Postfix(HudManager __instance) {
             foreach (var Role in RoleManager.AllRoles) {
                 if (PlayerControl.LocalPlayer != null || (PlayerControl.AllPlayerControls != null && PlayerControl.AllPlayerControls.Count > 0) || (Role.AllPlayers != null && Role.AllPlayers.Count > 0)) {
-                    
+
                     if (MeetingHud.Instance != null) 
                         UpdateMeetingHUD(MeetingHud.Instance, Role);
 
                     foreach (var PlayerHasRole in Role.AllPlayers) {
+                        if (!Role.HasRole(PlayerHasRole))
+                            continue;
+
                         switch (Role.VisibleBy) {
                             case Enumerations.PlayerSide.Self:
                                 if (PlayerHasRole.PlayerId == PlayerControl.LocalPlayer.PlayerId)
@@ -42,7 +45,7 @@ namespace RolesMods.Utility.CustomRoles.Patch {
                                     PlayerHasRole.nameText.Color = Role.Color;
                             break;
                             case Enumerations.PlayerSide.SameRole:
-                                if (Role.HasRole(PlayerControl.LocalPlayer.PlayerId) && Role.HasRole(PlayerHasRole.PlayerId))
+                                if (Role.HasRole(PlayerControl.LocalPlayer.PlayerId))
                                     PlayerHasRole.nameText.Color = Role.Color;
                             break;
                         }
@@ -55,10 +58,12 @@ namespace RolesMods.Utility.CustomRoles.Patch {
             foreach (var PlayerHasRole in Role.AllPlayers) {
                 foreach (PlayerVoteArea PlayerVA in __instance.playerStates) {
                     PlayerControl Player = PlayerControlUtils.FromPlayerId((byte) PlayerVA.TargetPlayerId);
+                    if (PlayerHasRole.PlayerId != Player.PlayerId || !Role.HasRole(PlayerHasRole))
+                        continue;
 
                     switch (Role.VisibleBy) {
                         case Enumerations.PlayerSide.Self:
-                        if (PlayerControl.LocalPlayer.PlayerId == Player.PlayerId)
+                        if (PlayerControl.LocalPlayer.PlayerId == PlayerHasRole.PlayerId)
                             PlayerVA.NameText.Color = Role.Color;
                         break;
                         case Enumerations.PlayerSide.Impostor:
@@ -85,7 +90,7 @@ namespace RolesMods.Utility.CustomRoles.Patch {
                             PlayerVA.NameText.Color = Role.Color;
                         break;
                         case Enumerations.PlayerSide.SameRole:
-                        if (Role.HasRole(PlayerControl.LocalPlayer.PlayerId) && Role.HasRole(PlayerHasRole.PlayerId))
+                        if (Role.HasRole(PlayerControl.LocalPlayer.PlayerId))
                             PlayerVA.NameText.Color = Role.Color;
                         break;
                     }
