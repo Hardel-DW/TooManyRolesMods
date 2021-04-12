@@ -82,7 +82,7 @@ namespace RolesMods.Utility {
 
             foreach (var player in PlayerControl.AllPlayerControls) {
                 float distanceBeetween = Vector2.Distance(player.transform.position, PlayerReference.transform.position);
-                if (player.Data.IsDead || player.PlayerId != PlayerReference.PlayerId || distanceBeetween < distance)
+                if (player.Data.IsDead || player.PlayerId == PlayerReference.PlayerId || distance < distanceBeetween)
                     continue;
 
                 distance = distanceBeetween;
