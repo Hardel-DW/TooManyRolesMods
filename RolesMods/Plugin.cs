@@ -4,6 +4,7 @@ using HarmonyLib;
 using Reactor;
 using BepInEx.Logging;
 using Essentials.Options;
+using RolesMods.Utility;
 using RolesMods.Utility.CustomRoles;
 
 namespace RolesMods {

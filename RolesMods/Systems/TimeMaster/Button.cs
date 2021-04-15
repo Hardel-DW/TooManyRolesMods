@@ -40,7 +40,7 @@ namespace RolesMods.Systems.TimeMaster {
                 if (Roles.TimeMaster.Instance.HasRole(PlayerControl.LocalPlayer.PlayerId))
                     if (PlayerControl.LocalPlayer.Data.IsDead)
                         button.SetCanUse(false);
-                    else button.SetCanUse(true);
+                    else button.SetCanUse(!MeetingHud.Instance);
 
             if (Time.isRewinding)
                 for (int i = 0; i < 2; i++)

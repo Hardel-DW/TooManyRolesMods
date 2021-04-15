@@ -48,7 +48,7 @@ namespace RolesMods.Systems.Psychic {
             if (Roles.Psychic.Instance.AllPlayers != null && PlayerControl.LocalPlayer != null) {
                 if (Roles.Psychic.Instance.HasRole(PlayerControl.LocalPlayer.PlayerId)) {
                     if (PlayerControl.LocalPlayer.Data.IsDead) button.SetCanUse(false);
-                    else button.SetCanUse(true);
+                    else button.SetCanUse(!MeetingHud.Instance);
                 }
             }
         }

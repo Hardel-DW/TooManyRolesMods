@@ -2,7 +2,7 @@
 using InnerNet;
 using UnityEngine;
 
-namespace RolesMods.Patch {
+namespace RolesMods.Utility {
 
     [HarmonyPatch(typeof(PingTracker), nameof(PingTracker.Update))]
     [HarmonyPriority(Priority.First)]

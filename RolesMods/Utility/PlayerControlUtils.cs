@@ -91,5 +91,13 @@ namespace RolesMods.Utility {
 
             return result;
         }
+
+
+        /// <summary>
+        /// Player speed
+        /// </summary>
+        public static void Speed(PlayerControl Player, float Speed) {
+            Player.MyPhysics.Speed = Speed;
+        }
     }
 }
