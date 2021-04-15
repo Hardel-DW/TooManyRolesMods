@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Hazel;
+using RolesMods.Utility;
 using RolesMods.Utility.Enumerations;
 using System;
 using UnityEngine;
@@ -27,31 +28,17 @@ namespace RolesMods.Systems.Psychic {
         private static void OnEffectEnd() {
             PsychicMap.isPsychicActivated = false;
             PsychicMap.ClearAllPlayers();
-            //PsychicMap.psychicOverlay.SetActive(false);
-            //PsychicMap.SyncOverlay(false);
 
             if (MapBehaviour.Instance != null) {
-                    DestroyableSingleton<HudManager>.Instance.ShowMap((Action<MapBehaviour>) (map => {
-                    map.ColorControl.SetColor(new Color(0.05f, 0.2f, 1f, 1f));
-                    map.countOverlay.gameObject.SetActive(false);
-                    map.infectedOverlay.gameObject.SetActive(false);
-                    map.taskOverlay.Show();
-                    map.HerePoint.enabled = true;
-                }));
+                HudManager.Instance.OpenMap();
+                HudManager.Instance.OpenMap();
             }
         }
 
         private static void OnClick() {
             PsychicMap.isPsychicActivated = true;
-            //PsychicSystems.SyncOverlay(true);
             DestroyableSingleton<HudManager>.Instance.ShowMap((Action<MapBehaviour>) (map => {
-                map.transform.localScale = Vector3.one;
-                map.transform.localPosition = new Vector3(0f, 0f, -25f);
                 map.gameObject.SetActive(true);
-                map.countOverlay.gameObject.SetActive(false);
-                map.infectedOverlay.gameObject.SetActive(false);
-                map.taskOverlay.Show();
-                map.HerePoint.enabled = true;
                 map.gameObject.AddComponent<PsychicMap>();
                 DestroyableSingleton<HudManager>.Instance.SetHudActive(false);
             }));

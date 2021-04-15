@@ -20,9 +20,12 @@ namespace RolesMods.Systems.TimeMaster {
                 var currentPlayer = PlayersPositions.FirstOrDefault(d => d.Key == player.PlayerId);
                 while (currentPlayer.Value.Count >= Mathf.Round(recordTime / UnityEngine.Time.fixedDeltaTime))
                     currentPlayer.Value.RemoveAt(currentPlayer.Value.Count - 1);
-                currentPlayer.Value.Insert(0, new GameHistory(player.transform.position, DateTime.UtcNow, player.gameObject.GetComponent<Rigidbody2D>().velocity));
 
-                //Plugin.Logger.LogInfo($"Player: {player.nameText.Text}, Total: {currentPlayer.Value.Count}, Time: {recordTime}, DeltaTime: {UnityEngine.Time.fixedDeltaTime}");
+                if (player.moveable)
+                    currentPlayer.Value.Insert(0, new GameHistory(player.transform.position, DateTime.UtcNow, player.gameObject.GetComponent<Rigidbody2D>().velocity));
+                else
+                    currentPlayer.Value.Insert(0, new GameHistory(currentPlayer.Value[0].position, DateTime.UtcNow, currentPlayer.Value[0].velocity));
+
                 if (player.Data.IsDead && !DeadPlayers.ContainsKey(player.PlayerId))
                     DeadPlayers[player.PlayerId] = DateTime.UtcNow;
             }

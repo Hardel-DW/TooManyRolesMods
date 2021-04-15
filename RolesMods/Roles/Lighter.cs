@@ -9,7 +9,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Lighter))]
     public class Lighter : CustomRole<Lighter> {
         // Color: BA5B13FF
-        public static CustomOptionHeader LighterHeader = CustomOptionHeader.AddHeader("[BA5B13FF]Lighter Options :[]");
+        public static CustomOptionHeader LighterHeader = CustomOptionHeader.AddHeader("<color=#BA5B13FF>Lighter Options :</color>");
         public static CustomNumberOption LighterPercent = CustomOption.AddNumber("Lighter Apparition", 0f, 0f, 100f, 5f);
         public static CustomNumberOption NumberLighter = CustomOption.AddNumber("Number Lighter", 1f, 1f, 10f, 1f);
         public static CustomNumberOption LighterMultiplier = CustomOption.AddNumber("Lighter Multiplier", 1.5f, 0f, 5f, 0.05f);
@@ -17,7 +17,7 @@ namespace RolesMods.Roles {
         
         public Lighter() : base() {
             GameOptionFormat();
-            TasksDescription = "[BA5B13FF]Lighter: Your vision is better than crewmate[]";
+            TasksDescription = "<color=#BA5B13FF>Lighter: Your vision is better than crewmate</color>";
             IntroDescription = "Your vision is better than crewmate";
             Name = "Lighter";
             Side = PlayerSide.Crewmate;

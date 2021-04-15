@@ -1,4 +1,4 @@
-﻿namespace CheepsAmongUsApi.API.Enumerations {
+﻿namespace RolesMods.Utility.Enumerations {
     public enum RpcCalls : byte
     {
         PlayAnimation = 0,

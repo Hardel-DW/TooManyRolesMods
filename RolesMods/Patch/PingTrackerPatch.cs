@@ -18,7 +18,7 @@ namespace RolesMods.Patch {
 
                     lastDist = aspect.DistanceFromEdge;
                 }
-                __instance.text.Text += $"\n[2294E6FF]Too Many Roles Mods[] \ndiscord.gg/AP9axbXXNC";
+                __instance.text.text += $"\n<color=#2294E6FF>Too Many Roles Mods</color> \nhardel.fr/discord";
             }
         }
     }

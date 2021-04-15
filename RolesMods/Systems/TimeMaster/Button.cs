@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using RolesMods.Utility;
 using RolesMods.Utility.Enumerations;
 using UnityEngine;
 

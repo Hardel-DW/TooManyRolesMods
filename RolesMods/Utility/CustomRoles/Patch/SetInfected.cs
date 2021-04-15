@@ -22,7 +22,7 @@ namespace RolesMods.Utility.CustomRoles.Patch {
                 int PercentApparition = new Random().Next(0, 100);
 
                 Plugin.Logger.LogInfo($"Role: {Role.Name}, Active: {Role.RoleActive}, PercentApparition: {Role.PercentApparition}, Number Player: {Role.NumberPlayers}");
-                if (playersList != null && playersList.Count > 0 && Role.RoleActive && Role.PercentApparition >= PercentApparition) {
+                if (playersList != null && playersList.Count > 0 && Role.RoleActive && Role.PercentApparition > PercentApparition) {
 
                     MessageWriter messageWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, 250, SendOption.None, -1);
                     messageWriter.Write(Role.RoleId);
@@ -42,13 +42,15 @@ namespace RolesMods.Utility.CustomRoles.Patch {
                             Role.AddPlayer(selectedPlayer);
                             playersList.Remove(selectedPlayer);
                             playerSelected.Add(selectedPlayer.PlayerId);
-                            Plugin.Logger.LogInfo($"Role: {Role.Name}, Given to: {selectedPlayer.nameText.Text}");
+                            Plugin.Logger.LogInfo($"Role: {Role.Name}, Given to: {selectedPlayer.nameText.text}");
                         }
                     }
 
                     messageWriter.WriteBytesAndSize(playerSelected.ToArray());
                     AmongUsClient.Instance.FinishRpcImmediately(messageWriter);
                 }
+
+                Role.WhiteListKill = null;
             }
         }
     }

@@ -19,34 +19,34 @@ namespace RolesMods.Utility.CustomRoles.Patch {
                         switch (Role.VisibleBy) {
                             case Enumerations.PlayerSide.Self:
                                 if (PlayerHasRole.PlayerId == PlayerControl.LocalPlayer.PlayerId)
-                                    PlayerHasRole.nameText.Color = Role.Color;
+                                    PlayerHasRole.nameText.color = Role.Color;
                             break;
                             case Enumerations.PlayerSide.Impostor:
                                 if (PlayerControl.LocalPlayer.Data.IsImpostor)
-                                    PlayerHasRole.nameText.Color = Role.Color;
+                                    PlayerHasRole.nameText.color = Role.Color;
                             break;
                             case Enumerations.PlayerSide.Crewmate:
                                 if (!PlayerControl.LocalPlayer.Data.IsImpostor)
-                                    PlayerHasRole.nameText.Color = Role.Color;
+                                    PlayerHasRole.nameText.color = Role.Color;
                             break;
                             case Enumerations.PlayerSide.Everyone:
-                                PlayerHasRole.nameText.Color = Role.Color;
+                                PlayerHasRole.nameText.color = Role.Color;
                             break;
                             case Enumerations.PlayerSide.Dead:
                                 if (PlayerControl.LocalPlayer.Data.IsDead)
-                                    PlayerHasRole.nameText.Color = Role.Color;
+                                    PlayerHasRole.nameText.color = Role.Color;
                             break;
                             case Enumerations.PlayerSide.DeadCrewmate:
                                 if (PlayerControl.LocalPlayer.Data.IsDead && !PlayerControl.LocalPlayer.Data.IsImpostor)
-                                    PlayerHasRole.nameText.Color = Role.Color;
+                                    PlayerHasRole.nameText.color = Role.Color;
                             break;
                             case Enumerations.PlayerSide.DeadImpostor:
                                 if (PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer.Data.IsImpostor)
-                                    PlayerHasRole.nameText.Color = Role.Color;
+                                    PlayerHasRole.nameText.color = Role.Color;
                             break;
                             case Enumerations.PlayerSide.SameRole:
                                 if (Role.HasRole(PlayerControl.LocalPlayer.PlayerId))
-                                    PlayerHasRole.nameText.Color = Role.Color;
+                                    PlayerHasRole.nameText.color = Role.Color;
                             break;
                         }
                     }
@@ -64,34 +64,34 @@ namespace RolesMods.Utility.CustomRoles.Patch {
                     switch (Role.VisibleBy) {
                         case Enumerations.PlayerSide.Self:
                         if (PlayerControl.LocalPlayer.PlayerId == PlayerHasRole.PlayerId)
-                            PlayerVA.NameText.Color = Role.Color;
+                            PlayerVA.NameText.color = Role.Color;
                         break;
                         case Enumerations.PlayerSide.Impostor:
                         if (PlayerControl.LocalPlayer.Data.IsImpostor)
-                            PlayerVA.NameText.Color = Role.Color;
+                            PlayerVA.NameText.color = Role.Color;
                         break;
                         case Enumerations.PlayerSide.Crewmate:
                         if (!PlayerControl.LocalPlayer.Data.IsImpostor)
-                            PlayerVA.NameText.Color = Role.Color;
+                            PlayerVA.NameText.color = Role.Color;
                         break;
                         case Enumerations.PlayerSide.Everyone:
-                            PlayerVA.NameText.Color = Role.Color;
+                            PlayerVA.NameText.color = Role.Color;
                         break;
                         case Enumerations.PlayerSide.Dead:
                         if (PlayerControl.LocalPlayer.Data.IsDead)
-                            PlayerVA.NameText.Color = Role.Color;
+                            PlayerVA.NameText.color = Role.Color;
                         break;
                         case Enumerations.PlayerSide.DeadCrewmate:
                         if (PlayerControl.LocalPlayer.Data.IsDead && !PlayerControl.LocalPlayer.Data.IsImpostor)
-                            PlayerVA.NameText.Color = Role.Color;
+                            PlayerVA.NameText.color = Role.Color;
                         break;
                         case Enumerations.PlayerSide.DeadImpostor:
                         if (PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer.Data.IsImpostor)
-                            PlayerVA.NameText.Color = Role.Color;
+                            PlayerVA.NameText.color = Role.Color;
                         break;
                         case Enumerations.PlayerSide.SameRole:
                         if (Role.HasRole(PlayerControl.LocalPlayer.PlayerId))
-                            PlayerVA.NameText.Color = Role.Color;
+                            PlayerVA.NameText.color = Role.Color;
                         break;
                     }
                 }

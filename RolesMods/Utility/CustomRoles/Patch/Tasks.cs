@@ -8,7 +8,7 @@ namespace RolesMods.Utility.CustomRoles.Patch {
         public static void Postfix(PlayerControl __instance) {
             foreach (var Role in RoleManager.AllRoles)
                 if (Role.GiveTasksAt == Moment.StartGame && Role.HasRole(PlayerControl.LocalPlayer.PlayerId))
-                    Role.AddImportantTaks(__instance);
+                    Role.AddImportantTasks(__instance);
         }
     }
 }

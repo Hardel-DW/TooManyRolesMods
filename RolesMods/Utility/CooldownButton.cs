@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HarmonyLib;
-using RolesMods.Utility;
 
-namespace RolesMods {
+namespace RolesMods.Utility {
     public class CooldownButton {
+        public static bool UsableButton = true;
         public static List<CooldownButton> buttons = new List<CooldownButton>();
         public KillButtonManager killButtonManager;
         private Color startColorButton = new Color(255, 255, 255);
@@ -18,15 +18,15 @@ namespace RolesMods {
         public bool isEffectActive;
         public bool hasEffectDuration;
         public bool enabled = true;
-        public int pixelPerUnit;
+        public float pixelPerUnit;
         private Sprite sprite;
         private Action OnClick;
-        private Action OnEffectEnd;
+        public Action OnEffectEnd;
         private Action OnUpdate;
         private HudManager hudManager;
         private bool canUse;
 
-        public CooldownButton(Action OnClick, float Cooldown, string embeddedName, int pixelPerUnit, Vector2 PositionOffset, HudManager hudManager, float EffectDuration, Action OnEffectEnd, Action OnUpdate) {
+        public CooldownButton(Action OnClick, float Cooldown, string embeddedName, float pixelPerUnit, Vector2 PositionOffset, HudManager hudManager, float EffectDuration, Action OnEffectEnd, Action OnUpdate) {
             this.hudManager = hudManager;
             this.OnClick = OnClick;
             this.OnEffectEnd = OnEffectEnd;
@@ -44,7 +44,7 @@ namespace RolesMods {
             Start();
         }
 
-        public CooldownButton(Action OnClick, float Cooldown, string embeddedName, int pixelPerUnit, Vector2 PositionOffset, HudManager hudManager, Action OnUpdate) {
+        public CooldownButton(Action OnClick, float Cooldown, string embeddedName, float pixelPerUnit, Vector2 PositionOffset, HudManager hudManager, Action OnUpdate) {
             this.hudManager = hudManager;
             this.OnClick = OnClick;
             this.OnUpdate = OnUpdate;
@@ -62,7 +62,7 @@ namespace RolesMods {
         private void Start() {
             killButtonManager = UnityEngine.Object.Instantiate(hudManager.KillButton, hudManager.transform);
             startColorButton = killButtonManager.renderer.color;
-            startColorText = killButtonManager.TimerText.Color;
+            startColorText = killButtonManager.TimerText.color;
             killButtonManager.gameObject.SetActive(true);
             killButtonManager.renderer.enabled = true;
             killButtonManager.renderer.sprite = sprite;
@@ -76,7 +76,7 @@ namespace RolesMods {
                     if (hasEffectDuration) {
                         isEffectActive = true;
                         Timer = EffectDuration;
-                        killButtonManager.TimerText.Color = new Color(0, 255, 0);
+                        killButtonManager.TimerText.color = new Color(0, 255, 0);
                     } else {
                         Timer = MaxTimer;
                     }
@@ -96,12 +96,11 @@ namespace RolesMods {
         }
 
         private void Update() {
-            if (killButtonManager.transform.localPosition.x > 0f)
-                killButtonManager.transform.localPosition = new Vector3((killButtonManager.transform.localPosition.x + 1.3f) * -1, killButtonManager.transform.localPosition.y, killButtonManager.transform.localPosition.z) + new Vector3(PositionOffset.x, PositionOffset.y);
+            UpdatePosition();
             if (Timer < 0f) {
                 killButtonManager.renderer.color = new Color(1f, 1f, 1f, 1f);
                 if (isEffectActive) {
-                    killButtonManager.TimerText.Color = startColorText;
+                    killButtonManager.TimerText.color = startColorText;
                     Timer = MaxTimer;
                     isEffectActive = false;
                     OnEffectEnd();
@@ -120,6 +119,37 @@ namespace RolesMods {
             }
         }
 
+        public void UpdatePosition() {
+            if (killButtonManager.transform.localPosition.x > 0f)
+                killButtonManager.transform.localPosition = new Vector3((killButtonManager.transform.localPosition.x + 1.3f) * -1, killButtonManager.transform.localPosition.y, killButtonManager.transform.localPosition.z) + new Vector3(PositionOffset.x, PositionOffset.y);
+        }
+
+        public void ForceClick(bool DoAction) {
+            killButtonManager.renderer.color = new Color(1f, 1f, 1f, 0.3f);
+            if (hasEffectDuration) {
+                isEffectActive = true;
+                Timer = EffectDuration;
+                killButtonManager.TimerText.color = new Color(0, 255, 0);
+            } else {
+                Timer = MaxTimer;
+            }
+
+            if (DoAction)
+                OnClick();
+        }
+
+        public void ForceEnd(bool DoAction) {
+            Timer = 0f;
+            isEffectActive = false;
+            killButtonManager.TimerText.color = startColorText;
+            if (DoAction)
+                OnEffectEnd();
+        }
+
+        public void Destroy() {
+            UnityEngine.Object.Destroy(killButtonManager.gameObject);
+        }
+
         public void SetCanUse(bool value) {
             this.canUse = value;
         }
@@ -136,21 +166,33 @@ namespace RolesMods {
         }
     }
 
-    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Update))]
-    public static class MeetingUpdatePatch {
-        public static void Postfix(MeetingHud __instance) {
+    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Close))]
+    public static class MeetingClosePatch {
+        public static void Postfix() {
+            CooldownButton.UsableButton = true;
             foreach (var button in CooldownButton.buttons) {
-                button.SetCanUse(false);
+                button.Timer = button.MaxTimer;
             }
         }
     }
 
-    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Close))]
-    public static class MeetingClosePatch {
-        public static void Postfix() {
-            foreach (var button in CooldownButton.buttons) {
-                button.Timer = button.MaxTimer;
+    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
+    public static class ButtonResetPatch {
+        public static void Postfix(MeetingHud __instance) {
+            CooldownButton.UsableButton = false;
+            for (int i = 0; i < CooldownButton.buttons.Count; i++) {
+                if (CooldownButton.buttons[i].hasEffectDuration) {
+                    CooldownButton.buttons[i].OnEffectEnd();
+                    CooldownButton.buttons[i].isEffectActive = false;
+                }
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Start))]
+    public static class StartPatch {
+        public static void Prefix(ShipStatus __instance) {
+            CooldownButton.UsableButton = true;
         }
     }
 }

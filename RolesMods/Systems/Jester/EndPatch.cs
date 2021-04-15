@@ -9,7 +9,7 @@ namespace RolesMods.Systems.Jester {
     public static class EndGameManagerPatch {
         public static void Postfix(EndGameManager __instance) {
             if (ExiledPatch.JesterForceEndGame) {
-                __instance.WinText.Color = new Color(0.921f, 0.239f, 0.862f, 1f);
+                __instance.WinText.color = new Color(0.921f, 0.239f, 0.862f, 1f);
                 __instance.BackgroundBar.material.color = new Color(0.921f, 0.239f, 0.862f, 1f);
                 ExiledPatch.JesterForceEndGame = false;
             }

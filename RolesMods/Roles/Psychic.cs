@@ -9,7 +9,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Psychic))]
     public class Psychic : CustomRole<Psychic> {
         // Color: BA02BBFF
-        public static CustomOptionHeader PsychicHeader = CustomOptionHeader.AddHeader("[BA02BBFF]Psychic Options :[]");
+        public static CustomOptionHeader PsychicHeader = CustomOptionHeader.AddHeader("<color=#BA02BBFF>Psychic Options :</color>");
         public static CustomNumberOption PsychicPercent = CustomOption.AddNumber("Psychic Apparition", 0f, 0f, 100f, 5f);
         public static CustomNumberOption NumberPsychic = CustomOption.AddNumber("Number Psychic", 1f, 1f, 10f, 1f);
         public static CustomNumberOption PsychicDuration = CustomOption.AddNumber("Vision Duration", 5f, 3f, 30f, 1f);
@@ -25,7 +25,7 @@ namespace RolesMods.Roles {
             Name = "Psychic";
             RoleActive = true;
             IntroDescription = "Your can see everyone, everywhere";
-            TasksDescription = "[BA02BBFF]Psychic: You can see everyone, everywhere[]";
+            TasksDescription = "<color=#BA02BBFF>Psychic: You can see everyone, everywhere</color>";
         }
 
         public override void OnGameStart() {
@@ -33,8 +33,7 @@ namespace RolesMods.Roles {
             Systems.Psychic.Button.buttonPsychic.MaxTimer = PsychicCooldown.GetValue();
 
             Systems.Psychic.PsychicMap.isPsychicActivated = false;
-            Systems.Psychic.PsychicMap.herePoints.Clear();
-            Systems.Psychic.PsychicMap.texts.Clear();
+            Systems.Psychic.PsychicMap.herePointsDatas.Clear();
         }
 
         public override void OnInfectedStart() {
@@ -43,7 +42,7 @@ namespace RolesMods.Roles {
         }
 
         public override void OnMeetingStart() {
-            //Systems.Psychic.PsychicMap.SyncOverlay(false);
+            Systems.Psychic.PsychicMap.ClearAllPlayers();
         }
 
         private void GameOptionFormat() {

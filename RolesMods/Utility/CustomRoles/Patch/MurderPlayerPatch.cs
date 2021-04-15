@@ -1,6 +1,6 @@
-﻿/*using HarmonyLib;
+﻿using HarmonyLib;
 
-namespace RolesMods.Systems.Sheriff {
+namespace RolesMods.Utility.CustomRoles.Patch {
 
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.MurderPlayer))]
     static class MurderPlayerPatch {
@@ -9,7 +9,7 @@ namespace RolesMods.Systems.Sheriff {
         static void Prefix(ref PlayerControl __instance, [HarmonyArgument(0)] ref PlayerControl target) {
             trueImpostorIntance = __instance.Data.IsImpostor;
 
-            if (!trueImpostorIntance && !target.Data.IsImpostor)
+            if (!trueImpostorIntance && !__instance.Data.IsImpostor)
                 __instance.Data.IsImpostor = true;
         }
 
@@ -18,4 +18,4 @@ namespace RolesMods.Systems.Sheriff {
                 __instance.Data.IsImpostor = false;
         }
     }
-}*/
+}

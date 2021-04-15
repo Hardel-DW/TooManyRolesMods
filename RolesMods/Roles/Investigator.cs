@@ -1,7 +1,6 @@
 ﻿using Essentials.Options;
 using RolesMods.Utility.CustomRoles;
 using RolesMods.Utility.Enumerations;
-using System;
 using UnityEngine;
 
 namespace RolesMods.Roles {
@@ -9,7 +8,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Investigator))]
     public class Investigator : CustomRole<Investigator> {
         // Color: 2EADFFFF
-        public static CustomOptionHeader InvestigatorHeader = CustomOptionHeader.AddHeader("[2EADFFFF]Investigator Options :[]");
+        public static CustomOptionHeader InvestigatorHeader = CustomOptionHeader.AddHeader("<color=#2EADFFFF>Investigator Options :</color>");
         public static CustomNumberOption InvestigatorPercent = CustomOption.AddNumber("Investigator Apparition", 0f, 0f, 100f, 5f);
         public static CustomNumberOption NumberInvestigator = CustomOption.AddNumber("Number Investigator", 1f, 1f, 10f, 1f);
         public static CustomNumberOption footPrintSize = CustomOption.AddNumber("Footprint Size", 0.5f, 0.3f, 1f, 0.1f);
@@ -26,7 +25,7 @@ namespace RolesMods.Roles {
             Color = new Color(0.180f, 0.678f, 1f, 1f);
             Name = "Investigator";
             IntroDescription = "Find all imposters by examining footprints";
-            TasksDescription = "[2EADFFFF]Investigator: You can see everyone's footprint.[]";
+            TasksDescription = "<color=#2EADFFFF>Investigator: You can see everyone's footprint.</color>";
         }
 
         public override void OnGameEnded() {

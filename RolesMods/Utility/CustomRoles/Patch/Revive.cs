@@ -14,7 +14,7 @@ namespace RolesMods.Utility.CustomRoles.Patch {
                     if (Role.GiveRoleAt == Moment.OnRevive) { }
 
                     if (Role.GiveTasksAt == Moment.OnDie)
-                        Role.AddImportantTaks(__instance);
+                        Role.AddImportantTasks(__instance);
                 }
             }
         }

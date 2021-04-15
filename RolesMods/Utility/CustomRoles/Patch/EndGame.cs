@@ -6,6 +6,7 @@ namespace RolesMods.Utility.CustomRoles.Patch {
     public static class EndGameManagerPatch {
         public static bool Prefix(EndGameManager __instance) {
             foreach (var Role in RoleManager.AllRoles) {
+                Role.WhiteListKill = null;
                 Role.ClearRole();
                 Role.OnGameEnded();
             }

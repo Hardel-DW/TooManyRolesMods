@@ -8,7 +8,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(TimeMaster))]
     public class TimeMaster : CustomRole<TimeMaster> {
         // Color: 999999FF
-        public static CustomOptionHeader TimeMasterHeader = CustomOptionHeader.AddHeader("[999999FF]TimeMaster Options :[]");
+        public static CustomOptionHeader TimeMasterHeader = CustomOptionHeader.AddHeader("<color=#999999FF>TimeMaster Options :</color>");
         public static CustomNumberOption TimeMasterPercent = CustomOption.AddNumber("TimeMaster Apparition", 0f, 0f, 100f, 5f);
         public static CustomNumberOption NumberTimeMaster = CustomOption.AddNumber("Number TimeMaster", 1f, 1f, 10f, 1f);
         public static CustomNumberOption TimeMasterDuration = CustomOption.AddNumber("Rewind Duration", 5f, 3f, 30f, 1f);
@@ -25,7 +25,7 @@ namespace RolesMods.Roles {
             Name = "TimeMaster";
             RoleActive = true;
             IntroDescription = "Bend time as you will";
-            TasksDescription = "[999999FF]TimeMaster: You can travel the time and revive other.[]";
+            TasksDescription = "<color=#999999FF>TimeMaster: You can travel the time and revive other.</color>";
         }
 
         public override void OnGameEnded() {
@@ -33,7 +33,6 @@ namespace RolesMods.Roles {
         }
 
         public override void OnGameStart() {
-            Plugin.Logger.LogInfo(TimeMasterDuration.GetValue());
             Systems.TimeMaster.Time.recordTime = TimeMasterDuration.GetValue() * 2;
             Systems.TimeMaster.Button.buttonTime.EffectDuration = TimeMasterDuration.GetValue() / 2;
             Systems.TimeMaster.Button.buttonTime.MaxTimer = TimeMasterCooldown.GetValue();
