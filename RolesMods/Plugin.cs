@@ -4,14 +4,14 @@ using HarmonyLib;
 using Reactor;
 using BepInEx.Logging;
 using Essentials.Options;
-using RolesMods.Utility;
-using RolesMods.Utility.CustomRoles;
+using HardelAPI.Utility;
 
 namespace RolesMods {
 
     [BepInPlugin(Id)]
     [BepInProcess("Among Us.exe")]
     [BepInDependency(ReactorPlugin.Id)]
+    [BepInDependency(HardelAPI.Plugin.Id)]
     public class Plugin : BasePlugin {
         public const string Id = "fr.hardel.toomanyrolesmodes";
         public static ManualLogSource Logger;
@@ -24,7 +24,6 @@ namespace RolesMods {
             Harmony.PatchAll();
             CustomOption.ShamelessPlug = false;
             ResourceLoader.LoadAssets();
-            RegisterInCustomRolesAttribute.Register();
         }
     }
 }

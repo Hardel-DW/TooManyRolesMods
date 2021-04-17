@@ -1,10 +1,7 @@
-﻿using HarmonyLib;
-using Hazel;
-using RolesMods.Utility;
-using RolesMods.Utility.Enumerations;
+﻿using HardelAPI.Utility;
+using HarmonyLib;
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace RolesMods.Systems.Psychic {
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Start))]

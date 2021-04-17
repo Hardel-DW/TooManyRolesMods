@@ -1,6 +1,6 @@
-﻿using HarmonyLib;
+﻿using HardelAPI.Utility;
+using HarmonyLib;
 using InnerNet;
-using RolesMods.Utility;
 using System.Linq;
 using UnityEngine;
 

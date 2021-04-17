@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using Hazel;
-using RolesMods.Systems.Psychic;
 using UnityEngine;
 
 namespace RolesMods.Patch {

@@ -1,7 +1,7 @@
-﻿using RolesMods.Utility.CustomRoles;
-using Essentials.Options;
+﻿using Essentials.Options;
 using UnityEngine;
-using RolesMods.Utility.Enumerations;
+using HardelAPI.Utility.CustomRoles;
+using HardelAPI.Utility.Enumerations;
 
 namespace RolesMods.Roles {
 

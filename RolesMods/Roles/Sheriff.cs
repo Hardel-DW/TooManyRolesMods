@@ -1,6 +1,6 @@
 ﻿using Essentials.Options;
-using RolesMods.Utility.CustomRoles;
-using RolesMods.Utility.Enumerations;
+using HardelAPI.Utility.CustomRoles;
+using HardelAPI.Utility.Enumerations;
 using System;
 using UnityEngine;
 
@@ -17,8 +17,8 @@ namespace RolesMods.Roles {
         
         public Sheriff() : base() {
             GameOptionFormat();
-            Side = PlayerSide.Crewmate;
             RoleActive = true;
+            Side = PlayerSide.Crewmate;
             CanKill = PlayerSide.Everyone;
             GiveTasksAt = Moment.StartGame;
             GiveRoleAt = Moment.StartGame;

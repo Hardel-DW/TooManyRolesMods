@@ -1,6 +1,5 @@
-﻿using HarmonyLib;
-using RolesMods.Utility;
-using RolesMods.Utility.Enumerations;
+﻿using HardelAPI.Utility;
+using HarmonyLib;
 using UnityEngine;
 
 namespace RolesMods.Systems.TimeMaster {

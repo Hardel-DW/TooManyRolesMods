@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using Hazel;
-using System.Linq;
 
 namespace RolesMods.Systems.Jester {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.Exiled))]
