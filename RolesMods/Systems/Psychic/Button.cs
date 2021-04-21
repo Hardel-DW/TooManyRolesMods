@@ -12,7 +12,7 @@ namespace RolesMods.Systems.Psychic {
             buttonPsychic = new CooldownButton
                 (() => OnClick(),
                 Roles.Psychic.PsychicCooldown.GetValue(),
-                "RolesMods.Resources.Foresight.png",
+                Plugin.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Foresight.png", 1000f),
                 1000,
                 new Vector2(0f, 0f),
                 __instance,

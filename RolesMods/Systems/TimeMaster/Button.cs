@@ -13,7 +13,7 @@ namespace RolesMods.Systems.TimeMaster {
             buttonTime = new CooldownButton
                 (() => OnClick(),
                 Roles.TimeMaster.TimeMasterCooldown.GetValue(),
-                "RolesMods.Resources.Rewind.png",
+                Plugin.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Rewind.png", 250f),
                 250,
                 new Vector2(0f, 0f),
                 __instance,

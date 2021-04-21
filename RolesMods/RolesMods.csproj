@@ -13,9 +13,7 @@
         <Deobfuscate Include="$(AmongUs)\BepInEx\plugins\Essentials-$(GameVersion).dll" />
         <Deobfuscate Include="$(AmongUs)\BepInEx\plugins\HardelAPI-$(GameVersion).dll" />
       
-        <EmbeddedResource Include="Resources\bundle-toomanyrole"></EmbeddedResource>
-        <EmbeddedResource Include="Resources\Foresight.png"></EmbeddedResource>
-        <EmbeddedResource Include="Resources\Rewind.png"></EmbeddedResource>
+        <EmbeddedResource Include="Resources\*"></EmbeddedResource>
         <PackageReference Include="Reactor.OxygenFilter.MSBuild" Version="0.3.0" />
     </ItemGroup>
 
