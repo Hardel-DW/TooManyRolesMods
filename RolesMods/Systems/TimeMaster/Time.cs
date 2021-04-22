@@ -13,22 +13,25 @@ namespace RolesMods.Systems.TimeMaster {
         public static bool isRewinding = false;
 
         public static void Record() {
-            foreach (var player in PlayerControl.AllPlayerControls) {
-                if (!PlayersPositions.ContainsKey(player.PlayerId))
-                    PlayersPositions[player.PlayerId] = new List<GameHistory>();
+            if (PlayerControl.AllPlayerControls != null && PlayerControl.AllPlayerControls.Count > 0) {
+                foreach (var player in PlayerControl.AllPlayerControls) {
+                    if (!PlayersPositions.ContainsKey(player.PlayerId))
+                        PlayersPositions[player.PlayerId] = new List<GameHistory>();
 
-                var currentPlayer = PlayersPositions.FirstOrDefault(d => d.Key == player.PlayerId);
-                while (currentPlayer.Value.Count >= Mathf.Round(recordTime / UnityEngine.Time.fixedDeltaTime))
-                    currentPlayer.Value.RemoveAt(currentPlayer.Value.Count - 1);
+                    var currentPlayer = PlayersPositions.FirstOrDefault(d => d.Key == player.PlayerId);
+                    if (currentPlayer.Value != null && currentPlayer.Value.Count > 0)
+                        while (currentPlayer.Value.Count >= Mathf.Round(recordTime / UnityEngine.Time.fixedDeltaTime))
+                            currentPlayer.Value.RemoveAt(currentPlayer.Value.Count - 1);
 
-                if (player.moveable)
-                    currentPlayer.Value.Insert(0, new GameHistory(player.transform.position, DateTime.UtcNow, player.gameObject.GetComponent<Rigidbody2D>().velocity));
-                else
-                    currentPlayer.Value.Insert(0, new GameHistory(currentPlayer.Value[0].position, DateTime.UtcNow, currentPlayer.Value[0].velocity));
+                    if (player.moveable)
+                        currentPlayer.Value.Insert(0, new GameHistory(player.transform.position, DateTime.UtcNow, player.gameObject.GetComponent<Rigidbody2D>().velocity));
+                    else if (currentPlayer.Value != null && currentPlayer.Value.Count > 0)
+                        currentPlayer.Value.Insert(0, new GameHistory(currentPlayer.Value[0].position, DateTime.UtcNow, currentPlayer.Value[0].velocity));
 
-                if (player.Data.IsDead && !DeadPlayers.ContainsKey(player.PlayerId))
-                    DeadPlayers[player.PlayerId] = DateTime.UtcNow;
-            }
+                    if (player.Data.IsDead && !DeadPlayers.ContainsKey(player.PlayerId))
+                        DeadPlayers[player.PlayerId] = DateTime.UtcNow;
+                }
+            } 
         }
 
         public static void Rewind() {

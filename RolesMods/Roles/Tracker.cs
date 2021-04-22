@@ -28,11 +28,14 @@ namespace RolesMods.Roles {
         public override void OnInfectedStart() {
             PercentApparition = (int) TrackerPercent.GetValue();
             NumberPlayers = (int) NumberTracker.GetValue();
-            Systems.Tracker.Button.usable = true;
         }
 
         public override void OnMeetingStart() {
             Object.Destroy(Systems.Tracker.Button.Arrow.Arrow);
+            Systems.Tracker.Button.usable = true;
+        }
+
+        public override void OnGameStart() {
             Systems.Tracker.Button.usable = true;
         }
 

@@ -22,7 +22,7 @@ namespace RolesMods.Roles {
             Side = PlayerSide.Everyone;
             GiveTasksAt = Moment.StartGame;
             Color = new Color(0.490f, 0.490f, 0.490f, 1f);
-            Name = "TimeMaster";
+            Name = "Time Master";
             RoleActive = true;
             IntroDescription = "Bend time as you will";
             TasksDescription = "<color=#999999FF>TimeMaster: You can travel the time and revive other.</color>";
