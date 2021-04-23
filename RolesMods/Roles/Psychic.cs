@@ -1,7 +1,7 @@
 ﻿using Essentials.Options;
 using UnityEngine;
-using HardelAPI.Utility.CustomRoles;
-using HardelAPI.Utility.Enumerations;
+using HardelAPI.CustomRoles;
+using HardelAPI.Enumerations;
 
 namespace RolesMods.Roles {
 
@@ -28,7 +28,7 @@ namespace RolesMods.Roles {
             TasksDescription = "<color=#BA02BBFF>Psychic: You can see everyone, everywhere</color>";
         }
 
-        public override void OnGameStart() {
+        public override void OnGameStarted() {
             Systems.Psychic.Button.buttonPsychic.EffectDuration = PsychicDuration.GetValue();
             Systems.Psychic.Button.buttonPsychic.MaxTimer = PsychicCooldown.GetValue();
 
@@ -41,7 +41,7 @@ namespace RolesMods.Roles {
             NumberPlayers = (int) NumberPsychic.GetValue();
         }
 
-        public override void OnMeetingStart() {
+        public override void OnMeetingStart(MeetingHud instance) {
             Systems.Psychic.PsychicMap.ClearAllPlayers();
         }
 

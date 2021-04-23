@@ -1,6 +1,6 @@
 ﻿using Essentials.Options;
-using HardelAPI.Utility.CustomRoles;
-using HardelAPI.Utility.Enumerations;
+using HardelAPI.CustomRoles;
+using HardelAPI.Enumerations;
 using UnityEngine;
 
 namespace RolesMods.Roles {
@@ -32,7 +32,7 @@ namespace RolesMods.Roles {
             Systems.TimeMaster.Time.ClearGameHistory();
         }
 
-        public override void OnGameStart() {
+        public override void OnGameStarted() {
             Systems.TimeMaster.Time.recordTime = TimeMasterDuration.GetValue() * 2;
             Systems.TimeMaster.Button.buttonTime.EffectDuration = TimeMasterDuration.GetValue() / 2;
             Systems.TimeMaster.Button.buttonTime.MaxTimer = TimeMasterCooldown.GetValue();
@@ -45,7 +45,7 @@ namespace RolesMods.Roles {
             NumberPlayers = (int) NumberTimeMaster.GetValue();
         }
 
-        public override void OnMeetingStart() {
+        public override void OnMeetingStart(MeetingHud instance) {
             Systems.TimeMaster.Time.StopRewind();
         }
 

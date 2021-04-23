@@ -1,6 +1,9 @@
 ﻿using Essentials.Options;
-using HardelAPI.Utility.CustomRoles;
-using HardelAPI.Utility.Enumerations;
+using HardelAPI.CustomRoles;
+using HardelAPI.CustomRoles.Abilities;
+using HardelAPI.CustomRoles.Abilities.Light;
+using HardelAPI.Enumerations;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RolesMods.Roles {
@@ -14,7 +17,14 @@ namespace RolesMods.Roles {
         public static CustomNumberOption NumberLighter = CustomOption.AddNumber("Number Lighter", 1f, 1f, 10f, 1f);
         public static CustomNumberOption LighterMultiplier = CustomOption.AddNumber("Lighter Multiplier", 1.5f, 0f, 5f, 0.05f);
         public static CustomToggleOption LighterSabotageVision = CustomOption.AddToggle("Lighter sees during electrical sabotage", true);
-        
+
+        public override List<Ability> Abilities { get; set; } = new List<Ability>() {
+            new LightAbility() {
+                CanSeeDuringLightSabotage = true,
+                LightValueMultiplier = NumberLighter.GetValue()
+            }
+        };
+
         public Lighter() : base() {
             GameOptionFormat();
             TasksDescription = "<color=#BA5B13FF>Lighter: Your vision is better than crewmate</color>";

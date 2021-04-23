@@ -1,6 +1,6 @@
 ﻿using Essentials.Options;
-using HardelAPI.Utility.CustomRoles;
-using HardelAPI.Utility.Enumerations;
+using HardelAPI.CustomRoles;
+using HardelAPI.Enumerations;
 using UnityEngine;
 
 namespace RolesMods.Roles {
@@ -24,7 +24,6 @@ namespace RolesMods.Roles {
             GiveTasksAt = Moment.OnDie;
             GiveRoleAt = Moment.StartGame;
             RoleActive = true;
-            CanHasOtherRole = true;
             ShowIntroCutScene = false;
         }
 

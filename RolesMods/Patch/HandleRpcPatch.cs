@@ -16,25 +16,6 @@ namespace RolesMods.Patch {
                 return false;
             }
 
-            if (callId == (byte) CustomRPC.DebileWin) {
-                foreach (var player in Roles.Jester.Instance.AllPlayers) {
-                    player.Revive();
-                    player.Data.IsDead = false;
-                    player.Data.IsImpostor = true;
-                }
-
-                foreach (var player in PlayerControl.AllPlayerControls) {
-                    if (!Roles.Jester.Instance.HasRole(player.PlayerId)) {
-                        player.RemoveInfected();
-                        player.Die(DeathReason.Exile);
-                        player.Data.IsImpostor = false;
-                    }
-                }
-
-                Systems.Jester.ExiledPatch.JesterForceEndGame = true;
-                return false;
-            }
-
             return true;
         }
     }

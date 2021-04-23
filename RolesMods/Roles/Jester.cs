@@ -1,6 +1,7 @@
 ﻿using Essentials.Options;
-using HardelAPI.Utility.CustomRoles;
-using HardelAPI.Utility.Enumerations;
+using HardelAPI.CustomRoles;
+using HardelAPI.Enumerations;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RolesMods.Roles {
@@ -27,9 +28,11 @@ namespace RolesMods.Roles {
         public override void OnInfectedStart() {
             PercentApparition = (int) JesterPercent.GetValue();
             NumberPlayers = (int) NumberJester.GetValue();
+        }
 
-            Systems.Jester.ExiledPatch.JesterForceEndGame = false;
-            Systems.Jester.ExiledPatch.tasksRemoved = false;
+        public override void OnExiledPlayer(PlayerControl PlayerExiled) {
+            if (HasRole(PlayerExiled))
+                ForceEndGame(new List<PlayerControl>() { PlayerExiled });
         }
 
         private void GameOptionFormat() {

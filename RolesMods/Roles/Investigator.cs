@@ -1,6 +1,6 @@
 ﻿using Essentials.Options;
-using HardelAPI.Utility.CustomRoles;
-using HardelAPI.Utility.Enumerations;
+using HardelAPI.CustomRoles;
+using HardelAPI.Enumerations;
 using UnityEngine;
 
 namespace RolesMods.Roles {
@@ -32,7 +32,7 @@ namespace RolesMods.Roles {
             Systems.Investigator.FootPrint.allFootprint.Clear();
         }
 
-        public override void OnGameStart() {
+        public override void OnGameStarted() {
             Systems.Investigator.FootPrint.allFootprint.Clear();
         }
 
