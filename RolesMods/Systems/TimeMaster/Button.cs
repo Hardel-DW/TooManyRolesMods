@@ -25,19 +25,19 @@ namespace RolesMods.Systems.TimeMaster {
 
         private static void OnEffectEnd() {
             Time.StopRewind();
+            UseNumber--;
         }
 
         private static void OnClick() {
             if (UseNumber > 0) {
                 Time.StartRewind();
-                UseNumber--;
             }
         }
 
         private static void OnUpdate(CooldownButton button) {
             if (Roles.TimeMaster.Instance.AllPlayers != null && PlayerControl.LocalPlayer != null)
                 if (Roles.TimeMaster.Instance.HasRole(PlayerControl.LocalPlayer.PlayerId))
-                    if (PlayerControl.LocalPlayer.Data.IsDead)
+                    if (PlayerControl.LocalPlayer.Data.IsDead || UseNumber <= 0)
                         button.SetCanUse(false);
                     else button.SetCanUse(!MeetingHud.Instance);
 

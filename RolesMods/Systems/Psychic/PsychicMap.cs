@@ -14,16 +14,14 @@ namespace RolesMods.Systems.Psychic {
         public static PsychicMap Instance;
         private static MapBehaviour Map;
 
-        private void OnEnable() {
+        public void Start() {
             gameObject.AddComponent<BoxCollider2D>();
             Map = GetComponent<MapBehaviour>();
             if (Instance)
                 Destroy(Instance);
 
             Instance = this;
-        }
 
-        public void Start() {
             StartMap();
         }
 

@@ -2,7 +2,9 @@
     public enum CustomRPC {
         TimeRewind = 80,
         TimeRevive = 81,
-        SendOverlayPsychic = 82
+        SendOverlayPsychic = 82,
+        FixLights = 83,
+        EngineerFix = 84
     }
 
     public enum NormalRPC {

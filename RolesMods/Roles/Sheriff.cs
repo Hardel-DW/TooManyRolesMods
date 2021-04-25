@@ -47,6 +47,10 @@ namespace RolesMods.Roles {
             GetAbility<KillAbility>().LastKilled = DateTime.UtcNow.AddSeconds(-10.0);
         }
 
+        public override void OnMeetingEnd(MeetingHud instance) {
+            GetAbility<KillAbility>().LastKilled = DateTime.UtcNow;
+        }
+
         public override void OnLocalAttempKill(PlayerControl killer, PlayerControl target) {
             if (target.Data.IsImpostor || Jester.Instance.HasRole(target)) {
                 killer.RpcMurderPlayer(target);

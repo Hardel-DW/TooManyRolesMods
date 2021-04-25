@@ -16,13 +16,15 @@ namespace RolesMods.Roles {
         public Jester() : base() {
             GameOptionFormat();
             Side = PlayerSide.Crewmate;
-            RoleActive = true;
             HasTask = false;
+            RoleActive = true;
+            ForceExiledReveal = true;
             GiveTasksAt = Moment.StartGame;
             Color = new Color(0.819f, 0f, 0.321f, 1f);
             Name = "Jester";
             IntroDescription = "Get voted out";
             TasksDescription = "<color=#2EADFFFF>Jester: You are an Jester, Get voted out</color>";
+            OutroDescription = "Jester Win";
         }
 
         public override void OnInfectedStart() {

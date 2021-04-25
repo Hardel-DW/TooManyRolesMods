@@ -18,7 +18,7 @@ namespace RolesMods.Roles {
             GameOptionFormat();
             Name = "Spirit";
             Color = new Color(0.356f, 0f, 0.760f, 1f);
-            TasksDescription = "<color=#5b00C2FF]Spirit: You can vote while being dead!</color>";
+            TasksDescription = "<color=#5b00C2FF>Spirit: You can vote while being dead!</color>";
             VisibleBy = PlayerSide.Dead;
             Side = PlayerSide.Everyone;
             GiveTasksAt = Moment.OnDie;
@@ -29,6 +29,10 @@ namespace RolesMods.Roles {
 
         public override void OnGameEnded() {
             Systems.Spirit.MeetingHudPopulateButtonsPatch.SpiritHasVoteds.Clear();
+        }
+
+        public override void OnGameStarted() {
+            HardelAPI.Plugin.DeadSeeAllRoles.SetValue(false);
         }
 
         public override void OnInfectedStart() {

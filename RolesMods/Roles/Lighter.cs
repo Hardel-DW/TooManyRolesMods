@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace RolesMods.Roles {
-
-
     [RegisterInCustomRoles(typeof(Lighter))]
     public class Lighter : CustomRole<Lighter> {
         // Color: BA5B13FF
@@ -39,6 +37,14 @@ namespace RolesMods.Roles {
         public override void OnInfectedStart() {
             PercentApparition = (int) LighterPercent.GetValue();
             NumberPlayers = (int) NumberLighter.GetValue();
+        }
+
+        public override void OnGameStarted() {
+            LightAbility ability = GetAbility<LightAbility>();
+            if (ability != null) {
+                ability.LightValueMultiplier = LighterMultiplier.GetValue();
+                ability.CanSeeDuringLightSabotage = LighterSabotageVision.GetValue();
+            }
         }
 
         private void GameOptionFormat() {
