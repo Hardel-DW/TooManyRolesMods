@@ -1,4 +1,4 @@
-﻿/*using HardelAPI.Utility;
+﻿using HardelAPI.Utility;
 using HarmonyLib;
 using Hazel;
 using System.Linq;
@@ -27,20 +27,24 @@ namespace RolesMods.Systems.Engineer {
 
         private static void OnClick() {
             if (UseNumber > 0) {
+                MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte) CustomRPC.EngineerFix, SendOption.Reliable, -1);
+                AmongUsClient.Instance.FinishRpcImmediately(writer);
+
                 FixSabotage();
                 UseNumber--;
             }
         }
 
         private static void OnUpdate(CooldownButton button) {
-            if (Roles.TimeMaster.Instance.AllPlayers != null && PlayerControl.LocalPlayer != null)
-                if (Roles.TimeMaster.Instance.HasRole(PlayerControl.LocalPlayer.PlayerId))
-                    if (PlayerControl.LocalPlayer.Data.IsDead || UseNumber <= 0) 
+            if (Roles.Engineer.Instance.AllPlayers != null && PlayerControl.LocalPlayer != null)
+                if (Roles.Engineer.Instance.HasRole(PlayerControl.LocalPlayer.PlayerId))
+                    if (PlayerControl.LocalPlayer.Data.IsDead || UseNumber <= 0)
                         button.SetCanUse(false);
-                    else button.SetCanUse(!MeetingHud.Instance);
+                    else
+                        button.SetCanUse(!MeetingHud.Instance);
         }
 
-        private static void FixSabotage() {
+        public static void FixSabotage() {
             SabotageSystemType system = ShipStatus.Instance.Systems[SystemTypes.Sabotage].Cast<SabotageSystemType>();
             Il2CppArrayBase<IActivatable> specials = system.specials.ToArray();
             if (!system.dummy.IsActive | specials.Any(s => s.IsActive))
@@ -58,11 +62,8 @@ namespace RolesMods.Systems.Engineer {
                 FixAirshipReactor();
 
             SwitchSystem fixLight = ShipStatus.Instance.Systems[SystemTypes.Electrical].Cast<SwitchSystem>();
-            if (fixLight.IsActive) FixLights(fixLight);
-
-            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte) CustomRPC.EngineerFix, SendOption.Reliable, -1);
-            writer.Write(PlayerControl.LocalPlayer.NetId);
-            AmongUsClient.Instance.FinishRpcImmediately(writer);
+            if (fixLight.IsActive)
+                FixLights(fixLight);
         }
 
         private static bool FixComms() {
@@ -93,11 +94,8 @@ namespace RolesMods.Systems.Engineer {
         }
 
         private static bool FixLights(SwitchSystem lights) {
-            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte) CustomRPC.FixLights, SendOption.Reliable, -1);
-            AmongUsClient.Instance.FinishRpcImmediately(writer);
-
             lights.ActualSwitches = lights.ExpectedSwitches;
             return false;
         }
     }
-}*/
+}

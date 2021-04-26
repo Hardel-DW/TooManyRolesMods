@@ -1,5 +1,7 @@
-﻿using HarmonyLib;
+﻿using HardelAPI.Utility;
+using HarmonyLib;
 using Hazel;
+using System.Linq;
 using UnityEngine;
 
 namespace RolesMods.Patch {
@@ -15,6 +17,19 @@ namespace RolesMods.Patch {
                 HudManager.Instance.FullScreen.enabled = true;
                 return false;
             }
+
+            if (callId == (byte) CustomRPC.TimeRevive) {
+                PlayerControl player = PlayerControlUtils.FromPlayerId(reader.ReadByte());
+                player.Revive();
+                var body = Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == player.PlayerId);
+
+                if (body != null)
+                    Object.Destroy(body.gameObject);
+                return false;
+            }
+
+            if (callId == (byte) CustomRPC.EngineerFix)
+                Systems.Engineer.Button.FixSabotage();
 
             return true;
         }

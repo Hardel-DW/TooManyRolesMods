@@ -1,6 +1,9 @@
-﻿/*using Essentials.Options;
+﻿using Essentials.Options;
 using HardelAPI.CustomRoles;
+using HardelAPI.CustomRoles.Abilities;
+using HardelAPI.CustomRoles.Abilities.UsableVent;
 using HardelAPI.Enumerations;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RolesMods.Roles {
@@ -13,6 +16,10 @@ namespace RolesMods.Roles {
         public static CustomNumberOption NumberEngineer = CustomOption.AddNumber("Number Engineer", 1f, 1f, 10f, 1f);
         public static CustomNumberOption EngineerCooldown = CustomOption.AddNumber("Fix Cooldown", 30f, 10f, 120f, 5f);
         public static CustomNumberOption MaxUseEngineer = CustomOption.AddNumber("Max use", 1f, 1f, 10f, 1f);
+
+        public override List<Ability> Abilities { get; set; } = new List<Ability>() {
+            new VentAbility() { CanVent = true }
+        };
 
         public Engineer() : base() {
             GameOptionFormat();
@@ -45,4 +52,3 @@ namespace RolesMods.Roles {
         }
     }
 }
-*/
