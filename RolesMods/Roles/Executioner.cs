@@ -1,6 +1,7 @@
 ﻿using Essentials.Options;
 using HardelAPI.CustomRoles;
 using HardelAPI.Enumerations;
+using HardelAPI.Utility;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -54,12 +55,12 @@ namespace RolesMods.Roles {
             if (Target.Data.IsDead && !TargetIsDead) {
                 TargetIsDead = true;
                 RemoveImportantTasks(Player);
-                RemovePlayer(Player.PlayerId);
+                AllPlayers.RemovePlayer(Player.PlayerId);
             }
 
             if (PlayerControl.LocalPlayer.Data.IsDead) {
                 RemoveImportantTasks(Player);
-                RemovePlayer(Player.PlayerId);
+                AllPlayers.RemovePlayer(Player.PlayerId);
             }
         }
 

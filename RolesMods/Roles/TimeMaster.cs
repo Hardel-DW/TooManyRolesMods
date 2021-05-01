@@ -13,9 +13,9 @@ namespace RolesMods.Roles {
         public static CustomNumberOption NumberTimeMaster = CustomOption.AddNumber("Number TimeMaster", 1f, 1f, 10f, 1f);
         public static CustomNumberOption TimeMasterDuration = CustomOption.AddNumber("Rewind Duration", 5f, 3f, 30f, 1f);
         public static CustomNumberOption TimeMasterCooldown = CustomOption.AddNumber("Rewind Cooldown", 30f, 10f, 120f, 5f);
+        public static CustomNumberOption UseNumber = CustomOption.AddNumber("Number of uses", 1f, 1f, 10f, 1f);
         public static CustomToggleOption EnableReiveTimeMaster = CustomOption.AddToggle("Enable Rivive during rewind", false);
         public static CustomToggleOption UsableVitals = CustomOption.AddToggle("Time Master can use vitals", true);
-        public static CustomNumberOption UseNumber = CustomOption.AddNumber("Number of uses", 1f, 1f, 10f, 1f);
 
         public TimeMaster() : base() {
             GameOptionFormat();

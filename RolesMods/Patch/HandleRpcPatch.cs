@@ -31,6 +31,14 @@ namespace RolesMods.Patch {
             if (callId == (byte) CustomRPC.EngineerFix)
                 Systems.Engineer.Button.FixSabotage();
 
+            if (callId == (byte) CustomRPC.AltrusitRevive) {
+                byte deadBodyId = reader.ReadByte();
+                DeadBody deadPlayer = Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == deadBodyId);
+                PlayerControl altruist = PlayerControlUtils.FromPlayerId(reader.ReadByte());
+
+                Systems.Altruist.Button.Ability(deadPlayer, altruist);
+            }
+
             return true;
         }
     }

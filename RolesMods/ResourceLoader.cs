@@ -11,7 +11,7 @@ namespace RolesMods {
         public static Sprite FootprintSprite;
         public static Sprite OverlaySprite;
         public static Sprite ForsightSprite;
-
+        public static Sprite AbstainButton;
         public static void LoadAssets() {
             var resourceSteam = myAsembly.GetManifestResourceStream("RolesMods.Resources.bundle-toomanyrole");
             var assetBundle = AssetBundle.LoadFromMemory(resourceSteam.ReadFully());

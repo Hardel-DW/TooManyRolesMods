@@ -22,7 +22,7 @@ namespace RolesMods.Roles {
             RoleActive = true;
             GiveRoleAt = Moment.StartGame;
             GiveTasksAt = Moment.StartGame;
-            NumberPlayers = 1;
+            NumberPlayers = 2;
             Color = new Color(0.388f, 0.227f, 0.215f, 1f);
             Name = "Lover";
             IntroDescription = $"You are in <color=#f570dcff>Love</color> with <color=#f570dcff>{Target?.name}</color>";
@@ -34,9 +34,8 @@ namespace RolesMods.Roles {
             PercentApparition = (int) LoverPercent.GetValue();
         }
 
-        public override (bool, List<PlayerControl>) OnRoleSelectedInInfected(List<PlayerControl> playerHasNoRole) {
-            PlayerControl both = playerHasNoRole[new System.Random().Next(playerHasNoRole.Count)];
-            return (!(playerHasNoRole.Count >= 1), new List<PlayerControl>() { both });
+        public override bool OnRoleSelectedInInfected(List<PlayerControl> playerHasNoRole) {
+            return playerHasNoRole.Count < 2;
         }
 
 
@@ -45,8 +44,9 @@ namespace RolesMods.Roles {
             TargetIsDead = false;
 
             if (HasRole(PlayerControl.LocalPlayer)) {
-                PlayerControl both = AllPlayers.Single(b => b.PlayerId != PlayerControl.LocalPlayer.PlayerId);
-                Target = both;
+                PlayerControl both = AllPlayers.FirstOrDefault(b => b.PlayerId != PlayerControl.LocalPlayer.PlayerId);
+                if (both != null)
+                    Target = both;
             }
         }
 

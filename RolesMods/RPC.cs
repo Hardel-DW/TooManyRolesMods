@@ -4,7 +4,8 @@
         TimeRevive = 81,
         SendOverlayPsychic = 82,
         FixLights = 83,
-        EngineerFix = 84
+        EngineerFix = 84,
+        AltrusitRevive = 85
     }
 
     public enum NormalRPC {
