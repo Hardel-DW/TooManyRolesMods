@@ -1,6 +1,7 @@
 ﻿using HardelAPI.Utility;
 using HarmonyLib;
 using Hazel;
+using Reactor;
 using System.Linq;
 using UnityEngine;
 
@@ -33,10 +34,11 @@ namespace RolesMods.Patch {
 
             if (callId == (byte) CustomRPC.AltrusitRevive) {
                 byte deadBodyId = reader.ReadByte();
+                byte playerId = reader.ReadByte();
                 DeadBody deadPlayer = Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == deadBodyId);
-                PlayerControl altruist = PlayerControlUtils.FromPlayerId(reader.ReadByte());
+                PlayerControl altruist = PlayerControlUtils.FromPlayerId(playerId);
 
-                Systems.Altruist.Button.Ability(deadPlayer, altruist);
+                Coroutines.Start(Systems.Altruist.Button.Ability(deadPlayer, altruist));
             }
 
             return true;

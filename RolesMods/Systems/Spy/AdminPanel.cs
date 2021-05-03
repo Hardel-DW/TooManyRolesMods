@@ -114,5 +114,4 @@ namespace RolesMods.Systems.Spy {
             }
         }
     }
-
 }

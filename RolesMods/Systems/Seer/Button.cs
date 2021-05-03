@@ -54,13 +54,19 @@ namespace RolesMods.Systems.Seer {
 
                     if (allPlayersTargetable != null) {
                         PlayerControl target = PlayerControlUtils.GetClosestPlayer(PlayerControl.LocalPlayer, allPlayersTargetable);
-                        if (closestPlayer != null)
+                        if (closestPlayer != null) {
+                            button.isDisable = false;
                             closestPlayer.myRend.material.SetFloat("_Outline", 0f);
+                        } else {
+                            button.isDisable = true;
+                        }
 
                         if (target != null) {
                             target.myRend.material.SetFloat("_Outline", 1f);
                             target.myRend.material.SetColor("_OutlineColor", Roles.Seer.Instance.Color);
                             closestPlayer = target;
+                        } else {
+                            closestPlayer = null;
                         }
                     }
                 }
