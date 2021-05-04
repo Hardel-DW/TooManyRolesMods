@@ -41,6 +41,12 @@ namespace RolesMods.Patch {
                 Coroutines.Start(Systems.Altruist.Button.Ability(deadPlayer, altruist));
             }
 
+            if (callId == (byte) CustomRPC.PlaceCamera)
+                Roles.SecurityGuard.placeCamera(reader.ReadBytesAndSize());
+
+            if (callId == (byte) CustomRPC.SealVent)
+                Roles.SecurityGuard.sealVent(reader.ReadPackedInt32());
+
             return true;
         }
     }

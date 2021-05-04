@@ -26,23 +26,20 @@ namespace RolesMods.Roles {
             Color = new Color(0.388f, 0.227f, 0.215f, 1f);
             Name = "Executioner";
             IntroDescription = "Vote goose out to win !";
-            TasksDescription = "<color=#633a37ff>Executioner: You have to exile someone,\n but I don't know who because the role is bugged.</color>";
+            TasksDescription = $"<color=#633a37ff>Executioner: Exile {Target?.name} for win</color>";
             OutroDescription = "Executioner win";
         }
 
         public override void OnInfectedStart() {
             PercentApparition = (int) ExecutionerPercent.GetValue();
             NumberPlayers = (int) NumberExecutioner.GetValue();
-            Target = null;
+            Plugin.Logger.LogInfo("Yop");
         }
 
         public override void OnInfectedEnd() {
-
-            foreach (var player in PlayerControl.AllPlayerControls) {
-                Plugin.Logger.LogInfo($"Role: {GetMainRole(player)?.Name}, Player{player.name}");
-            }
-
+            Target = null;
             TargetIsDead = false;
+
             if (HasRole(PlayerControl.LocalPlayer)) {
                 List<PlayerControl> players = PlayerControl.AllPlayerControls.ToArray().Where(player => 
                     !(player.PlayerId == PlayerControl.LocalPlayer.PlayerId) &&
@@ -51,43 +48,42 @@ namespace RolesMods.Roles {
                     !(player.Data.IsImpostor)
                 ).ToList();
 
+                Plugin.Logger.LogInfo("---------------------");
+
                 foreach (var player in players) {
-                    Plugin.Logger.LogInfo(player.name);
+                    Plugin.Logger.LogInfo($"Can be a target : {player.name}");
                 }
                 Target = players[new System.Random().Next(players.Count)];
 
                 Plugin.Logger.LogInfo(Target.name + " is the Target");
 
-                if (Target != null)
+                if (Target != null) {
                     RefreshTask($"<color=#633a37ff>Executioner: Exile ${Target.name} for win</color>", PlayerControl.LocalPlayer);
+                    Plugin.Logger.LogInfo("Test");
+                }
             }
         }
 
-        public override void OnUpdate(PlayerControl Player) {
-            if (MeetingHud.Instance == null) {
-                if (Target == null || !HasRole(PlayerControl.LocalPlayer))
-                    return;
+        public override void OnMeetingStart(MeetingHud instance) {
+            if (Target == null || !HasRole(PlayerControl.LocalPlayer))
+                return;
 
-                if (Player.PlayerId != PlayerControl.LocalPlayer.PlayerId)
-                    return;
+            if (Target.Data.IsDead && !TargetIsDead) {
+                TargetIsDead = true;
+                RemoveImportantTasks(PlayerControl.LocalPlayer);
+                AllPlayers.RemovePlayer(PlayerControl.LocalPlayer);
+            }
 
-                if (Target.Data.IsDead && !TargetIsDead) {
-                    TargetIsDead = true;
-                    RemoveImportantTasks(Player);
-                    AllPlayers.RemovePlayer(Player.PlayerId);
-                }
-
-                if (PlayerControl.LocalPlayer.Data.IsDead) {
-                    RemoveImportantTasks(Player);
-                    AllPlayers.RemovePlayer(Player.PlayerId);
-                }
+            if (PlayerControl.LocalPlayer.Data.IsDead) {
+                RemoveImportantTasks(PlayerControl.LocalPlayer);
+                AllPlayers.RemovePlayer(PlayerControl.LocalPlayer);
             }
         }
 
         public override void OnExiledPlayer(PlayerControl PlayerExiled) {
             if (HasRole(PlayerControl.LocalPlayer) && Target != null && !PlayerControl.LocalPlayer.Data.IsDead)
                 if (PlayerExiled.PlayerId == Target.PlayerId)
-                    ForceEndGame(new List<PlayerControl>() { PlayerControl.LocalPlayer });
+                    RpcForceEndGame(new List<PlayerControl>() { PlayerControl.LocalPlayer });
         }
 
         private void GameOptionFormat() {

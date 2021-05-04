@@ -5,7 +5,9 @@
         SendOverlayPsychic = 82,
         FixLights = 83,
         EngineerFix = 84,
-        AltrusitRevive = 85
+        AltrusitRevive = 85,
+        PlaceCamera = 86,
+        SealVent = 87
     }
 
     public enum NormalRPC {
