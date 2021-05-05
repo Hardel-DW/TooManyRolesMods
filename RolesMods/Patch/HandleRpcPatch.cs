@@ -18,7 +18,6 @@ namespace RolesMods.Patch {
                 HudManager.Instance.FullScreen.enabled = true;
                 return false;
             }
-
             if (callId == (byte) CustomRPC.TimeRevive) {
                 PlayerControl player = PlayerControlUtils.FromPlayerId(reader.ReadByte());
                 player.Revive();
@@ -28,10 +27,10 @@ namespace RolesMods.Patch {
                     Object.Destroy(body.gameObject);
                 return false;
             }
-
-            if (callId == (byte) CustomRPC.EngineerFix)
+            if (callId == (byte) CustomRPC.EngineerFix) {
                 Systems.Engineer.Button.FixSabotage();
-
+                return false;
+            }
             if (callId == (byte) CustomRPC.AltrusitRevive) {
                 byte deadBodyId = reader.ReadByte();
                 byte playerId = reader.ReadByte();
@@ -40,12 +39,15 @@ namespace RolesMods.Patch {
 
                 Coroutines.Start(Systems.Altruist.Button.Ability(deadPlayer, altruist));
             }
+            if (callId == (byte) CustomRPC.SetSwaps) {
+                sbyte player1 = reader.ReadSByte();
+                sbyte player2 = reader.ReadSByte();
 
-            if (callId == (byte) CustomRPC.PlaceCamera)
-                Roles.SecurityGuard.placeCamera(reader.ReadBytesAndSize());
+                Systems.Swapper.SwapVotes.Swap1 = MeetingHud.Instance.playerStates.First(x => x.TargetPlayerId == player1);
+                Systems.Swapper.SwapVotes.Swap2 = MeetingHud.Instance.playerStates.First(x => x.TargetPlayerId == player2);
 
-            if (callId == (byte) CustomRPC.SealVent)
-                Roles.SecurityGuard.sealVent(reader.ReadPackedInt32());
+                return false;
+            };
 
             return true;
         }

@@ -45,12 +45,16 @@ namespace RolesMods.Roles {
 
             if (HasRole(PlayerControl.LocalPlayer)) {
                 PlayerControl both = AllPlayers.FirstOrDefault(b => b.PlayerId != PlayerControl.LocalPlayer.PlayerId);
-                if (both != null)
+                if (both != null) {
                     Target = both;
+                }
             }
         }
 
         public override void OnUpdate(PlayerControl Player) {
+            if (Player.Is<Lover>() && Player.Data.IsImpostor && !specificNameInformation.Keys.Contains(Player))
+                specificNameInformation.Add(Player, (Color, "Lover Impostor"));
+
             if (Target != null && HasRole(PlayerControl.LocalPlayer)) {
                 if (Target.Data.IsDead && !TargetIsDead) {
                     TargetIsDead = true;

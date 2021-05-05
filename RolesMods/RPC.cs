@@ -1,13 +1,12 @@
 ﻿namespace RolesMods {
     public enum CustomRPC {
         TimeRewind = 80,
-        TimeRevive = 81,
-        SendOverlayPsychic = 82,
-        FixLights = 83,
-        EngineerFix = 84,
-        AltrusitRevive = 85,
-        PlaceCamera = 86,
-        SealVent = 87
+        TimeRevive,
+        SendOverlayPsychic,
+        FixLights,
+        EngineerFix,
+        AltrusitRevive,
+        SetSwaps
     }
 
     public enum NormalRPC {

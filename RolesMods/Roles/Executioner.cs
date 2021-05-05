@@ -15,7 +15,6 @@ namespace RolesMods.Roles {
         public static CustomNumberOption ExecutionerPercent = CustomOption.AddNumber("Executioner Apparition", 0f, 0f, 100f, 5f);
         public static CustomNumberOption NumberExecutioner = CustomOption.AddNumber("Number Executioner", 1f, 1f, 10f, 1f);
         private static PlayerControl Target;
-        private bool TargetIsDead = false;
 
         public Executioner() : base() {
             GameOptionFormat();
@@ -33,51 +32,40 @@ namespace RolesMods.Roles {
         public override void OnInfectedStart() {
             PercentApparition = (int) ExecutionerPercent.GetValue();
             NumberPlayers = (int) NumberExecutioner.GetValue();
-            Plugin.Logger.LogInfo("Yop");
         }
 
         public override void OnInfectedEnd() {
             Target = null;
-            TargetIsDead = false;
 
             if (HasRole(PlayerControl.LocalPlayer)) {
-                List<PlayerControl> players = PlayerControl.AllPlayerControls.ToArray().Where(player => 
-                    !(player.PlayerId == PlayerControl.LocalPlayer.PlayerId) &&
-                    !(player.Is<Executioner>()) &&
-                    !(player.Is<Jester>()) &&
-                    !(player.Data.IsImpostor)
-                ).ToList();
+                List<PlayerControl> players = PlayerControl.AllPlayerControls.ToArray().ToList();
+                players.RemoveAll(player => Executioner.Instance.HasRole(player));
+                players.RemoveAll(player => Jester.Instance.HasRole(player));
+                players.RemoveAll(player => player.Data.IsImpostor);
+                players.RemoveAll(player => player.PlayerId == PlayerControl.LocalPlayer.PlayerId);
 
-                Plugin.Logger.LogInfo("---------------------");
-
-                foreach (var player in players) {
-                    Plugin.Logger.LogInfo($"Can be a target : {player.name}");
-                }
                 Target = players[new System.Random().Next(players.Count)];
-
-                Plugin.Logger.LogInfo(Target.name + " is the Target");
-
-                if (Target != null) {
-                    RefreshTask($"<color=#633a37ff>Executioner: Exile ${Target.name} for win</color>", PlayerControl.LocalPlayer);
-                    Plugin.Logger.LogInfo("Test");
-                }
+                specificNameInformation.Add(Target, (new Color(204f / 255f, 53f / 255f, 53f / 255f, 1f), "Target !"));
             }
+        }
+
+        public override void AddImportantTasks(PlayerControl Player) {
+            string tasks = TasksDescription;
+            if (Target != null)
+                tasks = $"<color=#a36e6aff>Executioner: Exile <color=#ffffffff>{Target.name}</color> for win</color>";
+
+            ImportantTextTask ImportantTasks = new GameObject("RolesTasks").AddComponent<ImportantTextTask>();
+            ImportantTasks.transform.SetParent(Player.transform, false);
+            ImportantTasks.Text = tasks;
+            Player.myTasks.Insert(0, ImportantTasks);
         }
 
         public override void OnMeetingStart(MeetingHud instance) {
             if (Target == null || !HasRole(PlayerControl.LocalPlayer))
                 return;
 
-            if (Target.Data.IsDead && !TargetIsDead) {
-                TargetIsDead = true;
-                RemoveImportantTasks(PlayerControl.LocalPlayer);
-                AllPlayers.RemovePlayer(PlayerControl.LocalPlayer);
-            }
-
-            if (PlayerControl.LocalPlayer.Data.IsDead) {
-                RemoveImportantTasks(PlayerControl.LocalPlayer);
-                AllPlayers.RemovePlayer(PlayerControl.LocalPlayer);
-            }
+            if ((Target.Data.IsDead) || PlayerControl.LocalPlayer.Data.IsDead)
+                ResetRole();
         }
 
         public override void OnExiledPlayer(PlayerControl PlayerExiled) {
@@ -91,6 +79,17 @@ namespace RolesMods.Roles {
 
             ExecutionerPercent.ValueStringFormat = (option, value) => $"{value}%";
             NumberExecutioner.ValueStringFormat = (option, value) => $"{value} players";
+        }
+
+        private void ResetRole() {
+            RemoveImportantTasks(PlayerControl.LocalPlayer);
+            AllPlayers.RemovePlayer(PlayerControl.LocalPlayer);
+
+            foreach (var player in specificNameInformation.Keys.ToArray().ToList())
+                if (player.PlayerId == Target.PlayerId) 
+                    specificNameInformation.Remove(player);
+
+            Target = null;
         }
     }
 }
