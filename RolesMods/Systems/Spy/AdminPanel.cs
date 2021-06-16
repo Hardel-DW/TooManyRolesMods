@@ -1,4 +1,4 @@
-﻿using HardelAPI.Utility;
+﻿using HardelAPI.Utility.Helper;
 using HarmonyLib;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,7 +57,7 @@ namespace RolesMods.Systems.Spy {
                                         Color color = component.myRend.material.GetColor("_BodyColor");
                                         if (Roles.Spy.SpySeeApproxitiveColor.GetValue()) {
                                             var id = Mathf.Max(0, Palette.PlayerColors.IndexOf(color));
-                                            color = HelperColor.isLighterColor((byte) id) ? Palette.PlayerColors[7] : Palette.PlayerColors[6];
+                                            color = ColorHelper.lighterColors.Contains(id) ? Palette.PlayerColors[7] : Palette.PlayerColors[6];
                                         }
                                         roomColors.Add(color);
                                     }
@@ -68,7 +68,7 @@ namespace RolesMods.Systems.Spy {
                                         if (playerInfo != null) {
                                             var color = Palette.PlayerColors[playerInfo.ColorId];
                                             if (Roles.Spy.SpySeeApproxitiveColor.GetValue())
-                                                color = HelperColor.isLighterColor(playerInfo.ColorId) ? Palette.PlayerColors[7] : Palette.PlayerColors[6];
+                                                color = ColorHelper.lighterColors.Contains(playerInfo.ColorId) ? Palette.PlayerColors[7] : Palette.PlayerColors[6];
                                             roomColors.Add(color);
                                         }
                                     }
@@ -101,8 +101,8 @@ namespace RolesMods.Systems.Spy {
                         if (renderer != null) {
                             if (defaultIcon == null)
                                 defaultIcon = renderer.sprite;
-                            if (Button.isActive && colors.Count > i) {
-                                renderer.sprite = HelperSprite.HerePoint.sprite;
+                            if (Button.Instance.IsEffectActive && colors.Count > i) {
+                                renderer.sprite = SpriteHelper.HerePoint.sprite;
                                 PlayerControl.SetPlayerMaterialColors(colors[i], renderer);
                             } else {
                                 renderer.sprite = defaultIcon;

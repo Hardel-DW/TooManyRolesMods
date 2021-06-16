@@ -98,7 +98,7 @@ namespace RolesMods.Systems.TimeMaster {
             foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
                 if (player.PlayerId == playerId) {
                     player.Revive();
-                    var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == playerId);
+                    DeadBody body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == playerId);
                     if (body != null)
                         UnityEngine.Object.Destroy(body.gameObject);
 

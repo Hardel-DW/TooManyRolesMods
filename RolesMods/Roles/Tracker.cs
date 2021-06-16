@@ -1,4 +1,4 @@
-﻿using Essentials.Options;
+﻿using HardelAPI.CustomOptions;
 using HardelAPI.CustomRoles;
 using HardelAPI.Enumerations;
 using UnityEngine;
@@ -30,15 +30,13 @@ namespace RolesMods.Roles {
             NumberPlayers = (int) NumberTracker.GetValue();
         }
 
+        public override void OnGameStarted() {
+            Systems.Tracker.Button.Instance.UseNumber = 1;
+        }
+
         public override void OnMeetingStart(MeetingHud instance) {
             if (Systems.Tracker.Button.Arrow != null)
                 Object.Destroy(Systems.Tracker.Button.Arrow.Arrow);
-
-            Systems.Tracker.Button.usable = true;
-        }
-
-        public override void OnGameStarted() {
-            Systems.Tracker.Button.usable = true;
         }
 
         private void GameOptionFormat() {

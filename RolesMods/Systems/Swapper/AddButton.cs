@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using HardelAPI.Utility.Helper;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,7 @@ namespace RolesMods.Systems.Swapper {
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
     public class AddButton {
 
-        private static Sprite SpawnSprite => Plugin.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Swap.png", 100f);
+        private static Sprite SpawnSprite => SpriteHelper.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Swap.png", 100f);
         private static int mostRecentId;
 
         public static void GenButton(int index, bool isDead) {

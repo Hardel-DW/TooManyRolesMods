@@ -1,4 +1,4 @@
-﻿using HardelAPI.Utility;
+﻿using HardelAPI.Utility.Utils;
 using HarmonyLib;
 using InnerNet;
 using System.Linq;

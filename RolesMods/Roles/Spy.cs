@@ -1,4 +1,5 @@
-﻿using Essentials.Options;
+﻿using HardelAPI.CustomKeyBinds;
+using HardelAPI.CustomOptions;
 using HardelAPI.CustomRoles;
 using HardelAPI.Enumerations;
 using UnityEngine;
@@ -28,11 +29,9 @@ namespace RolesMods.Roles {
         }
 
         public override void OnInfectedStart() {
-            Systems.Spy.Button.isActive = false;
-
-            Systems.TimeMaster.Button.buttonTime.MaxTimer = SpyCooldown.GetValue();
-            Systems.TimeMaster.Button.buttonTime.EffectDuration = SpyDuration.GetValue();
-            Systems.Spy.Button.UseNumber = (int) NumberUse.GetValue();
+            Systems.TimeMaster.Button.Instance.MaxTimer = SpyCooldown.GetValue();
+            Systems.TimeMaster.Button.Instance.EffectDuration = SpyDuration.GetValue();
+            Systems.Spy.Button.Instance.UseNumber = (int) NumberUse.GetValue();
             PercentApparition = (int) SpyPercent.GetValue();
             NumberPlayers = (int) NumberSpy.GetValue();
         }

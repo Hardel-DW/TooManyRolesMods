@@ -1,7 +1,7 @@
-﻿using Essentials.Options;
+﻿using HardelAPI.CustomOptions;
 using HardelAPI.CustomRoles;
 using HardelAPI.Enumerations;
-using HardelAPI.Utility;
+using HardelAPI.Utility.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -69,9 +69,10 @@ namespace RolesMods.Roles {
         }
 
         public override void OnExiledPlayer(PlayerControl PlayerExiled) {
-            if (HasRole(PlayerControl.LocalPlayer) && Target != null && !PlayerControl.LocalPlayer.Data.IsDead)
-                if (PlayerExiled.PlayerId == Target.PlayerId)
-                    RpcForceEndGame(new List<PlayerControl>() { PlayerControl.LocalPlayer });
+            if (Target != null && PlayerControl.LocalPlayer != null)
+                if (HasRole(PlayerControl.LocalPlayer) && !PlayerControl.LocalPlayer.Data.IsDead)
+                    if (PlayerExiled.PlayerId == Target.PlayerId)
+                        RpcForceEndGame(new List<PlayerControl>() { PlayerControl.LocalPlayer });
         }
 
         private void GameOptionFormat() {

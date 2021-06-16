@@ -1,50 +1,34 @@
 ﻿using HardelAPI.ArrowManagement;
+using HardelAPI.Cooldown;
 using HardelAPI.Utility;
-using HarmonyLib;
 using System.Collections.Generic;
-using UnityEngine;
+using TrackerRoles = RolesMods.Roles.Tracker;
 
 namespace RolesMods.Systems.Tracker {
 
-    [HarmonyPatch(typeof(HudManager), nameof(HudManager.Start))]
-    public static class Button {
-        public static CooldownButton buttonTime;
-        public static bool usable = true;
+    [RegisterCooldownButton]
+    public class Button : CustomButton<Button> {
         public static ArrowManager Arrow;
 
-        public static void Postfix(HudManager __instance) {
-            buttonTime = new CooldownButton
-                (() => OnClick(),
-                10f,
-                Plugin.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Target.png", 250f),
-                250,
-                new Vector2(0f, 0f),
-                __instance,
-                () => OnUpdate(buttonTime)
-            );
-        }
-
-        private static void OnClick() {
-            usable = false;
+        public override void OnClick() {
+            UseNumber = 0;
             PlayerButton.InitPlayerButton(
                 false, 
                 new List<PlayerControl> { PlayerControl.LocalPlayer },
-                (Player) => Arrow = new ArrowManager(Player.gameObject, Player.transform.position, true, Roles.Tracker.TargetUpdate.GetValue()), 
-                () => usable = true
+                (Player) => OnCPlayerChoose(Player),
+                () => UseNumber = 1
             );
         }
 
-        private static void OnUpdate(CooldownButton button) {
-            if (Roles.Tracker.Instance.AllPlayers != null && PlayerControl.LocalPlayer != null) {
-                if (Roles.Tracker.Instance.HasRole(PlayerControl.LocalPlayer) && usable) {
-                    if (!PlayerControl.LocalPlayer.Data.IsDead) {
-                        button.SetCanUse(!MeetingHud.Instance);
-                        return;
-                    }
-                }
-            }
+        public override void OnCreateButton() {
+            Timer = 10f;
+            Roles = TrackerRoles.Instance;
+            UseNumber = 1;
+            SetSprite("RolesMods.Resources.Target.png", 250);
+        }
 
-            button.SetCanUse(false);
+        private void OnCPlayerChoose(PlayerControl Player) {
+            Arrow = new ArrowManager(Player.gameObject, Player.transform.position, true, TrackerRoles.TargetUpdate.GetValue());
         }
     }
 }

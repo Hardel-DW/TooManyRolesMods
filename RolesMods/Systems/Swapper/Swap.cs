@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Linq;
-using HardelAPI.Utility;
+﻿using System.Linq;
+using HardelAPI.Reactor;
+using HardelAPI.Utility.Utils;
 using HarmonyLib;
 using UnityEngine;
 
@@ -42,12 +42,12 @@ namespace RolesMods.Systems.Swapper {
                 mask2.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
                 // Slide
-                Reactor.Coroutines.Start(GameObjectUtils.Slide2D(pool1, pooldest1, pooldest2, 2f));
-                Reactor.Coroutines.Start(GameObjectUtils.Slide2D(pool2, pooldest2, pooldest1, 2f));
-                Reactor.Coroutines.Start(GameObjectUtils.Slide2D(name1, namedest1, namedest2, 2f));
-                Reactor.Coroutines.Start(GameObjectUtils.Slide2D(name2, namedest2, namedest1, 2f));
-                Reactor.Coroutines.Start(GameObjectUtils.Slide2D(mask1, maskdest1, maskdest2, 2f));
-                Reactor.Coroutines.Start(GameObjectUtils.Slide2D(mask2, maskdest2, maskdest1, 2f));
+                Coroutines.Start(GameObjectUtils.Slide2D(pool1, pooldest1, pooldest2, 2f));
+                Coroutines.Start(GameObjectUtils.Slide2D(pool2, pooldest2, pooldest1, 2f));
+                Coroutines.Start(GameObjectUtils.Slide2D(name1, namedest1, namedest2, 2f));
+                Coroutines.Start(GameObjectUtils.Slide2D(name2, namedest2, namedest1, 2f));
+                Coroutines.Start(GameObjectUtils.Slide2D(mask1, maskdest1, maskdest2, 2f));
+                Coroutines.Start(GameObjectUtils.Slide2D(mask2, maskdest2, maskdest1, 2f));
             }
         }
     }

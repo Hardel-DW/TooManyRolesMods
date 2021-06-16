@@ -2,32 +2,45 @@
   <PropertyGroup>
       <TargetFramework>netstandard2.1</TargetFramework>
       <Version>1.0.0</Version>
-      <Mappings>NuclearPowered/Mappings:0.4.0</Mappings>
+      <Mappings>DaemonBeast/Mappings:0.5.0</Mappings>
+      <GameVersion>2021.5.10</GameVersion>
 
       <Description>Too many roles mods</Description>
       <Authors>Hardel</Authors>
+      <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
     <ItemGroup>
-        <Deobfuscate Include="$(AmongUs)\BepInEx\plugins\Reactor-$(GameVersion).dll" />
-        <Deobfuscate Include="$(AmongUs)\BepInEx\plugins\Essentials-$(GameVersion).dll" />
-        <Deobfuscate Include="$(AmongUs)\BepInEx\plugins\HardelAPI-$(GameVersion).dll" />
-      
+        <Reference Include="$(AmongUs)\BepInEx\plugins\HardelAPI-$(GameVersion).dll" />      
         <EmbeddedResource Include="Resources\*"></EmbeddedResource>
-        <PackageReference Include="Reactor.OxygenFilter.MSBuild" Version="0.3.0" />
     </ItemGroup>
 
-    <PropertyGroup Condition="'$(GamePlatform)' == 'Steam'">
-        <GameVersion>2021.4.12s</GameVersion>
-        <DefineConstants>$(DefineConstants);STEAM</DefineConstants>
-    </PropertyGroup>
+    <ItemGroup>
+      <Reference Include="$(AmongUs)\BepInEx\core\*.dll">
+        <Private>false</Private>
+      </Reference>
+      <Reference Include="$(AmongUs)\BepInEx\unhollowed\*.dll">
+        <Private>false</Private>
+      </Reference>
+      <Reference Remove="$(AmongUs)\BepInEx\unhollowed\netstandard.dll;$(AmongUs)\BepInEx\unhollowed\Newtonsoft.Json.dll" />
+    </ItemGroup>
 
-    <PropertyGroup Condition="'$(GamePlatform)' == 'Itch'">
-        <GameVersion>2021.4.12i</GameVersion>
-        <DefineConstants>$(DefineConstants);ITCH</DefineConstants>
-    </PropertyGroup>
+  <PropertyGroup Condition="'$(GamePlatform)' == 'Steam'">
+    <GameVersion>$(GameVersion)s</GameVersion>
+    <DefineConstants>$(DefineConstants);STEAM</DefineConstants>
+  </PropertyGroup>
 
-    <Target Name="Copy" AfterTargets="Reobfuscate">
-        <Copy SourceFiles="$(OutputPath)reobfuscated/$(AssemblyName)-$(GameVersion).dll" DestinationFolder="$(AmongUs)/BepInEx/plugins/" Condition="'$(Configuration)' == 'Debug'" />
-    </Target>
+  <PropertyGroup Condition="'$(GamePlatform)' == 'Itch'">
+    <GameVersion>$(GameVersion)i</GameVersion>
+    <DefineConstants>$(DefineConstants);ITCH</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(GamePlatform)' == 'EpicGame'">
+    <GameVersion>$(GameVersion)e</GameVersion>
+    <DefineConstants>$(DefineConstants);EpicGame</DefineConstants>
+  </PropertyGroup>
+
+  <Target Name="Copy" AfterTargets="PostBuildEvent">
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFiles="$(AmongUs)/BepInEx/plugins/$(AssemblyName)-$(GameVersion).dll" />
+  </Target>
 </Project>

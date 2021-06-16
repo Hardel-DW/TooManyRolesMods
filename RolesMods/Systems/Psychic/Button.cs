@@ -1,28 +1,22 @@
-﻿using HardelAPI.Utility;
-using HarmonyLib;
-using System;
-using UnityEngine;
+﻿using System;
+using HardelAPI.Cooldown;
+using PsychicRoles = RolesMods.Roles.Psychic;
 
 namespace RolesMods.Systems.Psychic {
-    [HarmonyPatch(typeof(HudManager), nameof(HudManager.Start))]
-    public static class Button {
-        public static CooldownButton buttonPsychic;
 
-        public static void Postfix(HudManager __instance) {
-            buttonPsychic = new CooldownButton
-                (() => OnClick(),
-                Roles.Psychic.PsychicCooldown.GetValue(),
-                Plugin.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Foresight.png", 1000f),
-                1000,
-                new Vector2(0f, 0f),
-                __instance,
-                Roles.Psychic.PsychicDuration.GetValue(),
-                () => OnEffectEnd(),
-                () => OnUpdate(buttonPsychic)
-            );
+    [RegisterCooldownButton]
+    public class Button : CustomButton<Button> {
+
+        public override void OnCreateButton() {
+            Roles = PsychicRoles.Instance;
+            Timer = PsychicRoles.PsychicCooldown.GetValue();
+            EffectDuration = PsychicRoles.PsychicDuration.GetValue();
+            HasEffectDuration = true;
+            DecreamteUseNimber = UseNumberDecremantion.OnClick;
+            SetSprite("RolesMods.Resources.Foresight.png", 1000);
         }
 
-        private static void OnEffectEnd() {
+        public override void OnEffectEnd() {
             PsychicMap.isPsychicActivated = false;
             PsychicMap.ClearAllPlayers();
 
@@ -32,22 +26,13 @@ namespace RolesMods.Systems.Psychic {
             }
         }
 
-        private static void OnClick() {
+        public override void OnClick() {
             PsychicMap.isPsychicActivated = true;
             DestroyableSingleton<HudManager>.Instance.ShowMap((Action<MapBehaviour>) (map => {
                 map.gameObject.SetActive(true);
                 map.gameObject.AddComponent<PsychicMap>();
                 DestroyableSingleton<HudManager>.Instance.SetHudActive(false);
             }));
-        }
-
-        private static void OnUpdate(CooldownButton button) {
-            if (Roles.Psychic.Instance.AllPlayers != null && PlayerControl.LocalPlayer != null) {
-                if (Roles.Psychic.Instance.HasRole(PlayerControl.LocalPlayer.PlayerId)) {
-                    if (PlayerControl.LocalPlayer.Data.IsDead) button.SetCanUse(false);
-                    else button.SetCanUse(!MeetingHud.Instance);
-                }
-            }
         }
     }
 }

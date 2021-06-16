@@ -1,9 +1,8 @@
-﻿using Essentials.Options;
+﻿using HardelAPI.CustomOptions;
 using HardelAPI.CustomRoles;
 using HardelAPI.Enumerations;
-using HardelAPI.Utility;
+using HardelAPI.Utility.Utils;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace RolesMods.Roles {
@@ -39,8 +38,11 @@ namespace RolesMods.Roles {
         }
 
         public override void OnMeetingEnd(MeetingHud instance) {
-            CameraUtils.RpcAddMutipleCamera(camerasToAdd);
-            VentUtils.RpcSealMultipleVent(ventsToSeal);
+            if (camerasToAdd.Count > 0)
+                CameraUtils.RpcAddMutipleCamera(camerasToAdd);
+
+            if (ventsToSeal.Count > 0)
+                VentUtils.RpcSealMultipleVent(ventsToSeal);
 
             camerasToAdd = new List<Vector2>();
             ventsToSeal = new List<Vent>();
@@ -49,7 +51,7 @@ namespace RolesMods.Roles {
         public override void OnGameStarted() {
             camerasToAdd = new List<Vector2>();
             ventsToSeal = new List<Vent>();
-            Systems.SecurityGuard.Button.button.MaxTimer = CooldownSecurityGuard.GetValue();
+            Systems.SecurityGuard.Button.Instance.MaxTimer = CooldownSecurityGuard.GetValue();
 
             Systems.SecurityGuard.Button.totalScrews = (int) NumberScrews.GetValue();
             Systems.SecurityGuard.Button.camPrice = (int) ScrewsCams.GetValue();

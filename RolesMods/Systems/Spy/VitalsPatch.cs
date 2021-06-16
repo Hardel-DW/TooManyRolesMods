@@ -39,7 +39,7 @@ namespace RolesMods.Systems.Spy {
                     if (deadPlayer != null && deadPlayer.timeOfDeath != null) {
                         float timeSinceDeath = ((float) (DateTime.UtcNow - deadPlayer.timeOfDeath).TotalMilliseconds);
 
-                        if (Button.isActive)
+                        if (Button.Instance.IsEffectActive)
                             vitalsPanel.Text.text = Math.Round(timeSinceDeath / 1000) + "s";
                         else if (__instance.vitals.Length > 10)
                             vitalsPanel.Text.text = player.PlayerName.Length >= 4 ? player.PlayerName.Substring(0, 4).ToUpper() : player.PlayerName.ToUpper();

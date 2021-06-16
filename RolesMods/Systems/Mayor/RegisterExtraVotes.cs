@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Linq;
 using HarmonyLib;
-using Hazel;
-using InnerNet;
 using UnhollowerBaseLib;
 using UnityEngine;
-using Reactor.Extensions;
 
 namespace RolesMods.Systems.Mayor {
 

@@ -1,10 +1,10 @@
-﻿using Essentials.Options;
+﻿using HardelAPI.CustomOptions;
 using UnityEngine;
 using HardelAPI.CustomRoles;
 using HardelAPI.Enumerations;
+using HardelAPI.CustomKeyBinds;
 
 namespace RolesMods.Roles {
-
 
     [RegisterInCustomRoles(typeof(Psychic))]
     public class Psychic : CustomRole<Psychic> {
@@ -29,8 +29,8 @@ namespace RolesMods.Roles {
         }
 
         public override void OnGameStarted() {
-            Systems.Psychic.Button.buttonPsychic.EffectDuration = PsychicDuration.GetValue();
-            Systems.Psychic.Button.buttonPsychic.MaxTimer = PsychicCooldown.GetValue();
+            Systems.Psychic.Button.Instance.EffectDuration = PsychicDuration.GetValue();
+            Systems.Psychic.Button.Instance.MaxTimer = PsychicCooldown.GetValue();
 
             Systems.Psychic.PsychicMap.isPsychicActivated = false;
             Systems.Psychic.PsychicMap.herePointsDatas.Clear();

@@ -1,4 +1,4 @@
-﻿using Essentials.Options;
+﻿using HardelAPI.CustomOptions;
 using HardelAPI.CustomRoles;
 using HardelAPI.CustomRoles.Abilities;
 using HardelAPI.CustomRoles.Abilities.Kill;
@@ -20,7 +20,7 @@ namespace RolesMods.Roles {
 
         public override List<Ability> Abilities { get; set; } = new List<Ability>() {
             new KillAbility() {
-                CanKill = PlayerSide.Everyone,
+                CanKill = VisibleBy.Everyone,
                 KillCooldown = SheriffKillCooldown.GetValue(),
                 LastKilled = DateTime.UtcNow.AddSeconds(-10.0),
             }

@@ -1,4 +1,4 @@
-﻿using Essentials.Options;
+﻿using HardelAPI.CustomOptions;
 using HardelAPI.CustomRoles;
 using HardelAPI.CustomRoles.Abilities;
 using HardelAPI.CustomRoles.Abilities.UsableVent;
@@ -14,7 +14,6 @@ namespace RolesMods.Roles {
         public static CustomOptionHeader EngineerHeader = CustomOptionHeader.AddHeader("<color=#FF930FFF>Engineer Options :</color>");
         public static CustomNumberOption EngineerPercent = CustomOption.AddNumber("Engineer Apparition", 0f, 0f, 100f, 5f);
         public static CustomNumberOption NumberEngineer = CustomOption.AddNumber("Number Engineer", 1f, 1f, 10f, 1f);
-        public static CustomNumberOption EngineerCooldown = CustomOption.AddNumber("Fix Cooldown", 30f, 10f, 120f, 5f);
         public static CustomNumberOption MaxUseEngineer = CustomOption.AddNumber("Max use", 1f, 1f, 10f, 1f);
 
         public override List<Ability> Abilities { get; set; } = new List<Ability>() {
@@ -39,8 +38,7 @@ namespace RolesMods.Roles {
         }
 
         public override void OnGameStarted() {
-            Systems.Engineer.Button.button.MaxTimer = EngineerCooldown.GetValue();
-            Systems.Engineer.Button.UseNumber = (int) MaxUseEngineer.GetValue();
+            Systems.Engineer.Button.Instance.UseNumber = (int) MaxUseEngineer.GetValue();
         }
 
         private void GameOptionFormat() {

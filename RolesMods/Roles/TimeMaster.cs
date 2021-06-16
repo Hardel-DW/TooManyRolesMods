@@ -1,4 +1,4 @@
-﻿using Essentials.Options;
+﻿using HardelAPI.CustomOptions;
 using HardelAPI.CustomRoles;
 using HardelAPI.Enumerations;
 using UnityEngine;
@@ -34,11 +34,11 @@ namespace RolesMods.Roles {
 
         public override void OnGameStarted() {
             Systems.TimeMaster.Time.recordTime = TimeMasterDuration.GetValue() * 2;
-            Systems.TimeMaster.Button.buttonTime.EffectDuration = TimeMasterDuration.GetValue() / 2;
-            Systems.TimeMaster.Button.buttonTime.MaxTimer = TimeMasterCooldown.GetValue();
+            Systems.TimeMaster.Button.Instance.EffectDuration = TimeMasterDuration.GetValue() / 2;
+            Systems.TimeMaster.Button.Instance.MaxTimer = TimeMasterCooldown.GetValue();
+            Systems.TimeMaster.Button.Instance.UseNumber = (int) UseNumber.GetValue();
             Systems.TimeMaster.Time.ClearGameHistory();
-            Systems.TimeMaster.Button.UseNumber = (int) UseNumber.GetValue();
-        }
+        }   
 
         public override void OnInfectedStart() {
             PercentApparition = (int) TimeMasterPercent.GetValue();

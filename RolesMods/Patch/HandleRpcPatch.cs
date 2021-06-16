@@ -1,7 +1,7 @@
-﻿using HardelAPI.Utility;
+﻿using HardelAPI.Reactor;
+using HardelAPI.Utility.Utils;
 using HarmonyLib;
 using Hazel;
-using Reactor;
 using System.Linq;
 using UnityEngine;
 
@@ -28,7 +28,7 @@ namespace RolesMods.Patch {
                 return false;
             }
             if (callId == (byte) CustomRPC.EngineerFix) {
-                Systems.Engineer.Button.FixSabotage();
+                SaboatageUtils.FixSabotage();
                 return false;
             }
             if (callId == (byte) CustomRPC.AltrusitRevive) {

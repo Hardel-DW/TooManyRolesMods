@@ -1,12 +1,12 @@
-﻿using Essentials.Options;
+﻿using HardelAPI.CustomOptions;
 using HardelAPI.ArrowManagement;
 using HardelAPI.CustomRoles;
 using HardelAPI.Enumerations;
-using HardelAPI.Utility;
-using Reactor;
+using HardelAPI.Utility.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using HardelAPI.Reactor;
 
 namespace RolesMods.Roles {
 
@@ -36,11 +36,11 @@ namespace RolesMods.Roles {
             if (ShowRoleAtStartGame.GetValue()) {
                 GiveRoleAt = Moment.Never;
                 ShowIntroCutScene = false;
-                VisibleBy = PlayerSide.Nobody;
+                VisibleBy = VisibleBy.Nobody;
             } else {
                 GiveRoleAt = Moment.StartGame;
                 ShowIntroCutScene = true;
-                VisibleBy = PlayerSide.Self;
+                VisibleBy = VisibleBy.Self;
             }
 
             PercentApparition = (int) SnitchPercent.GetValue();
@@ -83,7 +83,7 @@ namespace RolesMods.Roles {
                 if (number == TaskCount.GetValue()) {
                     if (Player.PlayerId == PlayerControl.LocalPlayer.PlayerId) {
                         Coroutines.Start(PlayerControlUtils.FlashCoroutine(Color));
-                        VisibleBy = PlayerSide.Self;
+                        VisibleBy = VisibleBy.Self;
                         AddImportantTasks(Player);
                     } else if (PlayerControl.LocalPlayer.Data.IsImpostor) {
                         arrowManagers.Add(Player, new ArrowManager(Player.gameObject, true, 5f));

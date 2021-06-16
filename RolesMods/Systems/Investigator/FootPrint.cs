@@ -1,4 +1,4 @@
-﻿using Reactor;
+﻿using HardelAPI.Reactor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,7 +45,7 @@ namespace RolesMods.Systems.Investigator {
                 yield return null;
             }
 
-            UnityEngine.Object.Destroy(footPrint);
+            Object.Destroy(footPrint);
             allFootprint.Remove(this);
         }
     }

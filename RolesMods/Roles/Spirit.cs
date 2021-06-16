@@ -1,4 +1,5 @@
-﻿using Essentials.Options;
+﻿using HardelAPI;
+using HardelAPI.CustomOptions;
 using HardelAPI.CustomRoles;
 using HardelAPI.Enumerations;
 using UnityEngine;
@@ -19,7 +20,7 @@ namespace RolesMods.Roles {
             Name = "Spirit";
             Color = new Color(0.356f, 0f, 0.760f, 1f);
             TasksDescription = "<color=#5b00C2FF>Spirit: You can vote while being dead!</color>";
-            VisibleBy = PlayerSide.Dead;
+            VisibleBy = VisibleBy.Dead;
             Side = PlayerSide.Everyone;
             GiveTasksAt = Moment.OnDie;
             GiveRoleAt = Moment.StartGame;
@@ -32,7 +33,7 @@ namespace RolesMods.Roles {
         }
 
         public override void OnGameStarted() {
-            HardelAPI.Plugin.DeadSeeAllRoles.SetValue(false);
+            //HardelApiPlugin.DeadSeeAllRoles.SetValue(false);
         }
 
         public override void OnInfectedStart() {

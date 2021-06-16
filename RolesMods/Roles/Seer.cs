@@ -1,4 +1,4 @@
-﻿using Essentials.Options;
+﻿using HardelAPI.CustomOptions;
 using HardelAPI.CustomRoles;
 using HardelAPI.Enumerations;
 using System.Collections.Generic;
@@ -16,6 +16,7 @@ namespace RolesMods.Roles {
         public static CustomNumberOption SeerCooldown = CustomOption.AddNumber("Seer Cooldown", 30f, 10f, 120f, 5f);
         public static CustomNumberOption SeerUseNumber = CustomOption.AddNumber("Number of uses", 1f, 1f, 10f, 1f);
         public static CustomNumberOption SeerPercentSeeRole = CustomOption.AddNumber("Seer Percent for discover role", 50f, 0f, 100f, 5f);
+        public static CustomToggleOption ShowGoodOrBad = CustomOption.AddToggle("Revaal roles by Good or Bad", true);
 
         public Seer() : base() {
             GameOptionFormat();
@@ -27,8 +28,8 @@ namespace RolesMods.Roles {
         }
 
         public override void OnInfectedStart() {
-            Systems.Seer.Button.button.MaxTimer = SeerCooldown.GetValue();
-            Systems.Seer.Button.UseNumber = (int) SeerUseNumber.GetValue();
+            Systems.Seer.Button.Instance.MaxTimer = SeerCooldown.GetValue();
+            Systems.Seer.Button.Instance.UseNumber = (int) SeerUseNumber.GetValue();
             PercentApparition = (int) SeerPercent.GetValue();
             NumberPlayers = (int) NumberSeer.GetValue();
         }
@@ -38,13 +39,15 @@ namespace RolesMods.Roles {
             PlayerControl playerToRemove = allPlayerTargatable.FirstOrDefault(p => p.PlayerId == PlayerControl.LocalPlayer.PlayerId);
             allPlayerTargatable.Remove(playerToRemove);
 
-            Systems.Seer.Button.allPlayersTargetable = allPlayerTargatable;
+            Systems.Seer.Button.Instance.AllPlayersTargetable = allPlayerTargatable;
         }
 
         private void GameOptionFormat() {
             SeerHeader.HudStringFormat = (option, name, value) => $"\n{name}";
 
             SeerPercent.ValueStringFormat = (option, value) => $"{value}%";
+            SeerPercentSeeRole.ValueStringFormat = (option, value) => $"{value}%";
+
             NumberSeer.ValueStringFormat = (option, value) => $"{value} players";
         }
     }
