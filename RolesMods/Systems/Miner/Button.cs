@@ -10,6 +10,8 @@ namespace RolesMods.Systems.Miner {
         public override void OnCreateButton() {
             Timer = MinerRoles.MinerCooldown.GetValue();
             Roles = MinerRoles.Instance;
+            UseNumber = 1;
+            DecreamteUseNimber = UseNumberDecremantion.OnClick;
             SetSprite("RolesMods.Resources.Rewind.png", 250);
         }
 

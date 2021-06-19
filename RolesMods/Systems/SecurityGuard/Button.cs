@@ -39,6 +39,7 @@ namespace RolesMods.Systems.SecurityGuard {
 
             if (totalScrews > cost) {
                 totalScrews -= cost;
+                SetText(totalScrews.ToString());
 
                 Vent closestVent = GetVentTarget();
                 if (SecurityGuardType == SecurityGuardState.PlaceCamera)
@@ -64,6 +65,7 @@ namespace RolesMods.Systems.SecurityGuard {
                         if (SecurityGuardType != SecurityGuardState.PlaceCamera) {
                             SecurityGuardType = SecurityGuardState.PlaceCamera;
                             SetSprite(PlaceCamera);
+                            IsDisable = false;
                         }
                     }
                 }
