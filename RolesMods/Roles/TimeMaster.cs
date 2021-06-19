@@ -33,8 +33,11 @@ namespace RolesMods.Roles {
         }
 
         public override void OnGameStarted() {
+            Plugin.Logger.LogInfo($"Role: {TimeMasterDuration.GetValue()}");
+
             Systems.TimeMaster.Time.recordTime = TimeMasterDuration.GetValue() * 2;
             Systems.TimeMaster.Button.Instance.EffectDuration = TimeMasterDuration.GetValue() / 2;
+
             Systems.TimeMaster.Button.Instance.MaxTimer = TimeMasterCooldown.GetValue();
             Systems.TimeMaster.Button.Instance.UseNumber = (int) UseNumber.GetValue();
             Systems.TimeMaster.Time.ClearGameHistory();

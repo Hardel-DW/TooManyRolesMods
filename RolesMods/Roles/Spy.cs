@@ -29,8 +29,8 @@ namespace RolesMods.Roles {
         }
 
         public override void OnInfectedStart() {
-            Systems.TimeMaster.Button.Instance.MaxTimer = SpyCooldown.GetValue();
-            Systems.TimeMaster.Button.Instance.EffectDuration = SpyDuration.GetValue();
+            Systems.Spy.Button.Instance.MaxTimer = SpyCooldown.GetValue();
+            Systems.Spy.Button.Instance.EffectDuration = SpyDuration.GetValue();
             Systems.Spy.Button.Instance.UseNumber = (int) NumberUse.GetValue();
             PercentApparition = (int) SpyPercent.GetValue();
             NumberPlayers = (int) NumberSpy.GetValue();

@@ -11,14 +11,16 @@ namespace RolesMods.Systems.TimeMaster {
             Timer = TimeMasterRole.TimeMasterCooldown.GetValue();
             Roles = TimeMasterRole.Instance;
             EffectDuration = TimeMasterRole.TimeMasterDuration.GetValue() / 2;
+            Plugin.Logger.LogInfo($"Button: {EffectDuration}");
+
             HasEffectDuration = true;
-            DecreamteUseNimber = UseNumberDecremantion.OnClick;
+            DecreamteUseNimber = UseNumberDecremantion.OnEffectEnd;
             SetSprite("RolesMods.Resources.Rewind.png", 250);
         }
 
         public override void OnClick() {
-            Plugin.Logger.LogInfo(UseNumber);
             Time.StartRewind();
+            Plugin.Logger.LogInfo($"Button: {EffectDuration}");
         }
 
         public override void OnEffectEnd() {
