@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿/*using System.Linq;
 using HardelAPI.Reactor;
 using HardelAPI.Utility.Utils;
 using HarmonyLib;
@@ -51,4 +51,4 @@ namespace RolesMods.Systems.Swapper {
             }
         }
     }
-}
+}*/

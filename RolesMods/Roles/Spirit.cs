@@ -29,7 +29,7 @@ namespace RolesMods.Roles {
         }
 
         public override void OnGameEnded() {
-            Systems.Spirit.MeetingHudPopulateButtonsPatch.SpiritHasVoteds.Clear();
+            //Systems.Spirit.MeetingHudPopulateButtonsPatch.SpiritHasVoteds.Clear();
         }
 
         public override void OnGameStarted() {

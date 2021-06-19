@@ -43,8 +43,8 @@ namespace RolesMods.Patch {
                 sbyte player1 = reader.ReadSByte();
                 sbyte player2 = reader.ReadSByte();
 
-                Systems.Swapper.SwapVotes.Swap1 = MeetingHud.Instance.playerStates.First(x => x.TargetPlayerId == player1);
-                Systems.Swapper.SwapVotes.Swap2 = MeetingHud.Instance.playerStates.First(x => x.TargetPlayerId == player2);
+                //Systems.Swapper.SwapVotes.Swap1 = MeetingHud.Instance.playerStates.First(x => x.TargetPlayerId == player1);
+                //Systems.Swapper.SwapVotes.Swap2 = MeetingHud.Instance.playerStates.First(x => x.TargetPlayerId == player2);
 
                 return false;
             };

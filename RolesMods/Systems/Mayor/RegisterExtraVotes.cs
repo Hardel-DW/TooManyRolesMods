@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using HarmonyLib;
 using UnhollowerBaseLib;
 using UnityEngine;
@@ -7,7 +7,7 @@ namespace RolesMods.Systems.Mayor {
 
     [HarmonyPatch(typeof(MeetingHud))]
     public class RegisterExtraVotes {
-        /*[HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Confirm))]
+        *//*[HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Confirm))]
         public static class Confirm {
             public static bool Prefix(MeetingHud __instance) {
                 if (!Roles.Mayor.Instance.HasRole(PlayerControl.LocalPlayer))
@@ -64,7 +64,7 @@ namespace RolesMods.Systems.Mayor {
             if (__instance.TimerText.Text.Contains("Can Vote"))
                 return;
             __instance.TimerText.Text = "Can Vote: " + Roles.Mayor.VoteBank + " time(s) | " + __instance.TimerText.Text;
-        }*/
+        }*//*
 
         public static byte[] CalculateAllVotes(MeetingHud __instance) {
             var array = new byte[Mathf.Max(PlayerControl.AllPlayerControls.Count + 1, 11)];
@@ -90,7 +90,7 @@ namespace RolesMods.Systems.Mayor {
                 out var tie
             ) - 1;
 
-/*            if (tie) {
+*//*            if (tie) {
                 foreach (var player in __instance.playerStates) {
                     if (!player.didVote)
                         continue;
@@ -103,11 +103,11 @@ namespace RolesMods.Systems.Mayor {
                         array[num] += 1;
                     }
                 }
-            }*/
+            }*//*
 
             return array;
         }
-/*
+*//*
         [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.CastVote))]
         public static class CastVote {
             public static bool Prefix(MeetingHud __instance, [HarmonyArgument(0)] byte srcPlayerId, [HarmonyArgument(1)] sbyte suspectPlayerId) {
@@ -233,6 +233,6 @@ namespace RolesMods.Systems.Mayor {
 
                 return false;
             }
-        }*/
+        }*//*
     }
-}
+}*/

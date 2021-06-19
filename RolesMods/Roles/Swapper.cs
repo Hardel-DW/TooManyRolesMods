@@ -34,8 +34,8 @@ namespace RolesMods.Roles {
         }
 
         public override void OnMeetingStart(MeetingHud instance) {
-            Systems.Swapper.SwapVotes.Swap1 = null;
-            Systems.Swapper.SwapVotes.Swap2 = null;
+            //Systems.Swapper.SwapVotes.Swap1 = null;
+            //Systems.Swapper.SwapVotes.Swap2 = null;
         }
 
         private void GameOptionFormat() {

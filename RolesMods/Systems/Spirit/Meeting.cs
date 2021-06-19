@@ -1,4 +1,4 @@
-﻿using HardelAPI.Utility.Utils;
+﻿/*using HardelAPI.Utility.Utils;
 using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +23,7 @@ namespace RolesMods.Systems.Spirit {
 
         [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Confirm))]
         class MeetingVotePatch {
-            static void Prefix(MeetingHud __instance, [HarmonyArgument(0)] sbyte suspectIdx) {
+            static void Prefix(MeetingHud __instance, [HarmonyArgument(0)] byte suspectIdx) {
                 if (Roles.Spirit.Instance.HasRole(PlayerControl.LocalPlayer.PlayerId) && PlayerControl.LocalPlayer.Data.IsDead)
                     __instance.CmdCastVote(PlayerControl.LocalPlayer.PlayerId, suspectIdx);
             }
@@ -31,7 +31,7 @@ namespace RolesMods.Systems.Spirit {
 
         [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.CmdCastVote))]
         class CmdCastVotePatch {
-            static void Prefix(MeetingHud __instance, [HarmonyArgument(0)] byte srcPlayerId, [HarmonyArgument(1)] sbyte suspectPlayerId) {
+            static void Prefix(MeetingHud __instance, [HarmonyArgument(0)] byte srcPlayerId, [HarmonyArgument(1)] byte suspectPlayerId) {
                 if (Roles.Spirit.Instance.HasRole(PlayerControl.LocalPlayer.PlayerId) && PlayerControl.LocalPlayer.Data.IsDead) {
                     if (!Roles.Spirit.CanVoteMultipleTime.GetValue() && !SpiritHasVoteds[srcPlayerId])
                         SpiritHasVoteds[srcPlayerId] = true;
@@ -39,8 +39,8 @@ namespace RolesMods.Systems.Spirit {
                         player.ClearButtons();
                         __instance.SkipVoteButton.gameObject.SetActive(false);
                         if (player.TargetPlayerId == PlayerControl.LocalPlayer.Data.PlayerId) {
-                            player.didVote = true;
-                            player.votedFor = suspectPlayerId;
+                            player.DidVote = true;
+                            player.VotedFor = suspectPlayerId;
                         }
                     }
                 }
@@ -49,7 +49,7 @@ namespace RolesMods.Systems.Spirit {
 
         [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.CastVote))]
         class CastVoteNormal {
-            static void Prefix(MeetingHud __instance, [HarmonyArgument(0)] byte srcPlayerId, [HarmonyArgument(1)] sbyte suspectPlayerId) {
+            static void Prefix(MeetingHud __instance, [HarmonyArgument(0)] byte srcPlayerId, [HarmonyArgument(1)] byte suspectPlayerId) {
                 if (Roles.Spirit.Instance.HasRole(srcPlayerId) && PlayerControlUtils.FromPlayerId(srcPlayerId).Data.IsDead) {
 
                     foreach (PlayerVoteArea player in __instance.playerStates) {
@@ -57,8 +57,8 @@ namespace RolesMods.Systems.Spirit {
                             if (!Roles.Spirit.CanVoteMultipleTime.GetValue() && !SpiritHasVoteds[srcPlayerId])
                                 SpiritHasVoteds[srcPlayerId] = true;
 
-                            player.didVote = true;
-                            player.votedFor = suspectPlayerId;
+                            player.DidVote = true;
+                            player.VotedFor = suspectPlayerId;
                             player.Flag.enabled = true;
                         }
                     }
@@ -75,7 +75,7 @@ namespace RolesMods.Systems.Spirit {
                     foreach (PlayerVoteArea player in MeetingInstance.playerStates)
                         player.Buttons.SetActive(false);
 
-                    if (!__instance.isDead && __instance.Parent.state != MeetingHud.VoteStates.Discussion && !MeetingInstance.DidVote(PlayerControl.LocalPlayer.PlayerId) && !SpiritHasVoteds[PlayerControl.LocalPlayer.PlayerId])
+                    if (!__instance.AmDead && __instance.Parent.state != MeetingHud.VoteStates.Discussion && !MeetingInstance.DidVote(PlayerControl.LocalPlayer.PlayerId) && !SpiritHasVoteds[PlayerControl.LocalPlayer.PlayerId])
                         __instance.Buttons.SetActive(true);
                 }
             }
@@ -93,4 +93,4 @@ namespace RolesMods.Systems.Spirit {
             }
         }
     }
-}
+}*/

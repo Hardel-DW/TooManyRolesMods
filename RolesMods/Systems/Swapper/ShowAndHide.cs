@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Linq;
 using HarmonyLib;
 using Hazel;
@@ -100,4 +100,4 @@ namespace RolesMods.Systems.Swapper {
             }
         }
     }
-}
+}*/
