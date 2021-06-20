@@ -27,10 +27,6 @@ namespace RolesMods.Patch {
                     Object.Destroy(body.gameObject);
                 return false;
             }
-            if (callId == (byte) CustomRPC.EngineerFix) {
-                SaboatageUtils.FixSabotage();
-                return false;
-            }
             if (callId == (byte) CustomRPC.AltrusitRevive) {
                 byte deadBodyId = reader.ReadByte();
                 byte playerId = reader.ReadByte();

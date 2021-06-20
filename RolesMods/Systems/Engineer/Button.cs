@@ -14,6 +14,12 @@ namespace RolesMods.Systems.Engineer {
             SetSprite("RolesMods.Resources.Rewind.png", 250);
         }
 
-        public override void OnClick() => SaboatageUtils.FixSabotage();
+        public override void OnClick() => SaboatageUtils.FixSabotages();
+
+        public override void OnUpdate() {
+            if (EngineerRoles.Instance.AllPlayers != null && PlayerControl.LocalPlayer != null)
+                if (EngineerRoles.Instance.HasRole(PlayerControl.LocalPlayer))
+                    IsDisable = !SaboatageUtils.SabotageActive();
+        }
     }
 }
