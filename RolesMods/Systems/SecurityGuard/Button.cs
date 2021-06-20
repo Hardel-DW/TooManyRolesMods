@@ -22,6 +22,7 @@ namespace RolesMods.Systems.SecurityGuard {
         public override void OnCreateButton() {
             SecurityGuardType = SecurityGuardState.SealVent;
             Closest = HardelAPI.Cooldown.ClosestElement.Vent;
+            AutoDisable = false;
 
             Timer = SecurityGuardRoles.CooldownSecurityGuard.GetValue();
             Roles = SecurityGuardRoles.Instance;
@@ -37,9 +38,8 @@ namespace RolesMods.Systems.SecurityGuard {
                 _ => 0
             };
 
-            if (totalScrews > cost) {
+            if (totalScrews >= cost) {
                 totalScrews -= cost;
-                SetText(totalScrews.ToString());
 
                 Vent closestVent = GetVentTarget();
                 if (SecurityGuardType == SecurityGuardState.PlaceCamera)
@@ -52,20 +52,26 @@ namespace RolesMods.Systems.SecurityGuard {
         public override void OnUpdate() {
             if (SecurityGuardRoles.Instance.AllPlayers != null && PlayerControl.LocalPlayer != null) {
                 if (SecurityGuardRoles.Instance.HasRole(PlayerControl.LocalPlayer)) {
+                    SetText(totalScrews.ToString());
+
+                    if (ventPrice > totalScrews && camPrice > totalScrews)
+                        CanUse = false;
 
                     Vent closestVent = GetVentTarget();
                     if (closestVent != null || ShipStatus.Instance.AllCameras == null || ShipStatus.Instance.AllCameras.Count == 0) {
                         IsDisable = (closestVent == null);
+                        if (ventPrice > totalScrews)
+                            IsDisable = true;
 
                         if (SecurityGuardType != SecurityGuardState.SealVent) {
                             SecurityGuardType = SecurityGuardState.SealVent;
                             SetSprite(SealVent);
                         }
                     } else {
+                        IsDisable = (camPrice > totalScrews);
                         if (SecurityGuardType != SecurityGuardState.PlaceCamera) {
                             SecurityGuardType = SecurityGuardState.PlaceCamera;
                             SetSprite(PlaceCamera);
-                            IsDisable = false;
                         }
                     }
                 }

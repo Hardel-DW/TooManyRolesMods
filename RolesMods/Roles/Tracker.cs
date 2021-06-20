@@ -31,12 +31,14 @@ namespace RolesMods.Roles {
         }
 
         public override void OnGameStarted() {
-            Systems.Tracker.Button.Instance.UseNumber = 1;
+            Systems.Tracker.Button.Instance.UseNumber = int.MaxValue;
         }
 
         public override void OnMeetingStart(MeetingHud instance) {
             if (Systems.Tracker.Button.Arrow != null)
                 Object.Destroy(Systems.Tracker.Button.Arrow.Arrow);
+
+            Systems.Tracker.Button.Instance.UseNumber = int.MaxValue;
         }
 
         private void GameOptionFormat() {

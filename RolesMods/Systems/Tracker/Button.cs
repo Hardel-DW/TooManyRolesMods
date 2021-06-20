@@ -16,14 +16,13 @@ namespace RolesMods.Systems.Tracker {
                 false, 
                 new List<PlayerControl> { PlayerControl.LocalPlayer },
                 (Player) => OnCPlayerChoose(Player),
-                () => UseNumber = 1
+                () => UseNumber = int.MaxValue
             );
         }
 
         public override void OnCreateButton() {
             Timer = 10f;
             Roles = TrackerRoles.Instance;
-            UseNumber = 1;
             SetSprite("RolesMods.Resources.Target.png", 250);
         }
 
