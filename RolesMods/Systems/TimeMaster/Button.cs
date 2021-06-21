@@ -1,4 +1,4 @@
-﻿using HardelAPI.Cooldown;
+﻿using Harion.Cooldown;
 using TimeMasterRole = RolesMods.Roles.TimeMaster;
 
 namespace RolesMods.Systems.TimeMaster {

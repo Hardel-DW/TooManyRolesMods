@@ -1,6 +1,6 @@
-﻿using HardelAPI.CustomOptions;
-using HardelAPI.CustomRoles;
-using HardelAPI.Enumerations;
+﻿using Harion.CustomOptions;
+using Harion.CustomRoles;
+using Harion.Enumerations;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,9 +10,8 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Lover))]
     public class Lover : CustomRole<Lover> {
         // Color: ##f570dcff
-        public static CustomOptionHeader LoverHeader = CustomOptionHeader.AddHeader("<color=#f570dcff>Lover Options :</color>");
-        public static CustomNumberOption LoverPercent = CustomOption.AddNumber("Lover Apparition", 0f, 0f, 100f, 5f);
-        public static CustomToggleOption LoverDies = CustomOption.AddToggle("Lover die with both", false);
+        public static CustomNumberOption LoverPercent = CustomOption.AddNumber("<color=#f570dcff>Lover Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomToggleOption LoverDies = CustomOption.AddToggle("Lover die with both", false, LoverPercent);
         private static PlayerControl Target;
         private bool TargetIsDead = false;
 
@@ -71,8 +70,9 @@ namespace RolesMods.Roles {
         }
 
         private void GameOptionFormat() {
-            LoverHeader.HudStringFormat = (option, name, value) => $"\n{name}";
             LoverPercent.ValueStringFormat = (option, value) => $"{value}%";
+            LoverPercent.ShowChildrenConidtion = () => LoverPercent.GetValue() > 0;
+
         }
     }
 }

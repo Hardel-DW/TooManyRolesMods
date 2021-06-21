@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using HardelAPI.Cooldown;
+using Harion.Cooldown;
 using MorphingRoles = RolesMods.Roles.Morphing;
-using HardelAPI.Utility.Helper;
+using Harion.Utility.Helper;
 
 namespace RolesMods.Systems.Morphing {
 
@@ -29,22 +29,22 @@ namespace RolesMods.Systems.Morphing {
                 ForceEnd(false);
             }
 
-            else HardelAPI.Utility.Ability.Morphing.Morph(PlayerControl.LocalPlayer, Sample, true);
+            else Harion.Utility.Ability.Morphing.Morph(PlayerControl.LocalPlayer, Sample, true);
         }
 
         public override void OnEffectEnd() {
-            HardelAPI.Utility.Ability.Morphing.Unmorph(PlayerControl.LocalPlayer, true);
+            Harion.Utility.Ability.Morphing.Unmorph(PlayerControl.LocalPlayer, true);
         }
 
         public override void OnUpdate() {
             if (Sample == null && state == MorphingState.Morphed) {
                 state = MorphingState.Sample;
                 SetSprite(SampleSprite);
-                Closest = HardelAPI.Cooldown.ClosestElement.Player;
+                Closest = Harion.Cooldown.ClosestElement.Player;
             } else if (Sample != null && state == MorphingState.Sample) {
                 state = MorphingState.Morphed;
                 SetSprite(MorphSprite);
-                Closest = HardelAPI.Cooldown.ClosestElement.Empty;
+                Closest = Harion.Cooldown.ClosestElement.Empty;
             }
         }
     }

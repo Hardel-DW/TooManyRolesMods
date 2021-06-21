@@ -1,7 +1,7 @@
-﻿using HardelAPI;
-using HardelAPI.CustomOptions;
-using HardelAPI.CustomRoles;
-using HardelAPI.Enumerations;
+﻿using Harion;
+using Harion.CustomOptions;
+using Harion.CustomRoles;
+using Harion.Enumerations;
 using UnityEngine;
 
 namespace RolesMods.Roles {
@@ -10,10 +10,9 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Spirit))]
     public class Spirit : CustomRole<Spirit> {
         // Color: 5b00C2FF
-        public static CustomOptionHeader SpiritHeader = CustomOptionHeader.AddHeader("<color=#5b00C2FF>Spirit Options :</color>");
-        public static CustomNumberOption SpiritPercent = CustomOption.AddNumber("Spirit Apparition", 0f, 0f, 100f, 5f);
-        public static CustomNumberOption NumberSpirit = CustomOption.AddNumber("Number Spirit", 1f, 1f, 10f, 1f);
-        public static CustomToggleOption CanVoteMultipleTime = CustomOption.AddToggle("Can Vote Multiple time", false);
+        public static CustomNumberOption SpiritPercent = CustomOption.AddNumber("<color=#5b00C2FF>Spirit Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.DeadHolder);
+        public static CustomNumberOption NumberSpirit = CustomOption.AddNumber("Number Spirit", 1f, 1f, 10f, 1f, SpiritPercent);
+        public static CustomToggleOption CanVoteMultipleTime = CustomOption.AddToggle("Can Vote Multiple time", false, SpiritPercent);
 
         public Spirit() : base() {
             GameOptionFormat();
@@ -41,9 +40,9 @@ namespace RolesMods.Roles {
             NumberPlayers = (int) NumberSpirit.GetValue();
         }
         private void GameOptionFormat() {
-            SpiritHeader.HudStringFormat = (option, name, value) => $"\n{name}";
-
             SpiritPercent.ValueStringFormat = (option, value) => $"{value}%";
+            SpiritPercent.ShowChildrenConidtion = () => SpiritPercent.GetValue() > 0;
+
             NumberSpirit.ValueStringFormat = (option, value) => $"{value} players";
         }
     }

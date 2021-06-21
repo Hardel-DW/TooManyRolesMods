@@ -1,6 +1,6 @@
 ﻿/*using UnityEngine;
 using HarmonyLib;
-using HardelAPI.CustomRoles;
+using Harion.CustomRoles;
 
 namespace RolesMods.Systems.Mayor {
     public class Abstain {

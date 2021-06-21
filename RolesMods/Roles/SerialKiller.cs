@@ -1,9 +1,9 @@
-﻿using HardelAPI.CustomOptions;
-using HardelAPI.CustomRoles;
-using HardelAPI.CustomRoles.Abilities;
-using HardelAPI.CustomRoles.Abilities.Kill;
-using HardelAPI.CustomRoles.Abilities.UsableVent;
-using HardelAPI.Enumerations;
+﻿using Harion.CustomOptions;
+using Harion.CustomRoles;
+using Harion.CustomRoles.Abilities;
+using Harion.CustomRoles.Abilities.Kill;
+using Harion.CustomRoles.Abilities.UsableVent;
+using Harion.Enumerations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +14,11 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(SerialKiller))]
     public class SerialKiller : CustomRole<SerialKiller> {
         // Color: #1aeef9ff
-        public static CustomOptionHeader SerialKillerHeader = CustomOptionHeader.AddHeader("<color=#1aeef9ff>Serial Killer and Collaborator Options :</color>");
-        public static CustomNumberOption SerialKillerPercent = CustomOption.AddNumber("Serial Killer Apparition", 0f, 0f, 100f, 5f);
-        public static CustomNumberOption KillCooldown = CustomOption.AddNumber("Kill Cooldown", 0f, 0f, 100f, 5f);
-
-        public static CustomToggleOption CanHasCollabo = CustomOption.AddToggle("Can Create collaborator", true);
-        public static CustomNumberOption CreateCollabo = CustomOption.AddNumber("Cooldown button for make collaborator", 0f, 0f, 100f, 5f);
-        public static CustomToggleOption SerialKillerCanVent = CustomOption.AddToggle("Can Vent", true);
+        public static CustomNumberOption SerialKillerPercent = CustomOption.AddNumber("<color=#1aeef9ff>Serial Killer Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.NeutralHolder);
+        public static CustomNumberOption KillCooldown = CustomOption.AddNumber("Kill Cooldown", 0f, 0f, 100f, 5f, SerialKillerPercent);
+        public static CustomToggleOption CanHasCollabo = CustomOption.AddToggle("Can Create collaborator", true, SerialKillerPercent);
+        public static CustomNumberOption CreateCollabo = CustomOption.AddNumber("Cooldown button for make collaborator", 0f, 0f, 100f, 5f, SerialKillerPercent);
+        public static CustomToggleOption SerialKillerCanVent = CustomOption.AddToggle("Can Vent", true, SerialKillerPercent);
 
         public override List<Ability> Abilities { get; set; } = new List<Ability>() {
             new KillAbility() {
@@ -84,8 +82,8 @@ namespace RolesMods.Roles {
         }
 
         private void GameOptionFormat() {
-            SerialKillerHeader.HudStringFormat = (option, name, value) => $"\n{name}";
             SerialKillerPercent.ValueStringFormat = (option, value) => $"{value}%";
+            SerialKillerPercent.ShowChildrenConidtion = () => SerialKillerPercent.GetValue() > 0;
         }
     }
 }

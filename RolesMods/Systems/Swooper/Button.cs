@@ -1,6 +1,6 @@
-﻿using HardelAPI.Utility.Ability;
-using HardelAPI.Utility.Utils;
-using HardelAPI.Cooldown;
+﻿using Harion.Utility.Ability;
+using Harion.Utility.Utils;
+using Harion.Cooldown;
 using SwooperRoles = RolesMods.Roles.Swooper;
 
 namespace RolesMods.Systems.Swooper {

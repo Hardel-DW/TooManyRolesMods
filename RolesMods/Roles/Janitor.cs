@@ -1,8 +1,8 @@
-﻿using HardelAPI.CustomOptions;
-using HardelAPI.CustomRoles;
-using HardelAPI.CustomRoles.Abilities;
-using HardelAPI.CustomRoles.Abilities.UsableVent;
-using HardelAPI.Enumerations;
+﻿using Harion.CustomOptions;
+using Harion.CustomRoles;
+using Harion.CustomRoles.Abilities;
+using Harion.CustomRoles.Abilities.UsableVent;
+using Harion.Enumerations;
 using System.Collections.Generic;
 
 namespace RolesMods.Roles {
@@ -10,11 +10,10 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Janitor))]
     public class Janitor : CustomRole<Janitor> {
         // Color: #FF930FFF
-        public static CustomOptionHeader JanitorHeader = CustomOptionHeader.AddHeader("<color=#FF0000FF>Janitor Options :</color>");
-        public static CustomNumberOption JanitorPercent = CustomOption.AddNumber("Janitor Apparition", 0f, 0f, 100f, 5f);
-        public static CustomNumberOption NumberJanitor = CustomOption.AddNumber("Number Janitor", 1f, 1f, 10f, 1f);
-        public static CustomNumberOption JanitorCooldown = CustomOption.AddNumber("Janitor Cooldown", 30f, 10f, 120f, 5f);
-        public static CustomNumberOption MaxUseJanitor = CustomOption.AddNumber("Max use", 1f, 1f, 10f, 1f);
+        public static CustomNumberOption JanitorPercent = CustomOption.AddNumber("<color=#FF0000FF>Janitor Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.ImpostorHolder);
+        public static CustomNumberOption NumberJanitor = CustomOption.AddNumber("Number Janitor", 1f, 1f, 10f, 1f, JanitorPercent);
+        public static CustomNumberOption JanitorCooldown = CustomOption.AddNumber("Janitor Cooldown", 30f, 10f, 120f, 5f, JanitorPercent);
+        public static CustomNumberOption MaxUseJanitor = CustomOption.AddNumber("Max use", 1f, 1f, 10f, 1f, JanitorPercent);
 
         public override List<Ability> Abilities { get; set; } = new List<Ability>() {
             new VentAbility() { CanVent = true }
@@ -48,9 +47,9 @@ namespace RolesMods.Roles {
         }
 
         private void GameOptionFormat() {
-            JanitorHeader.HudStringFormat = (option, name, value) => $"\n{name}";
-
             JanitorPercent.ValueStringFormat = (option, value) => $"{value}%";
+            JanitorPercent.ShowChildrenConidtion = () => JanitorPercent.GetValue() > 0;
+
             NumberJanitor.ValueStringFormat = (option, value) => $"{value} players";
             JanitorCooldown.ValueStringFormat = (option, value) => $"{value}s";
             

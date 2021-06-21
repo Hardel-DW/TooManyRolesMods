@@ -1,20 +1,19 @@
-﻿using HardelAPI.CustomKeyBinds;
-using HardelAPI.CustomOptions;
-using HardelAPI.CustomRoles;
-using HardelAPI.Enumerations;
+﻿using Harion.CustomKeyBinds;
+using Harion.CustomOptions;
+using Harion.CustomRoles;
+using Harion.Enumerations;
 using UnityEngine;
 
 namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Spy))]
     public class Spy : CustomRole<Spy> {
         // Color: #00bd7aff
-        public static CustomOptionHeader SpyHeader = CustomOptionHeader.AddHeader("<color=#00bd7aff>Spy Options :</color>");
-        public static CustomNumberOption SpyPercent = CustomOption.AddNumber("Spy Apparition", 0f, 0f, 100f, 5f);
-        public static CustomNumberOption NumberSpy = CustomOption.AddNumber("Number Spy", 1f, 1f, 10f, 1f);
-        public static CustomNumberOption SpyCooldown = CustomOption.AddNumber("Cooldown Spy", 30f, 10f, 120f, 5f);
-        public static CustomNumberOption SpyDuration = CustomOption.AddNumber("Duration Spy", 10f, 5f, 30f, 2.5f);
-        public static CustomNumberOption NumberUse = CustomOption.AddNumber("Number Use", 5f, 1f, 20f, 1f);
-        public static CustomToggleOption SpySeeApproxitiveColor = CustomOption.AddToggle("Spy see Black/White color on admin", false);
+        public static CustomNumberOption SpyPercent = CustomOption.AddNumber("<color=#00bd7aff>Spy Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomNumberOption NumberSpy = CustomOption.AddNumber("Number Spy", 1f, 1f, 10f, 1f, SpyPercent);
+        public static CustomNumberOption SpyCooldown = CustomOption.AddNumber("Cooldown Spy", 30f, 10f, 120f, 5f, SpyPercent);
+        public static CustomNumberOption SpyDuration = CustomOption.AddNumber("Duration Spy", 10f, 5f, 30f, 2.5f, SpyPercent);
+        public static CustomNumberOption NumberUse = CustomOption.AddNumber("Number Use", 5f, 1f, 20f, 1f, SpyPercent);
+        public static CustomToggleOption SpySeeApproxitiveColor = CustomOption.AddToggle("Spy see Black/White color on admin", false, SpyPercent);
         public static bool CanUse;
 
         public Spy() : base() {
@@ -37,9 +36,9 @@ namespace RolesMods.Roles {
         }
 
         private void GameOptionFormat() {
-            SpyHeader.HudStringFormat = (option, name, value) => $"\n{name}";
-
             SpyPercent.ValueStringFormat = (option, value) => $"{value}%";
+            SpyPercent.ShowChildrenConidtion = () => SpyPercent.GetValue() > 0;
+
             NumberSpy.ValueStringFormat = (option, value) => $"{value} players";
 
             SpyCooldown.ValueStringFormat = (option, value) => $"{value}s";

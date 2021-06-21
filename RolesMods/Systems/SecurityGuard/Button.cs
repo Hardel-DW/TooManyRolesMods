@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using HardelAPI.Cooldown;
+using Harion.Cooldown;
 using SecurityGuardRoles = RolesMods.Roles.SecurityGuard;
-using HardelAPI.Utility.Helper;
+using Harion.Utility.Helper;
 
 namespace RolesMods.Systems.SecurityGuard {
 
@@ -21,7 +21,7 @@ namespace RolesMods.Systems.SecurityGuard {
 
         public override void OnCreateButton() {
             SecurityGuardType = SecurityGuardState.SealVent;
-            Closest = HardelAPI.Cooldown.ClosestElement.Vent;
+            Closest = Harion.Cooldown.ClosestElement.Vent;
             AutoDisable = false;
 
             Timer = SecurityGuardRoles.CooldownSecurityGuard.GetValue();

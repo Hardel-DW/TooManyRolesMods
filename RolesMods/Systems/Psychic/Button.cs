@@ -1,5 +1,5 @@
 ﻿using System;
-using HardelAPI.Cooldown;
+using Harion.Cooldown;
 using PsychicRoles = RolesMods.Roles.Psychic;
 
 namespace RolesMods.Systems.Psychic {

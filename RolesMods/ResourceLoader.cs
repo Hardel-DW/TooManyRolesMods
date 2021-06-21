@@ -1,5 +1,5 @@
-﻿using HardelAPI.Reactor;
-using HardelAPI.Utility.Utils;
+﻿using Harion.Reactor;
+using Harion.Utility.Utils;
 using System.Reflection;
 using UnityEngine;
 

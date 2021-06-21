@@ -1,12 +1,8 @@
-﻿using HardelAPI.CustomOptions;
-using HardelAPI.CustomRoles;
-using HardelAPI.CustomRoles.Abilities;
-using HardelAPI.CustomRoles.Abilities.Kill;
-using HardelAPI.CustomRoles.Abilities.UsableVent;
-using HardelAPI.Enumerations;
-using System;
+﻿using Harion.CustomRoles;
+using Harion.CustomRoles.Abilities;
+using Harion.CustomRoles.Abilities.UsableVent;
+using Harion.Enumerations;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace RolesMods.Roles {

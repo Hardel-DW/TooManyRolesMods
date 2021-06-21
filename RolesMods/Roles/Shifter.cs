@@ -1,5 +1,5 @@
-﻿using HardelAPI.CustomOptions;
-using HardelAPI.CustomRoles;
+﻿using Harion.CustomOptions;
+using Harion.CustomRoles;
 using UnityEngine;
 
 namespace RolesMods.Roles {
@@ -7,10 +7,9 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Shifter))]
     public class Shifter : CustomRole<Shifter> {
         // Color: #575757FF
-        public static CustomOptionHeader ShifterHeader = CustomOptionHeader.AddHeader("<color=#575757FF>Shifter Options :</color>");
-        public static CustomNumberOption ShifterPercent = CustomOption.AddNumber("Shifter Apparition", 0f, 0f, 100f, 5f);
-        public static CustomNumberOption NumberShifter = CustomOption.AddNumber("Number Shifter", 1f, 1f, 10f, 1f);
-        public static CustomNumberOption Cooldown = CustomOption.AddNumber("Shift Cooldown", 30f, 10f, 120f, 5f);
+        public static CustomNumberOption ShifterPercent = CustomOption.AddNumber("<color=#575757FF>Shifter Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.NeutralHolder);
+        public static CustomNumberOption NumberShifter = CustomOption.AddNumber("Number Shifter", 1f, 1f, 10f, 1f, ShifterPercent);
+        public static CustomNumberOption Cooldown = CustomOption.AddNumber("Shift Cooldown", 30f, 10f, 120f, 5f, ShifterPercent);
 
         public Shifter() : base() {
             GameOptionFormat();
@@ -27,9 +26,9 @@ namespace RolesMods.Roles {
         }
 
         private void GameOptionFormat() {
-            ShifterHeader.HudStringFormat = (option, name, value) => $"\n{name}";
-
             ShifterPercent.ValueStringFormat = (option, value) => $"{value}%";
+            ShifterPercent.ShowChildrenConidtion = () => ShifterPercent.GetValue() > 0;
+
             NumberShifter.ValueStringFormat = (option, value) => $"{value} players";
             Cooldown.ValueStringFormat = (option, value) => $"{value}s";
         }

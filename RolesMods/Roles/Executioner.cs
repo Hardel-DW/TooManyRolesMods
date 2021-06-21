@@ -1,7 +1,7 @@
-﻿using HardelAPI.CustomOptions;
-using HardelAPI.CustomRoles;
-using HardelAPI.Enumerations;
-using HardelAPI.Utility.Utils;
+﻿using Harion.CustomOptions;
+using Harion.CustomRoles;
+using Harion.Enumerations;
+using Harion.Utility.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,9 +11,8 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Executioner))]
     public class Executioner : CustomRole<Executioner> {
         // Color: #633a37ff
-        public static CustomOptionHeader ExecutionerHeader = CustomOptionHeader.AddHeader("<color=#633a37ff>Executioner Options :</color>");
-        public static CustomNumberOption ExecutionerPercent = CustomOption.AddNumber("Executioner Apparition", 0f, 0f, 100f, 5f);
-        public static CustomNumberOption NumberExecutioner = CustomOption.AddNumber("Number Executioner", 1f, 1f, 10f, 1f);
+        public static CustomNumberOption ExecutionerPercent = CustomOption.AddNumber("<color=#633A37FF>Executioner Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.NeutralHolder);
+        public static CustomNumberOption NumberExecutioner = CustomOption.AddNumber("Number Executioner", 1f, 1f, 10f, 1f, ExecutionerPercent);
         private static PlayerControl Target;
 
         public Executioner() : base() {
@@ -76,9 +75,9 @@ namespace RolesMods.Roles {
         }
 
         private void GameOptionFormat() {
-            ExecutionerHeader.HudStringFormat = (option, name, value) => $"\n{name}";
-
             ExecutionerPercent.ValueStringFormat = (option, value) => $"{value}%";
+            ExecutionerPercent.ShowChildrenConidtion = () => ExecutionerPercent.GetValue() > 0;
+
             NumberExecutioner.ValueStringFormat = (option, value) => $"{value} players";
         }
 

@@ -1,6 +1,6 @@
-﻿using HardelAPI.ArrowManagement;
-using HardelAPI.Cooldown;
-using HardelAPI.Utility;
+﻿using Harion.ArrowManagement;
+using Harion.Cooldown;
+using Harion.Utility;
 using System.Collections.Generic;
 using TrackerRoles = RolesMods.Roles.Tracker;
 

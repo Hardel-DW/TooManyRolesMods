@@ -1,5 +1,5 @@
-﻿using HardelAPI.CustomOptions;
-using HardelAPI.CustomRoles;
+﻿using Harion.CustomOptions;
+using Harion.CustomRoles;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,9 +8,8 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Mayor))]
     public class Mayor : CustomRole<Mayor> {
         // Color: #614474FF
-        public static CustomOptionHeader MayorHeader = CustomOptionHeader.AddHeader("<color=#614474FF>Mayor Options :</color>");
-        public static CustomNumberOption MayorPercent = CustomOption.AddNumber("Mayor Apparition", 0f, 0f, 100f, 5f);
-        public static CustomNumberOption NumberMayor = CustomOption.AddNumber("Number Mayor", 1f, 1f, 10f, 1f);
+        public static CustomNumberOption MayorPercent = CustomOption.AddNumber("<color=#614474FF>Mayor Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomNumberOption NumberMayor = CustomOption.AddNumber("Number Mayor", 1f, 1f, 10f, 1f, MayorPercent);
         
         public static List<byte> ExtraVotes = new List<byte>();
         public static int VoteBank { get; set; }
@@ -34,9 +33,9 @@ namespace RolesMods.Roles {
         }
 
         private void GameOptionFormat() {
-            MayorHeader.HudStringFormat = (option, name, value) => $"\n{name}";
-
             MayorPercent.ValueStringFormat = (option, value) => $"{value}%";
+            MayorPercent.ShowChildrenConidtion = () => MayorPercent.GetValue() > 0;
+
             NumberMayor.ValueStringFormat = (option, value) => $"{value} players";
         }
     }

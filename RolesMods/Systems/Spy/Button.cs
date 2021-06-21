@@ -1,4 +1,4 @@
-﻿using HardelAPI.Cooldown;
+﻿using Harion.Cooldown;
 using SpyRoles = RolesMods.Roles.Spy;
 
 namespace RolesMods.Systems.Spy {

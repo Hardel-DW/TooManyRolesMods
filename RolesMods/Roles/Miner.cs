@@ -1,8 +1,8 @@
-﻿using HardelAPI.CustomOptions;
-using HardelAPI.CustomRoles;
-using HardelAPI.CustomRoles.Abilities;
-using HardelAPI.CustomRoles.Abilities.UsableVent;
-using HardelAPI.Enumerations;
+﻿using Harion.CustomOptions;
+using Harion.CustomRoles;
+using Harion.CustomRoles.Abilities;
+using Harion.CustomRoles.Abilities.UsableVent;
+using Harion.Enumerations;
 using System.Collections.Generic;
 
 namespace RolesMods.Roles {
@@ -10,11 +10,10 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Miner))]
     public class Miner : CustomRole<Miner> {
         // Color: #FF930FFF
-        public static CustomOptionHeader MinerHeader = CustomOptionHeader.AddHeader("<color=#FF0000FF>Miner Options :</color>");
-        public static CustomNumberOption MinerPercent = CustomOption.AddNumber("Miner Apparition", 0f, 0f, 100f, 5f);
-        public static CustomNumberOption NumberMiner = CustomOption.AddNumber("Number Miner", 1f, 1f, 10f, 1f);
-        public static CustomNumberOption MinerCooldown = CustomOption.AddNumber("Miner Cooldown", 30f, 10f, 120f, 5f);
-        public static CustomNumberOption MaxUseMiner = CustomOption.AddNumber("Max use", 1f, 1f, 10f, 1f);
+        public static CustomNumberOption MinerPercent = CustomOption.AddNumber("<color=#FF0000FF>Miner Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.ImpostorHolder);
+        public static CustomNumberOption NumberMiner = CustomOption.AddNumber("Number Miner", 1f, 1f, 10f, 1f, MinerPercent);
+        public static CustomNumberOption MinerCooldown = CustomOption.AddNumber("Miner Cooldown", 30f, 10f, 120f, 5f, MinerPercent);
+        public static CustomNumberOption MaxUseMiner = CustomOption.AddNumber("Max use", 1f, 1f, 10f, 1f, MinerPercent);
 
         public override List<Ability> Abilities { get; set; } = new List<Ability>() {
             new VentAbility() { CanVent = true }
@@ -43,9 +42,9 @@ namespace RolesMods.Roles {
         }
 
         private void GameOptionFormat() {
-            MinerHeader.HudStringFormat = (option, name, value) => $"\n{name}";
-
             MinerPercent.ValueStringFormat = (option, value) => $"{value}%";
+            MinerPercent.ShowChildrenConidtion = () => MinerPercent.GetValue() > 0;
+
             NumberMiner.ValueStringFormat = (option, value) => $"{value} players";
             MinerCooldown.ValueStringFormat = (option, value) => $"{value}s";
 

@@ -1,23 +1,22 @@
-﻿using HardelAPI.CustomOptions;
-using HardelAPI.ArrowManagement;
-using HardelAPI.CustomRoles;
-using HardelAPI.Enumerations;
-using HardelAPI.Utility.Utils;
+﻿using Harion.CustomOptions;
+using Harion.ArrowManagement;
+using Harion.CustomRoles;
+using Harion.Enumerations;
+using Harion.Utility.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using HardelAPI.Reactor;
+using Harion.Reactor;
 
 namespace RolesMods.Roles {
 
     [RegisterInCustomRoles(typeof(Snitch))]
     public class Snitch : CustomRole<Snitch> {
         // Color: #b6bf62ff
-        public static CustomOptionHeader SnitchHeader = CustomOptionHeader.AddHeader("<color=#b6bf62ff>Snitch Options :</color>");
-        public static CustomNumberOption SnitchPercent = CustomOption.AddNumber("Snitch Apparition", 0f, 0f, 100f, 5f);
-        public static CustomNumberOption NumberSnitch = CustomOption.AddNumber("Number Snitch", 1f, 1f, 10f, 1f);
-        public static CustomNumberOption TaskCount = CustomOption.AddNumber("Task Count Where Impostors See Snitch", 1f, 1f, 10f, 1f);
-        public static CustomToggleOption ShowRoleAtStartGame = CustomOption.AddToggle("Show Role at start game", false);
+        public static CustomNumberOption SnitchPercent = CustomOption.AddNumber("<color=#b6bf62ff>Snitch Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomNumberOption NumberSnitch = CustomOption.AddNumber("Number Snitch", 1f, 1f, 10f, 1f, SnitchPercent);
+        public static CustomNumberOption TaskCount = CustomOption.AddNumber("Task Count Where Impostors See Snitch", 1f, 1f, 10f, 1f, SnitchPercent);
+        public static CustomToggleOption ShowRoleAtStartGame = CustomOption.AddToggle("Show Role at start game", false, SnitchPercent);
         private static Dictionary<PlayerControl, ArrowManager> arrowManagers = new Dictionary<PlayerControl, ArrowManager>();
 
         public Snitch() : base() {
@@ -114,9 +113,9 @@ namespace RolesMods.Roles {
         }
 
         private void GameOptionFormat() {
-            SnitchHeader.HudStringFormat = (option, name, value) => $"\n{name}";
-
             SnitchPercent.ValueStringFormat = (option, value) => $"{value}%";
+            SnitchPercent.ShowChildrenConidtion = () => SnitchPercent.GetValue() > 0;
+
             NumberSnitch.ValueStringFormat = (option, value) => $"{value} players";
         }
     }

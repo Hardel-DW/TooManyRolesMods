@@ -1,4 +1,5 @@
-﻿using HardelAPI.Utility.Helper;
+﻿using Harion.ColorDesigner;
+using Harion.Utility.Helper;
 using HarmonyLib;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,7 +58,7 @@ namespace RolesMods.Systems.Spy {
                                         Color color = component.myRend.material.GetColor("_BodyColor");
                                         if (Roles.Spy.SpySeeApproxitiveColor.GetValue()) {
                                             var id = Mathf.Max(0, Palette.PlayerColors.IndexOf(color));
-                                            color = ColorHelper.lighterColors.Contains(id) ? Palette.PlayerColors[7] : Palette.PlayerColors[6];
+                                            color = ColorCreator.lighterColors.Contains(id) ? Palette.PlayerColors[7] : Palette.PlayerColors[6];
                                         }
                                         roomColors.Add(color);
                                     }
@@ -68,7 +69,7 @@ namespace RolesMods.Systems.Spy {
                                         if (playerInfo != null) {
                                             var color = Palette.PlayerColors[playerInfo.ColorId];
                                             if (Roles.Spy.SpySeeApproxitiveColor.GetValue())
-                                                color = ColorHelper.lighterColors.Contains(playerInfo.ColorId) ? Palette.PlayerColors[7] : Palette.PlayerColors[6];
+                                                color = ColorCreator.lighterColors.Contains(playerInfo.ColorId) ? Palette.PlayerColors[7] : Palette.PlayerColors[6];
                                             roomColors.Add(color);
                                         }
                                     }

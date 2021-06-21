@@ -1,8 +1,8 @@
-﻿using HardelAPI.CustomOptions;
-using HardelAPI.CustomRoles;
-using HardelAPI.CustomRoles.Abilities;
-using HardelAPI.CustomRoles.Abilities.UsableVent;
-using HardelAPI.Enumerations;
+﻿using Harion.CustomOptions;
+using Harion.CustomRoles;
+using Harion.CustomRoles.Abilities;
+using Harion.CustomRoles.Abilities.UsableVent;
+using Harion.Enumerations;
 using System.Collections.Generic;
 
 namespace RolesMods.Roles {
@@ -10,12 +10,11 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Morphing))]
     public class Morphing : CustomRole<Morphing> {
         // Color: #FF930FFF
-        public static CustomOptionHeader MorphingHeader = CustomOptionHeader.AddHeader("<color=#FF0000FF>Morphing Options :</color>");
-        public static CustomNumberOption MorphingPercent = CustomOption.AddNumber("Morphing Apparition", 0f, 0f, 100f, 5f);
-        public static CustomNumberOption NumberMorphing = CustomOption.AddNumber("Number Morphing", 1f, 1f, 10f, 1f);
-        public static CustomNumberOption MorphingCooldown = CustomOption.AddNumber("Morphing Cooldown", 30f, 10f, 120f, 5f);
-        public static CustomNumberOption MorphingDuration = CustomOption.AddNumber("Morphing Duration", 10f, 2f, 30f, 2f);
-        public static CustomNumberOption MaxUseMorphing = CustomOption.AddNumber("Max use", 1f, 1f, 10f, 1f);
+        public static CustomNumberOption MorphingPercent = CustomOption.AddNumber("<color=#FF0000FF>Morphing Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.ImpostorHolder);
+        public static CustomNumberOption NumberMorphing = CustomOption.AddNumber("Number Morphing", 1f, 1f, 10f, 1f, MorphingPercent);
+        public static CustomNumberOption MorphingCooldown = CustomOption.AddNumber("Morphing Cooldown", 30f, 10f, 120f, 5f, MorphingPercent);
+        public static CustomNumberOption MorphingDuration = CustomOption.AddNumber("Morphing Duration", 10f, 2f, 30f, 2f, MorphingPercent);
+        public static CustomNumberOption MaxUseMorphing = CustomOption.AddNumber("Max use", 1f, 1f, 10f, 1f, MorphingPercent);
 
         public override List<Ability> Abilities { get; set; } = new List<Ability>() {
             new VentAbility() { CanVent = true }
@@ -45,9 +44,9 @@ namespace RolesMods.Roles {
         }
 
         private void GameOptionFormat() {
-            MorphingHeader.HudStringFormat = (option, name, value) => $"\n{name}";
-
             MorphingPercent.ValueStringFormat = (option, value) => $"{value}%";
+            MorphingPercent.ShowChildrenConidtion = () => MorphingPercent.GetValue() > 0;
+
             NumberMorphing.ValueStringFormat = (option, value) => $"{value} players";
             MorphingCooldown.ValueStringFormat = (option, value) => $"{value}s";
             MorphingDuration.ValueStringFormat = (option, value) => $"{value}s";

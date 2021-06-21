@@ -8,7 +8,7 @@
   </PropertyGroup>
 
     <ItemGroup>
-        <Reference Include="$(AmongUs)\BepInEx\plugins\HardelAPI.dll" />      
+        <Reference Include="$(AmongUs)\BepInEx\plugins\Harion.dll" />      
         <EmbeddedResource Include="Resources\*"></EmbeddedResource>
     </ItemGroup>
 
@@ -23,6 +23,6 @@
     </ItemGroup>
 
   <Target Name="Copy" AfterTargets="PostBuildEvent">
-    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFiles="$(AmongUs)/BepInEx/plugins/$(AssemblyName)-$(GameVersion).dll" />
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFiles="$(AmongUs)/BepInEx/plugins/$(AssemblyName).dll" />
   </Target>
 </Project>

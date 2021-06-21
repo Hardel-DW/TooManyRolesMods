@@ -1,7 +1,7 @@
-﻿using HardelAPI.CustomOptions;
-using HardelAPI.CustomRoles;
-using HardelAPI.Enumerations;
-using HardelAPI.Utility.Utils;
+﻿using Harion.CustomOptions;
+using Harion.CustomRoles;
+using Harion.Enumerations;
+using Harion.Utility.Utils;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,13 +10,12 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(SecurityGuard))]
     public class SecurityGuard : CustomRole<SecurityGuard> {
         // Color: #07db00FF
-        public static CustomOptionHeader SecurityGuardHeader = CustomOptionHeader.AddHeader("<color=#d4B40cff>Security Guard Options :</color>");
-        public static CustomNumberOption SecurityGuardPercent = CustomOption.AddNumber("SecurityGuard Apparition", 0f, 0f, 100f, 5f);
-        public static CustomNumberOption NumberSecurityGuard = CustomOption.AddNumber("Number Security Guard", 1f, 1f, 10f, 1f);
-        public static CustomNumberOption CooldownSecurityGuard = CustomOption.AddNumber("Security Guard Cooldown", 30f, 10f, 120f, 5f);
-        public static CustomNumberOption NumberScrews = CustomOption.AddNumber("Security Guard Number Of Screws", 1f, 1f, 30f, 1f);
-        public static CustomNumberOption ScrewsCams = CustomOption.AddNumber("Number Of Screws Per Cam", 1f, 1f, 10f, 1f);
-        public static CustomNumberOption ScrewsVent = CustomOption.AddNumber("Number Of Screws Per Vent", 1f, 1f, 10f, 1f);
+        public static CustomNumberOption SecurityGuardPercent = CustomOption.AddNumber("<color=#d4B40cff>SecurityGuard Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomNumberOption NumberSecurityGuard = CustomOption.AddNumber("Number Security Guard", 1f, 1f, 10f, 1f, SecurityGuardPercent);
+        public static CustomNumberOption CooldownSecurityGuard = CustomOption.AddNumber("Security Guard Cooldown", 30f, 10f, 120f, 5f, SecurityGuardPercent);
+        public static CustomNumberOption NumberScrews = CustomOption.AddNumber("Security Guard Number Of Screws", 1f, 1f, 30f, 1f, SecurityGuardPercent);
+        public static CustomNumberOption ScrewsCams = CustomOption.AddNumber("Number Of Screws Per Cam", 1f, 1f, 10f, 1f, SecurityGuardPercent);
+        public static CustomNumberOption ScrewsVent = CustomOption.AddNumber("Number Of Screws Per Vent", 1f, 1f, 10f, 1f, SecurityGuardPercent);
         public static List<Vector2> camerasToAdd = new List<Vector2>();
         public static List<Vent> ventsToSeal = new List<Vent>();
 
@@ -59,9 +58,9 @@ namespace RolesMods.Roles {
         }
 
         private void GameOptionFormat() {
-            SecurityGuardHeader.HudStringFormat = (option, name, value) => $"\n{name}";
-
             SecurityGuardPercent.ValueStringFormat = (option, value) => $"{value}%";
+            SecurityGuardPercent.ShowChildrenConidtion = () => SecurityGuardPercent.GetValue() > 0;
+
             NumberSecurityGuard.ValueStringFormat = (option, value) => $"{value} players";
             CooldownSecurityGuard.ValueStringFormat = (option, value) => $"{value}s";
         }

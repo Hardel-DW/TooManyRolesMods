@@ -1,8 +1,8 @@
-﻿using HardelAPI.CustomOptions;
-using HardelAPI.CustomRoles;
-using HardelAPI.CustomRoles.Abilities;
-using HardelAPI.CustomRoles.Abilities.Kill;
-using HardelAPI.Enumerations;
+﻿using Harion.CustomOptions;
+using Harion.CustomRoles;
+using Harion.CustomRoles.Abilities;
+using Harion.CustomRoles.Abilities.Kill;
+using Harion.Enumerations;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +12,10 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Sheriff))]
     public class Sheriff : CustomRole<Sheriff> {
         // Color: D1B300FF
-        public static CustomOptionHeader SherifHeader = CustomOptionHeader.AddHeader("<color=#D1B300FF>Sherif Options :</color>");
-        public static CustomNumberOption SherifPercent = CustomOption.AddNumber("Sherif Apparition", 0f, 0f, 100f, 5f);
-        public static CustomNumberOption NumberSherif = CustomOption.AddNumber("Number Sherif", 1f, 1f, 10f, 1f);
-        public static CustomNumberOption SheriffKillCooldown = CustomOption.AddNumber("Sherif Cooldown", 15f, 5f, 90f, 10f);
-        public static CustomToggleOption TargetDies = CustomOption.AddToggle("Target dies", false);
+        public static CustomNumberOption SherifPercent = CustomOption.AddNumber("<color=#D1B300FF>Sherif Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomNumberOption NumberSherif = CustomOption.AddNumber("Number Sherif", 1f, 1f, 10f, 1f, SherifPercent);
+        public static CustomNumberOption SheriffKillCooldown = CustomOption.AddNumber("Sherif Cooldown", 15f, 5f, 90f, 10f, SherifPercent);
+        public static CustomToggleOption TargetDies = CustomOption.AddToggle("Target dies", false, SherifPercent);
 
         public override List<Ability> Abilities { get; set; } = new List<Ability>() {
             new KillAbility() {
@@ -62,9 +61,9 @@ namespace RolesMods.Roles {
         }
 
         private void GameOptionFormat() {
-            SherifHeader.HudStringFormat = (option, name, value) => $"\n{name}";
-
             SherifPercent.ValueStringFormat = (option, value) => $"{value}%";
+            SherifPercent.ShowChildrenConidtion = () => SherifPercent.GetValue() > 0;
+
             NumberSherif.ValueStringFormat = (option, value) => $"{value} players";
         }
     }

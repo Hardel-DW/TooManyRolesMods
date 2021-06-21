@@ -1,5 +1,5 @@
-﻿using HardelAPI.Utility.Utils;
-using HardelAPI.Cooldown;
+﻿using Harion.Utility.Utils;
+using Harion.Cooldown;
 using MinerRoles = RolesMods.Roles.Miner;
 
 namespace RolesMods.Systems.Miner {

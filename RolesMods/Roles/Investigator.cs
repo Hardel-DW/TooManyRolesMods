@@ -1,6 +1,6 @@
-﻿using HardelAPI.CustomOptions;
-using HardelAPI.CustomRoles;
-using HardelAPI.Enumerations;
+﻿using Harion.CustomOptions;
+using Harion.CustomRoles;
+using Harion.Enumerations;
 using UnityEngine;
 
 namespace RolesMods.Roles {
@@ -8,14 +8,13 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Investigator))]
     public class Investigator : CustomRole<Investigator> {
         // Color: 2EADFFFF
-        public static CustomOptionHeader InvestigatorHeader = CustomOptionHeader.AddHeader("<color=#2EADFFFF>Investigator Options :</color>");
-        public static CustomNumberOption InvestigatorPercent = CustomOption.AddNumber("Investigator Apparition", 0f, 0f, 100f, 5f);
-        public static CustomNumberOption NumberInvestigator = CustomOption.AddNumber("Number Investigator", 1f, 1f, 10f, 1f);
-        public static CustomNumberOption footPrintSize = CustomOption.AddNumber("Footprint Size", 0.5f, 0.3f, 1f, 0.1f);
-        public static CustomNumberOption fontPrintInterval = CustomOption.AddNumber("Footprint Interval", 3f, 1f, 5f, 0.25f);
-        public static CustomNumberOption fontPrintDuration = CustomOption.AddNumber("Footprint Duration", 10f, 3f, 30f, 1f);
-        public static CustomToggleOption AnonymousFootPrint = CustomOption.AddToggle("Anonymous Footprint", false);
-        public static CustomToggleOption VentFootprintVisible = CustomOption.AddToggle("Footprint are visible arround vent", false);
+        public static CustomNumberOption InvestigatorPercent = CustomOption.AddNumber("<color=#2EADFFFF>Investigator Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomNumberOption NumberInvestigator = CustomOption.AddNumber("Number Investigator", 1f, 1f, 10f, 1f, InvestigatorPercent);
+        public static CustomNumberOption footPrintSize = CustomOption.AddNumber("Footprint Size", 0.5f, 0.3f, 1f, 0.1f, InvestigatorPercent);
+        public static CustomNumberOption fontPrintInterval = CustomOption.AddNumber("Footprint Interval", 3f, 1f, 5f, 0.25f, InvestigatorPercent);
+        public static CustomNumberOption fontPrintDuration = CustomOption.AddNumber("Footprint Duration", 10f, 3f, 30f, 1f, InvestigatorPercent);
+        public static CustomToggleOption AnonymousFootPrint = CustomOption.AddToggle("Anonymous Footprint", false, InvestigatorPercent);
+        public static CustomToggleOption VentFootprintVisible = CustomOption.AddToggle("Footprint are visible arround vent", false, InvestigatorPercent);
 
         public Investigator() : base() {
             GameOptionFormat();
@@ -42,9 +41,9 @@ namespace RolesMods.Roles {
         }
 
         private void GameOptionFormat() {
-            InvestigatorHeader.HudStringFormat = (option, name, value) => $"\n{name}";
-
             InvestigatorPercent.ValueStringFormat = (option, value) => $"{value}%";
+            InvestigatorPercent.ShowChildrenConidtion = () => InvestigatorPercent.GetValue() > 0;
+
             NumberInvestigator.ValueStringFormat = (option, value) => $"{value} players";
             footPrintSize.ValueStringFormat = (option, value) => $"{value} unit";
             fontPrintInterval.ValueStringFormat = (option, value) => $"{value}s";

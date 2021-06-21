@@ -1,11 +1,11 @@
-﻿using HardelAPI.Reactor;
-using HardelAPI.Utility.Utils;
+﻿using Harion.Reactor;
+using Harion.Utility.Utils;
 using HarmonyLib;
 using Hazel;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
-using HardelAPI.Cooldown;
+using Harion.Cooldown;
 using AltruistRoles = RolesMods.Roles.Altruist;
 
 namespace RolesMods.Systems.Altruist {
@@ -14,7 +14,7 @@ namespace RolesMods.Systems.Altruist {
     public class Button : CustomButton<Button> {
 
         public override void OnCreateButton() {
-            Closest = HardelAPI.Cooldown.ClosestElement.DeadBody;
+            Closest = Harion.Cooldown.ClosestElement.DeadBody;
             Roles = AltruistRoles.Instance;
             DecreamteUseNimber = UseNumberDecremantion.OnClick;
             UseNumber = 1;

@@ -1,8 +1,8 @@
-﻿using HardelAPI.CustomRoles;
-using HardelAPI.Utility.Utils;
+﻿using Harion.CustomRoles;
+using Harion.Utility.Utils;
 using System.Collections.Generic;
 using UnityEngine;
-using HardelAPI.Cooldown;
+using Harion.Cooldown;
 using SeerRoles = RolesMods.Roles.Seer;
 
 namespace RolesMods.Systems.Seer {
@@ -28,7 +28,7 @@ namespace RolesMods.Systems.Seer {
             UseNumber = (int) SeerRoles.SeerUseNumber.GetValue();
             Roles = SeerRoles.Instance;
             DecreamteUseNimber = UseNumberDecremantion.OnClick;
-            Closest = HardelAPI.Cooldown.ClosestElement.Player;
+            Closest = Harion.Cooldown.ClosestElement.Player;
             AllPlayersTargetable = new List<PlayerControl>();
             SetSprite("RolesMods.Resources.Rewind.png", 250);
         }

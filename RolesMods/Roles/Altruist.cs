@@ -1,5 +1,5 @@
-﻿using HardelAPI.CustomOptions;
-using HardelAPI.CustomRoles;
+﻿using Harion.CustomOptions;
+using Harion.CustomRoles;
 using UnityEngine;
 
 namespace RolesMods.Roles {
@@ -7,9 +7,8 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Altruist))]
     public class Altruist : CustomRole<Altruist> {
         // Color: D10052FF
-        public static CustomOptionHeader AltruistHeader = CustomOptionHeader.AddHeader("<color=#D10052FF>Altruist Options :</color>");
-        public static CustomNumberOption AltruistPercent = CustomOption.AddNumber("Altruist Apparition", 0f, 0f, 100f, 5f);
-        public static CustomNumberOption NumberAltruist = CustomOption.AddNumber("Number Altruist", 1f, 1f, 10f, 1f);
+        public static CustomNumberOption AltruistPercent = CustomOption.AddNumber("<color=#D10052FF>Altruist Apparition</color>", 0f, 0f, 100f, 5f);
+        public static CustomNumberOption NumberAltruist = CustomOption.AddNumber("Number Altruist", 1f, 1f, 10f, 1f, AltruistPercent);
 
         public Altruist() : base() {
             GameOptionFormat();
@@ -26,9 +25,10 @@ namespace RolesMods.Roles {
         }
 
         private void GameOptionFormat() {
-            AltruistHeader.HudStringFormat = (option, name, value) => $"\n{name}";
-
+            RoleModPlugin.Logger.LogInfo("Test");
             AltruistPercent.ValueStringFormat = (option, value) => $"{value}%";
+            AltruistPercent.ShowChildrenConidtion = () => AltruistPercent.GetValue() > 0;
+
             NumberAltruist.ValueStringFormat = (option, value) => $"{value} players";
         }
     }

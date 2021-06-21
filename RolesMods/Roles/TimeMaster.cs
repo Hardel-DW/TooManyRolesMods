@@ -1,6 +1,6 @@
-﻿using HardelAPI.CustomOptions;
-using HardelAPI.CustomRoles;
-using HardelAPI.Enumerations;
+﻿using Harion.CustomOptions;
+using Harion.CustomRoles;
+using Harion.Enumerations;
 using UnityEngine;
 
 namespace RolesMods.Roles {
@@ -8,14 +8,13 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(TimeMaster))]
     public class TimeMaster : CustomRole<TimeMaster> {
         // Color: 999999FF
-        public static CustomOptionHeader TimeMasterHeader = CustomOptionHeader.AddHeader("<color=#999999FF>TimeMaster Options :</color>");
-        public static CustomNumberOption TimeMasterPercent = CustomOption.AddNumber("TimeMaster Apparition", 0f, 0f, 100f, 5f);
-        public static CustomNumberOption NumberTimeMaster = CustomOption.AddNumber("Number TimeMaster", 1f, 1f, 10f, 1f);
-        public static CustomNumberOption TimeMasterDuration = CustomOption.AddNumber("Rewind Duration", 5f, 3f, 30f, 1f);
-        public static CustomNumberOption TimeMasterCooldown = CustomOption.AddNumber("Rewind Cooldown", 30f, 10f, 120f, 5f);
-        public static CustomNumberOption UseNumber = CustomOption.AddNumber("Number of uses", 1f, 1f, 10f, 1f);
-        public static CustomToggleOption EnableReiveTimeMaster = CustomOption.AddToggle("Enable Rivive during rewind", false);
-        public static CustomToggleOption UsableVitals = CustomOption.AddToggle("Time Master can use vitals", true);
+        public static CustomNumberOption TimeMasterPercent = CustomOption.AddNumber("<color=#999999FF>TimeMaster Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomNumberOption NumberTimeMaster = CustomOption.AddNumber("Number TimeMaster", 1f, 1f, 10f, 1f, TimeMasterPercent);
+        public static CustomNumberOption TimeMasterDuration = CustomOption.AddNumber("Rewind Duration", 5f, 3f, 30f, 1f, TimeMasterPercent);
+        public static CustomNumberOption TimeMasterCooldown = CustomOption.AddNumber("Rewind Cooldown", 30f, 10f, 120f, 5f, TimeMasterPercent);
+        public static CustomNumberOption UseNumber = CustomOption.AddNumber("Number of uses", 1f, 1f, 10f, 1f, TimeMasterPercent);
+        public static CustomToggleOption EnableReiveTimeMaster = CustomOption.AddToggle("Enable Rivive during rewind", false, TimeMasterPercent);
+        public static CustomToggleOption UsableVitals = CustomOption.AddToggle("Time Master can use vitals", true, TimeMasterPercent);
 
         public TimeMaster() : base() {
             GameOptionFormat();
@@ -51,9 +50,9 @@ namespace RolesMods.Roles {
         }
 
         private void GameOptionFormat() {
-            TimeMasterHeader.HudStringFormat = (option, name, value) => $"\n{name}";
-
             TimeMasterPercent.ValueStringFormat = (option, value) => $"{value}%";
+            TimeMasterPercent.ShowChildrenConidtion = () => TimeMasterPercent.GetValue() > 0;
+
             NumberTimeMaster.ValueStringFormat = (option, value) => $"{value} players";
             TimeMasterDuration.ValueStringFormat = (option, value) => $"{value}s";
             TimeMasterCooldown.ValueStringFormat = (option, value) => $"{value}s";

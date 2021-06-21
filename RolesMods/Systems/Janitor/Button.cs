@@ -1,5 +1,5 @@
-﻿using HardelAPI.Utility.Utils;
-using HardelAPI.Cooldown;
+﻿using Harion.Utility.Utils;
+using Harion.Cooldown;
 using JanitorRoles = RolesMods.Roles.Janitor;
 
 namespace RolesMods.Systems.Janitor {
@@ -10,7 +10,7 @@ namespace RolesMods.Systems.Janitor {
         public override void OnCreateButton() {
             Timer = PlayerControl.GameOptions.KillCooldown;
             DecreamteUseNimber = UseNumberDecremantion.OnClick;
-            Closest = HardelAPI.Cooldown.ClosestElement.DeadBody;
+            Closest = Harion.Cooldown.ClosestElement.DeadBody;
             Roles = JanitorRoles.Instance;
             SetSprite("RolesMods.Resources.Rewind.png", 250);
         }

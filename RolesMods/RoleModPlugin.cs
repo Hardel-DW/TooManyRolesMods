@@ -2,30 +2,35 @@
 using BepInEx.IL2CPP;
 using HarmonyLib;
 using BepInEx.Logging;
-using HardelAPI.CustomOptions;
-using HardelAPI;
-using HardelAPI.Reactor;
-using HardelAPI.Cooldown;
-using HardelAPI.ModsManagers.Configuration;
+using Harion.CustomOptions;
+using Harion;
+using Harion.Reactor;
+using Harion.Cooldown;
+using Harion.ModsManagers.Configuration;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection;
-using HardelAPI.ModsManagers.Mods;
+using Harion.ModsManagers.Mods;
 
 namespace RolesMods {
 
     [BepInPlugin(Id)]
     [BepInProcess("Among Us.exe")]
-    [BepInDependency(HardelApiPlugin.Id)]
-    public class Plugin : BasePlugin, IModManager, IModManagerUpdater, IModManagerLink {
+    [BepInDependency(HarionPlugin.Id)]
+    public class RoleModPlugin : BasePlugin, IModManager, IModManagerUpdater, IModManagerLink {
         public const string Id = "fr.hardel.toomanyrolesmodes";
         public static ManualLogSource Logger;
+
+        public static CustomOptionHolder CrewmateHolder;
+        public static CustomOptionHolder ImpostorHolder;
+        public static CustomOptionHolder NeutralHolder;
+        public static CustomOptionHolder DeadHolder;
 
         public Harmony Harmony { get; } = new Harmony(Id);
 
         public string DisplayName => "Too Many Roles";
 
-        public string Version => typeof(Plugin).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+        public string Version => typeof(RoleModPlugin).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
 
         public string SmallDescription => "Add 32 roles to Among Us";
 
@@ -48,13 +53,20 @@ namespace RolesMods {
 
         public override void Load() {
             Logger = Log;
-
-            Logger.LogInfo("Hello world");
             RegisterInIl2CppAttribute.Register();
             Harmony.PatchAll();
             RegisterCooldownButton.Register();
             CustomOption.ShamelessPlug = false;
             ResourceLoader.LoadAssets();
+
+
+            RoleModPlugin.Logger.LogInfo("Test 1");
+            CrewmateHolder = CustomOption.AddHolder("Crewmate Role");
+            ImpostorHolder = CustomOption.AddHolder("Impostor Role");
+            NeutralHolder = CustomOption.AddHolder("Neutral Role");
+            DeadHolder = CustomOption.AddHolder("Dead Role");
+
+            RoleModPlugin.Logger.LogInfo("Test 2");
         }
     }
 }
