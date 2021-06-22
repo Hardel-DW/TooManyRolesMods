@@ -10,7 +10,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Morphing))]
     public class Morphing : CustomRole<Morphing> {
         // Color: #FF930FFF
-        public static CustomNumberOption MorphingPercent = CustomOption.AddNumber("<color=#FF0000FF>Morphing Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.ImpostorHolder);
+        public static CustomNumberOption MorphingPercent = CustomOption.AddNumber("Morphing", "<color=#FF0000FF>Morphing Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.ImpostorHolder);
         public static CustomNumberOption NumberMorphing = CustomOption.AddNumber("Number Morphing", 1f, 1f, 10f, 1f, MorphingPercent);
         public static CustomNumberOption MorphingCooldown = CustomOption.AddNumber("Morphing Cooldown", 30f, 10f, 120f, 5f, MorphingPercent);
         public static CustomNumberOption MorphingDuration = CustomOption.AddNumber("Morphing Duration", 10f, 2f, 30f, 2f, MorphingPercent);
@@ -35,6 +35,11 @@ namespace RolesMods.Roles {
         public override void OnInfectedStart() {
             PercentApparition = (int) MorphingPercent.GetValue();
             NumberPlayers = (int) NumberMorphing.GetValue();
+        }
+
+        public override void OnMeetingEnd(MeetingHud instance) {
+            Systems.Morphing.Button.Instance.Sample = null;
+            Systems.Morphing.Button.Instance.State = Systems.Morphing.MorphingState.Nothing;
         }
 
         public override void OnGameStarted() {

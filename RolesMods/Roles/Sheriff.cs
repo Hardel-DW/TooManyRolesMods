@@ -12,7 +12,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Sheriff))]
     public class Sheriff : CustomRole<Sheriff> {
         // Color: D1B300FF
-        public static CustomNumberOption SherifPercent = CustomOption.AddNumber("<color=#D1B300FF>Sherif Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomNumberOption SherifPercent = CustomOption.AddNumber("Sherif", "<color=#D1B300FF>Sherif Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
         public static CustomNumberOption NumberSherif = CustomOption.AddNumber("Number Sherif", 1f, 1f, 10f, 1f, SherifPercent);
         public static CustomNumberOption SheriffKillCooldown = CustomOption.AddNumber("Sherif Cooldown", 15f, 5f, 90f, 10f, SherifPercent);
         public static CustomToggleOption TargetDies = CustomOption.AddToggle("Target dies", false, SherifPercent);

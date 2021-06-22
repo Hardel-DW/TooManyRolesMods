@@ -10,7 +10,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(SecurityGuard))]
     public class SecurityGuard : CustomRole<SecurityGuard> {
         // Color: #07db00FF
-        public static CustomNumberOption SecurityGuardPercent = CustomOption.AddNumber("<color=#d4B40cff>SecurityGuard Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomNumberOption SecurityGuardPercent = CustomOption.AddNumber("SecurityGuard", "<color=#d4B40cff>SecurityGuard Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
         public static CustomNumberOption NumberSecurityGuard = CustomOption.AddNumber("Number Security Guard", 1f, 1f, 10f, 1f, SecurityGuardPercent);
         public static CustomNumberOption CooldownSecurityGuard = CustomOption.AddNumber("Security Guard Cooldown", 30f, 10f, 120f, 5f, SecurityGuardPercent);
         public static CustomNumberOption NumberScrews = CustomOption.AddNumber("Security Guard Number Of Screws", 1f, 1f, 30f, 1f, SecurityGuardPercent);

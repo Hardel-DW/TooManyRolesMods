@@ -9,7 +9,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Psychic))]
     public class Psychic : CustomRole<Psychic> {
         // Color: BA02BBFF
-        public static CustomNumberOption PsychicPercent = CustomOption.AddNumber("<color=#BA02BBFF>Psychic Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomNumberOption PsychicPercent = CustomOption.AddNumber("Psychic", "<color=#BA02BBFF>Psychic Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
         public static CustomNumberOption NumberPsychic = CustomOption.AddNumber("Number Psychic", 1f, 1f, 10f, 1f, PsychicPercent);
         public static CustomNumberOption PsychicDuration = CustomOption.AddNumber("Vision Duration", 5f, 3f, 30f, 1f, PsychicPercent);
         public static CustomNumberOption PsychicCooldown = CustomOption.AddNumber("Vision Cooldown", 30f, 10f, 120f, 5f, PsychicPercent);

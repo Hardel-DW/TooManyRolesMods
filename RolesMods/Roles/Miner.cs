@@ -10,7 +10,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Miner))]
     public class Miner : CustomRole<Miner> {
         // Color: #FF930FFF
-        public static CustomNumberOption MinerPercent = CustomOption.AddNumber("<color=#FF0000FF>Miner Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.ImpostorHolder);
+        public static CustomNumberOption MinerPercent = CustomOption.AddNumber("Miner", "<color=#FF0000FF>Miner Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.ImpostorHolder);
         public static CustomNumberOption NumberMiner = CustomOption.AddNumber("Number Miner", 1f, 1f, 10f, 1f, MinerPercent);
         public static CustomNumberOption MinerCooldown = CustomOption.AddNumber("Miner Cooldown", 30f, 10f, 120f, 5f, MinerPercent);
         public static CustomNumberOption MaxUseMiner = CustomOption.AddNumber("Max use", 1f, 1f, 10f, 1f, MinerPercent);

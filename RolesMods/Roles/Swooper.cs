@@ -9,7 +9,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Swooper))]
     public class Swooper : CustomRole<Swooper> {
         // Color: #FF930FFF
-        public static CustomNumberOption SwooperPercent = CustomOption.AddNumber("<color=#FF0000FF>Swooper Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.ImpostorHolder);
+        public static CustomNumberOption SwooperPercent = CustomOption.AddNumber("Swooper", "<color=#FF0000FF>Swooper Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.ImpostorHolder);
         public static CustomNumberOption NumberSwooper = CustomOption.AddNumber("Number Swooper", 1f, 1f, 10f, 1f, SwooperPercent);
         public static CustomNumberOption SwooperCooldown = CustomOption.AddNumber("Swooper Cooldown", 30f, 10f, 120f, 5f, SwooperPercent);
         public static CustomNumberOption SwooperDuration = CustomOption.AddNumber("Swooper Duration", 10f, 2f, 30f, 2f, SwooperPercent);

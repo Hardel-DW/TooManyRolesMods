@@ -11,7 +11,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Engineer))]
     public class Engineer : CustomRole<Engineer> {
         // Color: #FF930FFF
-        public static CustomNumberOption EngineerPercent = CustomOption.AddNumber("<color=#FF930FFF>Engineer Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomNumberOption EngineerPercent = CustomOption.AddNumber("Engineer", "<color=#FF930FFF>Engineer Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
         public static CustomNumberOption NumberEngineer = CustomOption.AddNumber("Number Engineer", 1f, 1f, 10f, 1f, EngineerPercent);
         public static CustomNumberOption MaxUseEngineer = CustomOption.AddNumber("Max use", 1f, 1f, 10f, 1f, EngineerPercent);
 

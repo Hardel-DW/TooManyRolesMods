@@ -10,7 +10,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Lighter))]
     public class Lighter : CustomRole<Lighter> {
         // Color: BA5B13FF
-        public static CustomNumberOption LighterPercent = CustomOption.AddNumber("<color=#BA5B13FF>Lighter Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomNumberOption LighterPercent = CustomOption.AddNumber("Lighter", "<color=#BA5B13FF>Lighter Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
         public static CustomNumberOption NumberLighter = CustomOption.AddNumber("Number Lighter", 1f, 1f, 10f, 1f, LighterPercent);
         public static CustomNumberOption LighterMultiplier = CustomOption.AddNumber("Lighter Multiplier", 1.5f, 0f, 5f, 0.05f, LighterPercent);
         public static CustomToggleOption LighterSabotageVision = CustomOption.AddToggle("Lighter sees during electrical sabotage", true, LighterPercent);

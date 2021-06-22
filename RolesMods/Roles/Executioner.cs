@@ -11,7 +11,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Executioner))]
     public class Executioner : CustomRole<Executioner> {
         // Color: #633a37ff
-        public static CustomNumberOption ExecutionerPercent = CustomOption.AddNumber("<color=#633A37FF>Executioner Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.NeutralHolder);
+        public static CustomNumberOption ExecutionerPercent = CustomOption.AddNumber("Executioner", "<color=#633A37FF>Executioner Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.NeutralHolder);
         public static CustomNumberOption NumberExecutioner = CustomOption.AddNumber("Number Executioner", 1f, 1f, 10f, 1f, ExecutionerPercent);
         private static PlayerControl Target;
 

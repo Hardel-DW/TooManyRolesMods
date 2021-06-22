@@ -7,7 +7,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Altruist))]
     public class Altruist : CustomRole<Altruist> {
         // Color: D10052FF
-        public static CustomNumberOption AltruistPercent = CustomOption.AddNumber("<color=#D10052FF>Altruist Apparition</color>", 0f, 0f, 100f, 5f);
+        public static CustomNumberOption AltruistPercent = CustomOption.AddNumber("Altruist", "<color=#D10052FF>Altruist Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
         public static CustomNumberOption NumberAltruist = CustomOption.AddNumber("Number Altruist", 1f, 1f, 10f, 1f, AltruistPercent);
 
         public Altruist() : base() {
@@ -25,7 +25,6 @@ namespace RolesMods.Roles {
         }
 
         private void GameOptionFormat() {
-            RoleModPlugin.Logger.LogInfo("Test");
             AltruistPercent.ValueStringFormat = (option, value) => $"{value}%";
             AltruistPercent.ShowChildrenConidtion = () => AltruistPercent.GetValue() > 0;
 

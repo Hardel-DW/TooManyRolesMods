@@ -7,8 +7,8 @@ using UnityEngine;
 namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Spy))]
     public class Spy : CustomRole<Spy> {
-        // Color: #00bd7aff
-        public static CustomNumberOption SpyPercent = CustomOption.AddNumber("<color=#00bd7aff>Spy Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        // Color: #B5DFBCFF
+        public static CustomNumberOption SpyPercent = CustomOption.AddNumber("Spy", "<color=#B5DFBCFF>Spy Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
         public static CustomNumberOption NumberSpy = CustomOption.AddNumber("Number Spy", 1f, 1f, 10f, 1f, SpyPercent);
         public static CustomNumberOption SpyCooldown = CustomOption.AddNumber("Cooldown Spy", 30f, 10f, 120f, 5f, SpyPercent);
         public static CustomNumberOption SpyDuration = CustomOption.AddNumber("Duration Spy", 10f, 5f, 30f, 2.5f, SpyPercent);
@@ -18,7 +18,7 @@ namespace RolesMods.Roles {
 
         public Spy() : base() {
             GameOptionFormat();
-            TasksDescription = "<color=#00bd7aff>Spy: Get more information on admin and vital</color>";
+            TasksDescription = "<color=#B5DFBCFF>Spy: Get more information on admin and vital</color>";
             IntroDescription = "Get more information !";
             Name = "Spy";
             Side = PlayerSide.Crewmate;

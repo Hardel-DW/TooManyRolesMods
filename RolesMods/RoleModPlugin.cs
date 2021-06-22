@@ -6,50 +6,23 @@ using Harion.CustomOptions;
 using Harion;
 using Harion.Reactor;
 using Harion.Cooldown;
-using Harion.ModsManagers.Configuration;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Reflection;
-using Harion.ModsManagers.Mods;
 
 namespace RolesMods {
 
     [BepInPlugin(Id)]
     [BepInProcess("Among Us.exe")]
     [BepInDependency(HarionPlugin.Id)]
-    public class RoleModPlugin : BasePlugin, IModManager, IModManagerUpdater, IModManagerLink {
+    public class RoleModPlugin : BasePlugin {
         public const string Id = "fr.hardel.toomanyrolesmodes";
         public static ManualLogSource Logger;
 
-        public static CustomOptionHolder CrewmateHolder;
-        public static CustomOptionHolder ImpostorHolder;
-        public static CustomOptionHolder NeutralHolder;
-        public static CustomOptionHolder DeadHolder;
-
         public Harmony Harmony { get; } = new Harmony(Id);
 
-        public string DisplayName => "Too Many Roles";
-
-        public string Version => typeof(RoleModPlugin).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
-
-        public string SmallDescription => "Add 32 roles to Among Us";
-
-        public string Description => "This mod adds more than 30 roles, for fun, and tons of perssonalization. Using Harion.";
-
-        public string Credit => "Hardel";
-
-        public string GithubRepositoryName => "TooManyRolesMods";
-
-        public string GithubAuthorName => "Hardel-DW";
-
-        public GithubVisibility GithubRepositoryVisibility => GithubVisibility.Public;
-
-        public string GithubAccessToken => "";
-
-        public Dictionary<string, Sprite> ModsLinks => new Dictionary<string, Sprite>() {
-            { "https://www.patreon.com/hardel", ModsSocial.PatreonSprite },
-            { "https://discord.gg/HZtCDK3s",  ModsSocial.DiscordSprite }
-        };
+        // Game Option
+        public static CustomOptionHolder CrewmateHolder = CustomOption.AddHolder("<b><color=#007ACCFF>Crewmate Role :</color></b>");
+        public static CustomOptionHolder ImpostorHolder = CustomOption.AddHolder("<b><color=#FF0000FF>Impostor Role :</color></b>");
+        public static CustomOptionHolder NeutralHolder = CustomOption.AddHolder("<b><color=#888888FF>Neutral Role :</color></b>");
+        public static CustomOptionHolder DeadHolder = CustomOption.AddHolder("<b><color=#7137AEFF>Dead Role :</color></b>");
 
         public override void Load() {
             Logger = Log;
@@ -58,15 +31,14 @@ namespace RolesMods {
             RegisterCooldownButton.Register();
             CustomOption.ShamelessPlug = false;
             ResourceLoader.LoadAssets();
+            GameOptionConf();
+        }
 
-
-            RoleModPlugin.Logger.LogInfo("Test 1");
-            CrewmateHolder = CustomOption.AddHolder("Crewmate Role");
-            ImpostorHolder = CustomOption.AddHolder("Impostor Role");
-            NeutralHolder = CustomOption.AddHolder("Neutral Role");
-            DeadHolder = CustomOption.AddHolder("Dead Role");
-
-            RoleModPlugin.Logger.LogInfo("Test 2");
+        private void GameOptionConf() {
+            CrewmateHolder.HudStringFormat = (option, name, value) => $"\n{name}";
+            ImpostorHolder.HudStringFormat = (option, name, value) => $"\n{name}";
+            NeutralHolder.HudStringFormat = (option, name, value) => $"\n{name}";
+            DeadHolder.HudStringFormat = (option, name, value) => $"\n{name}";
         }
     }
 }

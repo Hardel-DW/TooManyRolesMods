@@ -7,8 +7,8 @@ namespace RolesMods.Roles {
 
     [RegisterInCustomRoles(typeof(Tracker))]
     public class Tracker : CustomRole<Tracker> {
-        // Color: #07db00FF
-        public static CustomNumberOption TrackerPercent = CustomOption.AddNumber("<color=#07db00FF>Tracker Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        // Color: #07 db 00 FF
+        public static CustomNumberOption TrackerPercent = CustomOption.AddNumber("Tracker", "<color=#00bd7aff>Tracker Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
         public static CustomNumberOption NumberTracker = CustomOption.AddNumber("Number Tracker", 1f, 1f, 10f, 1f, TrackerPercent);
         public static CustomNumberOption TargetUpdate = CustomOption.AddNumber("Arrow Interval", 5f, 0f, 30f, 0.5f, TrackerPercent);
 

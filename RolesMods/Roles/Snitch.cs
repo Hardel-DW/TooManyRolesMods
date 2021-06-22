@@ -13,7 +13,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Snitch))]
     public class Snitch : CustomRole<Snitch> {
         // Color: #b6bf62ff
-        public static CustomNumberOption SnitchPercent = CustomOption.AddNumber("<color=#b6bf62ff>Snitch Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomNumberOption SnitchPercent = CustomOption.AddNumber("Snitch", "<color=#b6bf62ff>Snitch Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
         public static CustomNumberOption NumberSnitch = CustomOption.AddNumber("Number Snitch", 1f, 1f, 10f, 1f, SnitchPercent);
         public static CustomNumberOption TaskCount = CustomOption.AddNumber("Task Count Where Impostors See Snitch", 1f, 1f, 10f, 1f, SnitchPercent);
         public static CustomToggleOption ShowRoleAtStartGame = CustomOption.AddToggle("Show Role at start game", false, SnitchPercent);

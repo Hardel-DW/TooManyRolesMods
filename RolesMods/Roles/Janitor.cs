@@ -10,7 +10,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Janitor))]
     public class Janitor : CustomRole<Janitor> {
         // Color: #FF930FFF
-        public static CustomNumberOption JanitorPercent = CustomOption.AddNumber("<color=#FF0000FF>Janitor Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.ImpostorHolder);
+        public static CustomNumberOption JanitorPercent = CustomOption.AddNumber("Janitor", "<color=#FF0000FF>Janitor Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.ImpostorHolder);
         public static CustomNumberOption NumberJanitor = CustomOption.AddNumber("Number Janitor", 1f, 1f, 10f, 1f, JanitorPercent);
         public static CustomNumberOption JanitorCooldown = CustomOption.AddNumber("Janitor Cooldown", 30f, 10f, 120f, 5f, JanitorPercent);
         public static CustomNumberOption MaxUseJanitor = CustomOption.AddNumber("Max use", 1f, 1f, 10f, 1f, JanitorPercent);

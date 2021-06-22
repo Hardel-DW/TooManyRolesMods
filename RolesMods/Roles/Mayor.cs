@@ -8,7 +8,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Mayor))]
     public class Mayor : CustomRole<Mayor> {
         // Color: #614474FF
-        public static CustomNumberOption MayorPercent = CustomOption.AddNumber("<color=#614474FF>Mayor Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomNumberOption MayorPercent = CustomOption.AddNumber("Mayor", "<color=#614474FF>Mayor Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
         public static CustomNumberOption NumberMayor = CustomOption.AddNumber("Number Mayor", 1f, 1f, 10f, 1f, MayorPercent);
         
         public static List<byte> ExtraVotes = new List<byte>();

@@ -10,7 +10,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Swapper))]
     public class Swapper : CustomRole<Swapper> {
         // Color: #0cd418ff
-        public static CustomNumberOption SwapperPercent = CustomOption.AddNumber("<color=#0cd418ff>Swapper Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomNumberOption SwapperPercent = CustomOption.AddNumber("Swapper", "<color=#0cd418ff>Swapper Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
         public static CustomNumberOption NumberSwapper = CustomOption.AddNumber("Number Swapper", 1f, 1f, 10f, 1f, SwapperPercent);
         public static CustomNumberOption UseNumber = CustomOption.AddNumber("Swap use", 1f, 1f, 10f, 1f, SwapperPercent);
 

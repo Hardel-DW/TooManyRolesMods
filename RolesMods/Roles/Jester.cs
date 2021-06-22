@@ -9,7 +9,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(Jester))]
     public class Jester : CustomRole<Jester> {
         // Color: D10052FF
-        public static CustomNumberOption JesterPercent = CustomOption.AddNumber("<color=#D10052FF>Jester Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.NeutralHolder);
+        public static CustomNumberOption JesterPercent = CustomOption.AddNumber("Jester", "<color=#D10052FF>Jester Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.NeutralHolder);
         public static CustomNumberOption NumberJester = CustomOption.AddNumber("Number Jester", 1f, 1f, 10f, 1f, JesterPercent);
 
         public Jester() : base() {

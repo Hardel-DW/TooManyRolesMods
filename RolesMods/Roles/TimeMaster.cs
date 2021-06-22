@@ -8,7 +8,7 @@ namespace RolesMods.Roles {
     [RegisterInCustomRoles(typeof(TimeMaster))]
     public class TimeMaster : CustomRole<TimeMaster> {
         // Color: 999999FF
-        public static CustomNumberOption TimeMasterPercent = CustomOption.AddNumber("<color=#999999FF>TimeMaster Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        public static CustomNumberOption TimeMasterPercent = CustomOption.AddNumber("TimeMaster", "<color=#999999FF>TimeMaster Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
         public static CustomNumberOption NumberTimeMaster = CustomOption.AddNumber("Number TimeMaster", 1f, 1f, 10f, 1f, TimeMasterPercent);
         public static CustomNumberOption TimeMasterDuration = CustomOption.AddNumber("Rewind Duration", 5f, 3f, 30f, 1f, TimeMasterPercent);
         public static CustomNumberOption TimeMasterCooldown = CustomOption.AddNumber("Rewind Cooldown", 30f, 10f, 120f, 5f, TimeMasterPercent);
