@@ -10,7 +10,7 @@ namespace RolesMods {
 
         public string DisplayName => "Too Many Roles";
 
-        public string Version => typeof(RoleModPlugin).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+        public string Version => "V" + typeof(RoleModPlugin).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
 
         public string SmallDescription => "Add 32 roles to Among Us";
 
