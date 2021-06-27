@@ -22,7 +22,7 @@ namespace RolesMods.Roles {
 
         public override List<Ability> Abilities { get; set; } = new List<Ability>() {
             new KillAbility() {
-                CanKill = VisibleBy.Nobody,
+                CanKill = Killable.Nobody,
                 KillCooldown = KillCooldown.GetValue()
             },
             new VentAbility() {

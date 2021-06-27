@@ -8,6 +8,7 @@ namespace RolesMods.Systems.Janitor {
     public class Button : CustomButton<Button> {
 
         public override void OnCreateButton() {
+            MaxTimer = PlayerControl.GameOptions.KillCooldown;
             Timer = PlayerControl.GameOptions.KillCooldown;
             DecreamteUseNimber = UseNumberDecremantion.OnClick;
             Closest = Harion.Cooldown.ClosestElement.DeadBody;
@@ -16,8 +17,11 @@ namespace RolesMods.Systems.Janitor {
         }
 
         public override void OnClick() {
-            DestroyableSingleton<HudManager>.Instance.KillButton.SetCoolDown(JanitorRoles.JanitorCooldown.GetValue(), PlayerControl.GameOptions.KillCooldown);
-            DeadBodyUtils.CleanBodyDuration(GetDeadBodyTarget(), 60);
+            DeadBody body = GetDeadBodyTarget();
+            if (body != null) {
+                PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
+                DeadBodyUtils.CleanBodyDuration(body, 60);
+            }
         }
     }
 }

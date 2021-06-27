@@ -19,7 +19,7 @@ namespace RolesMods.Roles {
 
         public override List<Ability> Abilities { get; set; } = new List<Ability>() {
             new KillAbility() {
-                CanKill = VisibleBy.Everyone,
+                CanKill = Killable.Everyone,
                 KillCooldown = SheriffKillCooldown.GetValue(),
                 LastKilled = DateTime.UtcNow.AddSeconds(-10.0),
             }

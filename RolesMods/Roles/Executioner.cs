@@ -43,8 +43,10 @@ namespace RolesMods.Roles {
                 players.RemoveAll(player => player.Data.IsImpostor);
                 players.RemoveAll(player => player.PlayerId == PlayerControl.LocalPlayer.PlayerId);
 
-                Target = players[new System.Random().Next(players.Count)];
-                specificNameInformation.Add(Target, (new Color(204f / 255f, 53f / 255f, 53f / 255f, 1f), "Target !"));
+                if (players.Count > 0) {
+                    Target = players[new System.Random().Next(players.Count)];
+                    specificNameInformation.Add(Target, (new Color(204f / 255f, 53f / 255f, 53f / 255f, 1f), "Target !"));
+                }
             }
         }
 
