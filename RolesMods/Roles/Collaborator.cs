@@ -20,6 +20,7 @@ namespace RolesMods.Roles {
             TasksDescription = "<color=#1aeef9ff>Collaborator: Help the serial killer to win</color>";
             Name = "Collaborator";
             HasTask = false;
+            RoleType = RoleType.Undefined;
             Side = PlayerSide.Crewmate;
             GiveTasksAt = Moment.Never;
             ShowIntroCutScene = false;

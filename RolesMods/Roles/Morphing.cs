@@ -22,14 +22,15 @@ namespace RolesMods.Roles {
 
         public Morphing() : base() {
             GameOptionFormat();
-            Side = PlayerSide.Impostor;
             RoleActive = true;
+            Side = PlayerSide.Impostor;
+            RoleType = RoleType.Impostor;
             GiveRoleAt = Moment.StartGame;
             GiveTasksAt = Moment.StartGame;
             Color = Palette.ImpostorRed;
             Name = "Morphing";
             IntroDescription = "Je sais pas";
-            TasksDescription = "<color=#FF930FFF>Morphing: Faut définir une description pffff</color>";
+            TasksDescription = "<color=#FF0000FF>Morphing: Faut définir une description pffff</color>";
         }
 
         public override void OnInfectedStart() {

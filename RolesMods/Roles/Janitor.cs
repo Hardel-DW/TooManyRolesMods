@@ -20,14 +20,15 @@ namespace RolesMods.Roles {
 
         public Janitor() : base() {
             GameOptionFormat();
-            Side = PlayerSide.Impostor;
             RoleActive = true;
+            Side = PlayerSide.Impostor;
+            RoleType = RoleType.Impostor;
             GiveRoleAt = Moment.StartGame;
             GiveTasksAt = Moment.StartGame;
             Color = Palette.ImpostorRed;
             Name = "Janitor";
             IntroDescription = "Je sais pas";
-            TasksDescription = "<color=#FF930FFF>Janitor: Faut définir une description pffff</color>";
+            TasksDescription = "<color=#FF0000FF>Janitor: Faut définir une description pffff</color>";
         }
 
         public override void OnInfectedStart() {

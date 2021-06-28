@@ -9,8 +9,8 @@ namespace RolesMods.Roles {
 
     [RegisterInCustomRoles(typeof(Lover))]
     public class Lover : CustomRole<Lover> {
-        // Color: ##f570dcff
-        public static CustomNumberOption LoverPercent = CustomOption.AddNumber("Lover", "<color=#f570dcff>Lover Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        // Color: #f5b2e4ff
+        public static CustomNumberOption LoverPercent = CustomOption.AddNumber("Lover", "<color=#f5b2e4ff>Lover Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
         public static CustomToggleOption LoverDies = CustomOption.AddToggle("Lover die with both", false, LoverPercent);
         private static PlayerControl Target;
         private bool TargetIsDead = false;
@@ -22,10 +22,10 @@ namespace RolesMods.Roles {
             GiveRoleAt = Moment.StartGame;
             GiveTasksAt = Moment.StartGame;
             NumberPlayers = 2;
-            Color = new Color(0.388f, 0.227f, 0.215f, 1f);
+            Color = new Color(0.960f, 0.698f, 0.894f, 1f);
             Name = "Lover";
-            IntroDescription = $"You are in <color=#f570dcff>Love</color> with <color=#f570dcff>{Target?.name}</color>";
-            TasksDescription = $"Lover: You are in <color=#f570dcff>Love</color> with <color=#f570dcff>{Target?.name}</color>";
+            IntroDescription = $"You are in <color=#f570dcff>Love</color> with <color=#f5b2e4ff>{Target?.name}</color>";
+            TasksDescription = $"Lover: You are in <color=#f5b2e4ff>Love</color> with <color=#f5b2e4ff>{Target?.name}</color>";
             OutroDescription = "Lovers win";
         }
 

@@ -21,14 +21,15 @@ namespace RolesMods.Roles {
 
         public Miner() : base() {
             GameOptionFormat();
-            Side = PlayerSide.Impostor;
             RoleActive = true;
+            Side = PlayerSide.Impostor;
+            RoleType = RoleType.Impostor;
             GiveRoleAt = Moment.StartGame;
             GiveTasksAt = Moment.StartGame;
             Color = Palette.ImpostorRed;
             Name = "Miner";
             IntroDescription = "You can be Invisible";
-            TasksDescription = "<color=#FF930FFF>Miner: Use your ability to be invisible</color>";
+            TasksDescription = "<color=#FF0000FF>Miner: Use your ability to be invisible</color>";
         }
 
         public override void OnInfectedStart() {

@@ -38,6 +38,7 @@ namespace RolesMods.Roles {
             Name = "Serial Killer";
             HasTask = false;
             Side = PlayerSide.Crewmate;
+            RoleType = RoleType.Neutral;
             GiveTasksAt = Moment.StartGame;
             RoleActive = true;
             Color = new Color(0.101f, 0.933f, 0.976f, 1f);

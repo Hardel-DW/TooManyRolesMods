@@ -14,10 +14,11 @@ namespace RolesMods.Roles {
 
         public Jester() : base() {
             GameOptionFormat();
-            Side = PlayerSide.Crewmate;
             HasTask = false;
             RoleActive = true;
             ForceExiledReveal = true;
+            Side = PlayerSide.Crewmate;
+            RoleType = RoleType.Neutral;
             GiveTasksAt = Moment.StartGame;
             Color = new Color(0.819f, 0f, 0.321f, 1f);
             Name = "Jester";

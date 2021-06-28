@@ -1,5 +1,6 @@
 ﻿using Harion.CustomOptions;
 using Harion.CustomRoles;
+using Harion.Enumerations;
 using UnityEngine;
 
 namespace RolesMods.Roles {
@@ -13,6 +14,7 @@ namespace RolesMods.Roles {
 
         public Shifter() : base() {
             GameOptionFormat();
+            RoleType = RoleType.Neutral;
             TasksDescription = "<color=#575757FF>Shifter: Shift your role before the game ends</color>";
             IntroDescription = "Shift your role before the game ends";
             Name = "Shifter";

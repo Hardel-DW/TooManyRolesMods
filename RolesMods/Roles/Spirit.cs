@@ -23,6 +23,7 @@ namespace RolesMods.Roles {
             Side = PlayerSide.Everyone;
             GiveTasksAt = Moment.OnDie;
             GiveRoleAt = Moment.StartGame;
+            RoleType = RoleType.Dead;
             RoleActive = true;
             ShowIntroCutScene = false;
         }

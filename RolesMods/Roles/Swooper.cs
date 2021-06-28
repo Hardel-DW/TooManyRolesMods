@@ -25,10 +25,11 @@ namespace RolesMods.Roles {
             RoleActive = true;
             GiveRoleAt = Moment.StartGame;
             GiveTasksAt = Moment.StartGame;
+            RoleType = RoleType.Impostor;
             Color = Palette.ImpostorRed;
             Name = "Swooper";
             IntroDescription = "You can be Invisible";
-            TasksDescription = "<color=#FF930FFF>Swooper: Use your ability to be invisible</color>";
+            TasksDescription = "<color=#FF0000FF>Swooper: Use your ability to be invisible</color>";
         }
 
         public override void OnInfectedStart() {

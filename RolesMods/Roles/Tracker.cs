@@ -7,8 +7,8 @@ namespace RolesMods.Roles {
 
     [RegisterInCustomRoles(typeof(Tracker))]
     public class Tracker : CustomRole<Tracker> {
-        // Color: #07 db 00 FF
-        public static CustomNumberOption TrackerPercent = CustomOption.AddNumber("Tracker", "<color=#00bd7aff>Tracker Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        // Color: #b2f5e3ff
+        public static CustomNumberOption TrackerPercent = CustomOption.AddNumber("Tracker", "<color=#b2f5e3ff>Tracker Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
         public static CustomNumberOption NumberTracker = CustomOption.AddNumber("Number Tracker", 1f, 1f, 10f, 1f, TrackerPercent);
         public static CustomNumberOption TargetUpdate = CustomOption.AddNumber("Arrow Interval", 5f, 0f, 30f, 0.5f, TrackerPercent);
 
@@ -18,10 +18,10 @@ namespace RolesMods.Roles {
             RoleActive = true;
             GiveRoleAt = Moment.StartGame;
             GiveTasksAt = Moment.StartGame;
-            Color = new Color(0.027f, 0.858f, 0f, 1f);
+            Color = new Color(0.698f, 0.960f, 0.890f, 1f);
             Name = "Tracker";
             IntroDescription = "Track a player and do your tasks";
-            TasksDescription = "<color=#07db00FF>Tracker: You can see the player\nposition with an arrow.</color>";
+            TasksDescription = "<color=#b2f5e3ff>Tracker: You can see the player\nposition with an arrow.</color>";
         }
 
         public override void OnInfectedStart() {

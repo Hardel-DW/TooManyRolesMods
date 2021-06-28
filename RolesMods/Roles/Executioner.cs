@@ -17,8 +17,9 @@ namespace RolesMods.Roles {
 
         public Executioner() : base() {
             GameOptionFormat();
-            Side = PlayerSide.Crewmate;
             RoleActive = true;
+            Side = PlayerSide.Crewmate;
+            RoleType = RoleType.Neutral;
             GiveRoleAt = Moment.StartGame;
             GiveTasksAt = Moment.StartGame;
             Color = new Color(0.388f, 0.227f, 0.215f, 1f);

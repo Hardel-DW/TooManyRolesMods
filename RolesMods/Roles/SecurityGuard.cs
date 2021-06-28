@@ -9,8 +9,8 @@ namespace RolesMods.Roles {
 
     [RegisterInCustomRoles(typeof(SecurityGuard))]
     public class SecurityGuard : CustomRole<SecurityGuard> {
-        // Color: #07db00FF
-        public static CustomNumberOption SecurityGuardPercent = CustomOption.AddNumber("SecurityGuard", "<color=#d4B40cff>SecurityGuard Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
+        // Color: #eaf5b2ff
+        public static CustomNumberOption SecurityGuardPercent = CustomOption.AddNumber("SecurityGuard", "<color=#eaf5b2ff>SecurityGuard Apparition</color>", 0f, 0f, 100f, 5f, RoleModPlugin.CrewmateHolder);
         public static CustomNumberOption NumberSecurityGuard = CustomOption.AddNumber("Number Security Guard", 1f, 1f, 10f, 1f, SecurityGuardPercent);
         public static CustomNumberOption CooldownSecurityGuard = CustomOption.AddNumber("Security Guard Cooldown", 30f, 10f, 120f, 5f, SecurityGuardPercent);
         public static CustomNumberOption NumberScrews = CustomOption.AddNumber("Security Guard Number Of Screws", 1f, 1f, 30f, 1f, SecurityGuardPercent);
@@ -25,10 +25,10 @@ namespace RolesMods.Roles {
             RoleActive = true;
             GiveRoleAt = Moment.StartGame;
             GiveTasksAt = Moment.StartGame;
-            Color = new Color(0.831f, 0.705f, 0.047f, 1f);
+            Color = new Color(0.917f, 0.960f, 0.698f, 1f);
             Name = "Security Guard";
             IntroDescription = "Seal vents and place cameras";
-            TasksDescription = "<color=#d4B40cff>Security Guard: Seal vents and place cameras</color>";
+            TasksDescription = "<color=#eaf5b2ff>Security Guard: Seal vents and place cameras</color>";
         }
 
         public override void OnInfectedStart() {
