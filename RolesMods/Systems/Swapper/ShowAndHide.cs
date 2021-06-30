@@ -30,7 +30,8 @@ namespace RolesMods.Systems.Swapper {
                         if (Set) {
                             SwapVotes.Swap1 = __instance.playerStates[i];
                             Set = false;
-                        } else SwapVotes.Swap2 = __instance.playerStates[i];
+                        } else
+                            SwapVotes.Swap2 = __instance.playerStates[i];
                     }
                 }
 
@@ -81,7 +82,7 @@ namespace RolesMods.Systems.Swapper {
         [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.CheckForEndVoting))]
         public static class CheckForEndVoting {
             public static bool Prefix(MeetingHud __instance) {
-                if (__instance.playerStates.All(playerState => playerState.isDead || playerState.didVote)) {
+                if (__instance.playerStates.All(playerState => playerState.AmDead || playerState.DidVote)) {
                     byte[] self = CalculateVotes(__instance);
                     Il2CppStructArray<byte> selfIl2 = self;
                     bool tie;
@@ -90,7 +91,7 @@ namespace RolesMods.Systems.Swapper {
                     GameData.PlayerInfo exiled = GameData.Instance.AllPlayers.ToArray().FirstOrDefault(v => v.PlayerId == maxIdx);
                     byte[] array = new byte[10];
 
-                    foreach (var playerVoteArea in __instance.playerStates) 
+                    foreach (var playerVoteArea in __instance.playerStates)
                         array[playerVoteArea.TargetPlayerId] = playerVoteArea.GetState();
 
                     RpcVotingComplete(__instance, array, exiled, tie);

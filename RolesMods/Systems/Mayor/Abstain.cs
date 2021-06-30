@@ -1,11 +1,11 @@
-﻿/*using UnityEngine;
+﻿using UnityEngine;
 using HarmonyLib;
 using Harion.CustomRoles;
 
 namespace RolesMods.Systems.Mayor {
     public class Abstain {
         public static void UpdateButton(MeetingHud __instance) {
-            var skip = __instance.SkipVoteButton;
+            PlayerVoteArea skip = __instance.SkipVoteButton;
             Roles.Mayor.Abstain.gameObject.SetActive(skip.gameObject.active && !Roles.Mayor.VotedOnce);
             Roles.Mayor.Abstain.voteComplete = skip.voteComplete;
             Roles.Mayor.Abstain.GetComponent<SpriteRenderer>().enabled = skip.GetComponent<SpriteRenderer>().enabled;
@@ -15,10 +15,10 @@ namespace RolesMods.Systems.Mayor {
         [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
         public class MeetingHudStart {
             public static void GenButton(MeetingHud __instance) {
-                var skip = __instance.SkipVoteButton;
+                PlayerVoteArea skip = __instance.SkipVoteButton;
                 Roles.Mayor.Abstain = Object.Instantiate(skip, skip.transform.parent);
                 Roles.Mayor.Abstain.Parent = __instance;
-                Roles.Mayor.Abstain.SetTargetPlayerId(11);
+                Roles.Mayor.Abstain.SetTargetPlayerId(251);
                 Roles.Mayor.Abstain.transform.localPosition = skip.transform.localPosition + new Vector3(0f, -0.17f, 0f);
                 skip.transform.localPosition += new Vector3(0f, 0.20f, 0f);
                 UpdateButton(__instance);
@@ -59,7 +59,7 @@ namespace RolesMods.Systems.Mayor {
                 if (!Roles.Mayor.Instance.HasRole(PlayerControl.LocalPlayer))
                     return;
 
-                if (playerId != 11) {
+                if (playerId != 251) {
                     Roles.Mayor.Abstain.ClearButtons();
                 }
 
@@ -85,18 +85,16 @@ namespace RolesMods.Systems.Mayor {
 
                 switch (__instance.state) {
                     case MeetingHud.VoteStates.Discussion:
-                    if (__instance.discussionTimer < (float) PlayerControl.GameOptions.DiscussionTime) {
-                        Roles.Mayor.Abstain.SetDisabled();
+                        if (__instance.discussionTimer < PlayerControl.GameOptions.DiscussionTime) {
+                            Roles.Mayor.Abstain.SetDisabled();
+                            break;
+                        }
+
+                        Roles.Mayor.Abstain.SetEnabled();
                         break;
-                    }
-
-
-                    Roles.Mayor.Abstain.SetEnabled();
-                    break;
                 }
                 UpdateButton(__instance);
             }
         }
     }
 }
-*/

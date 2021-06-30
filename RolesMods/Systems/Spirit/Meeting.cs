@@ -1,4 +1,4 @@
-﻿/*using Harion.Utility.Utils;
+﻿using Harion.Utility.Utils;
 using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ namespace RolesMods.Systems.Spirit {
 
     [HarmonyPatch]
     public static class MeetingHudPopulateButtonsPatch {
-        public static List<bool> SpiritHasVoteds = new List<bool>(10);
+        public static List<bool> SpiritHasVoteds = new List<bool>(15);
 
         [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Update))]
         class MeetingUpdatePatch {
@@ -39,7 +39,6 @@ namespace RolesMods.Systems.Spirit {
                         player.ClearButtons();
                         __instance.SkipVoteButton.gameObject.SetActive(false);
                         if (player.TargetPlayerId == PlayerControl.LocalPlayer.Data.PlayerId) {
-                            player.DidVote = true;
                             player.VotedFor = suspectPlayerId;
                         }
                     }
@@ -57,7 +56,6 @@ namespace RolesMods.Systems.Spirit {
                             if (!Roles.Spirit.CanVoteMultipleTime.GetValue() && !SpiritHasVoteds[srcPlayerId])
                                 SpiritHasVoteds[srcPlayerId] = true;
 
-                            player.DidVote = true;
                             player.VotedFor = suspectPlayerId;
                             player.Flag.enabled = true;
                         }
@@ -80,17 +78,5 @@ namespace RolesMods.Systems.Spirit {
                 }
             }
         }
-
-        [HarmonyPatch(typeof(PlayerVoteArea), nameof(PlayerVoteArea.GetState))]
-        class GetStatePatch {
-            static bool Prefix(ref byte __result, PlayerVoteArea __instance) {
-                if (Roles.Spirit.Instance.HasRole((byte) __instance.TargetPlayerId) && __instance.isDead && __instance.didVote && PlayerControl.GameOptions.AnonymousVotes) {
-                    __result = (byte) ((int) (__instance.votedFor + 1 & 15) | (0) | (__instance.didVote ? 64 : 0) | (__instance.didReport ? 32 : 0));
-                    return false;
-                }
-
-                return true;
-            }
-        }
     }
-}*/
+}

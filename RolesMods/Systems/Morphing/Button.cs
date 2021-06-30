@@ -18,8 +18,8 @@ namespace RolesMods.Systems.Morphing {
             Roles = MorphingRoles.Instance;
             HasEffectDuration = true;
             DecreamteUseNimber = UseNumberDecremantion.OnEffectEnd;
-            SampleSprite = SpriteHelper.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Target.png", 250f);
-            MorphSprite = SpriteHelper.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Rewind.png", 250f);
+            SampleSprite = ResourceLoader.RewindRedSprite;
+            MorphSprite = ResourceLoader.RewindSprite;
             SetNothingState();
         }
 

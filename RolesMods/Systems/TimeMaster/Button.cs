@@ -13,7 +13,7 @@ namespace RolesMods.Systems.TimeMaster {
             EffectDuration = TimeMasterRole.TimeMasterDuration.GetValue() / 2;
             HasEffectDuration = true;
             DecreamteUseNimber = UseNumberDecremantion.OnEffectEnd;
-            SetSprite("RolesMods.Resources.Rewind.png", 250);
+            SetSprite(ResourceLoader.RewindSprite);
         }
 
         public override void OnClick() => Time.StartRewind();

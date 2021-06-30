@@ -13,7 +13,7 @@ namespace RolesMods.Systems.Janitor {
             DecreamteUseNimber = UseNumberDecremantion.OnClick;
             Closest = Harion.Cooldown.ClosestElement.DeadBody;
             Roles = JanitorRoles.Instance;
-            SetSprite("RolesMods.Resources.Rewind.png", 250);
+            SetSprite(ResourceLoader.RewindRedSprite);
         }
 
         public override void OnClick() {

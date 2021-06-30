@@ -18,7 +18,7 @@ namespace RolesMods.Systems.Altruist {
             Roles = AltruistRoles.Instance;
             DecreamteUseNimber = UseNumberDecremantion.OnClick;
             UseNumber = 1;
-            SetSprite("RolesMods.Resources.Rewind.png", 250);
+            SetSprite(ResourceLoader.RewindRedSprite);
         }
 
         public override void OnClick() {

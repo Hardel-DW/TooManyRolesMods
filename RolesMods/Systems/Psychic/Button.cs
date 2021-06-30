@@ -13,7 +13,7 @@ namespace RolesMods.Systems.Psychic {
             EffectDuration = PsychicRoles.PsychicDuration.GetValue();
             HasEffectDuration = true;
             DecreamteUseNimber = UseNumberDecremantion.OnClick;
-            SetSprite("RolesMods.Resources.Foresight.png", 1000);
+            SetSprite(ResourceLoader.ForsightSprite);
         }
 
         public override void OnEffectEnd() {

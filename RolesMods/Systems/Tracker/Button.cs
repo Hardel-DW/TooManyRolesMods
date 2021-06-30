@@ -23,7 +23,7 @@ namespace RolesMods.Systems.Tracker {
         public override void OnCreateButton() {
             Timer = 10f;
             Roles = TrackerRoles.Instance;
-            SetSprite("RolesMods.Resources.Target.png", 250);
+            SetSprite(ResourceLoader.TargetSprite);
         }
 
         private void OnCPlayerChoose(PlayerControl Player) {

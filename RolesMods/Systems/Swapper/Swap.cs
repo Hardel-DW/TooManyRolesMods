@@ -1,4 +1,4 @@
-﻿/*using System.Linq;
+﻿using System.Linq;
 using Harion.Reactor;
 using Harion.Utility.Utils;
 using HarmonyLib;
@@ -10,6 +10,14 @@ namespace RolesMods.Systems.Swapper {
     public class SwapVotes {
         public static PlayerVoteArea Swap1;
         public static PlayerVoteArea Swap2;
+
+        [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
+        public static class MeetingHud_Start {
+            public static void Postfix(MeetingHud __instance) {
+                Swap1 = null;
+                Swap2 = null;
+            }
+        }
 
         [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.VotingComplete))]
         public static class VotingComplete {
@@ -24,8 +32,7 @@ namespace RolesMods.Systems.Swapper {
                 // Player 1
                 Transform pool1 = Swap1.PlayerIcon.transform;
                 Transform name1 = Swap1.NameText.transform;
-                Transform mask1 = Swap1.transform.GetChild(4).GetChild(0);
-
+                Transform mask1 = Swap1.transform.FindChild("MaskArea");
                 Vector2 pooldest1 = pool1.position;
                 Vector2 namedest1 = name1.position;
                 Vector2 maskdest1 = mask1.position;
@@ -34,8 +41,7 @@ namespace RolesMods.Systems.Swapper {
                 // Player 2
                 Transform pool2 = Swap2.PlayerIcon.transform;
                 Transform name2 = Swap2.NameText.transform;
-                Transform mask2 = Swap2.transform.GetChild(4).GetChild(0);
-
+                Transform mask2 = Swap2.transform.FindChild("MaskArea");
                 Vector2 pooldest2 = pool2.position;
                 Vector2 namedest2 = name2.position;
                 Vector2 maskdest2 = mask2.position;
@@ -51,4 +57,4 @@ namespace RolesMods.Systems.Swapper {
             }
         }
     }
-}*/
+}

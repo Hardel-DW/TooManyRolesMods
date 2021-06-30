@@ -13,7 +13,7 @@ namespace RolesMods.Systems.Spy {
             HasEffectDuration = true;
             Roles = SpyRoles.Instance;
             DecreamteUseNimber = UseNumberDecremantion.OnEffectEnd;
-            SetSprite("RolesMods.Resources.Rewind.png", 250);
+            SetSprite(ResourceLoader.RewindRedSprite);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿/*using System.Collections.Generic;
-using HarmonyLib;
+﻿using HarmonyLib;
 
 namespace RolesMods.Systems.Mayor {
 
@@ -12,7 +11,10 @@ namespace RolesMods.Systems.Mayor {
                 if (!Roles.Mayor.Instance.HasRole(PlayerControl.LocalPlayer))
                     return true;
 
-                if (PlayerControl.LocalPlayer.Data.IsDead || __instance.isDead || !Roles.Mayor.CanVote || !__instance.Parent.Select(__instance.TargetPlayerId))
+                if (PlayerControl.LocalPlayer.Data.IsDead || __instance.AmDead)
+                    return false;
+
+                if (!Roles.Mayor.CanVote || !__instance.Parent.Select(__instance.TargetPlayerId))
                     return false;
 
                 __instance.Buttons.SetActive(true);
@@ -26,18 +28,22 @@ namespace RolesMods.Systems.Mayor {
                 if (!Roles.Mayor.Instance.HasRole(PlayerControl.LocalPlayer))
                     return true;
 
-                if (__instance.Parent.state == MeetingHud.VoteStates.Proceeding || __instance.Parent.state == MeetingHud.VoteStates.Results || !Roles.Mayor.CanVote)
+                if (__instance.Parent.state == MeetingHud.VoteStates.Proceeding || __instance.Parent.state == MeetingHud.VoteStates.Results)
                     return false;
 
-                bool noteSelfVote = __instance != Roles.Mayor.Abstain;
-                if (noteSelfVote)
-                    Roles.Mayor.VoteBank--;
+                if (!Roles.Mayor.CanVote)
+                    return false;
 
-                Roles.Mayor.VotedOnce = noteSelfVote;
+                if (__instance != Roles.Mayor.Abstain) {
+                    Roles.Mayor.VoteBank--;
+                    Roles.Mayor.VotedOnce = true;
+                } else {
+                    Roles.Mayor.SelfVote = true;
+                }
+
                 __instance.Parent.Confirm(__instance.TargetPlayerId);
                 return false;
             }
         }
     }
 }
-*/

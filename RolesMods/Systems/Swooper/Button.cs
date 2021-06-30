@@ -19,7 +19,7 @@ namespace RolesMods.Systems.Swooper {
             Roles = SwooperRoles.Instance;
             HasEffectDuration = true;
             DecreamteUseNimber = UseNumberDecremantion.OnClick;
-            SetSprite("RolesMods.Resources.Rewind.png", 250);
+            SetSprite(ResourceLoader.RewindRedSprite);
         }
     }
 }

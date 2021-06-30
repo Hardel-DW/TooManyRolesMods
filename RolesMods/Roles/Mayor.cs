@@ -16,7 +16,6 @@ namespace RolesMods.Roles {
         public static bool SelfVote { get; set; }
         public static bool VotedOnce { get; set; }
         public static PlayerVoteArea Abstain { get; set; }
-
         public static bool CanVote => VoteBank > 0 && !SelfVote;
 
         public Mayor() : base() {

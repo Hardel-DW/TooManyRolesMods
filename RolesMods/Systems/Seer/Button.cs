@@ -30,7 +30,7 @@ namespace RolesMods.Systems.Seer {
             DecreamteUseNimber = UseNumberDecremantion.OnClick;
             Closest = Harion.Cooldown.ClosestElement.Player;
             AllPlayersTargetable = new List<PlayerControl>();
-            SetSprite("RolesMods.Resources.Rewind.png", 250);
+            SetSprite(ResourceLoader.RewindRedSprite);
         }
 
         private void RevealRole(PlayerControl target, bool failed) {

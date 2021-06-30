@@ -26,9 +26,9 @@ namespace RolesMods.Systems.SecurityGuard {
 
             Timer = SecurityGuardRoles.CooldownSecurityGuard.GetValue();
             Roles = SecurityGuardRoles.Instance;
-            SealVent = SpriteHelper.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Foresight.png", 1000f);
-            PlaceCamera = SpriteHelper.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Rewind.png", 250f);
-            SetSprite("RolesMods.Resources.Rewind.png", 250);
+            SealVent = ResourceLoader.ForsightSprite;
+            PlaceCamera = ResourceLoader.RewindRedSprite;
+            SetSprite(ResourceLoader.RewindRedSprite);
         }
 
         public override void OnClick() {

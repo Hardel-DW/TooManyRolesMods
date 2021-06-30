@@ -1,6 +1,5 @@
-﻿/*using System;
+﻿using System;
 using System.Linq;
-using Harion.Utility.Helper;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +10,6 @@ namespace RolesMods.Systems.Swapper {
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
     public class AddButton {
 
-        private static Sprite SpawnSprite => SpriteHelper.LoadSpriteFromEmbeddedResources("RolesMods.Resources.Swap.png", 100f);
         private static int mostRecentId;
 
         public static void GenButton(int index, bool isDead) {
@@ -26,8 +24,7 @@ namespace RolesMods.Systems.Swapper {
             SpriteRenderer renderer = newButton.GetComponent<SpriteRenderer>();
             PassiveButton passive = newButton.GetComponent<PassiveButton>();
 
-            renderer.sprite = SpawnSprite;
-            renderer.color = Color.white;
+            renderer.sprite = ResourceLoader.SwapSprite;
             newButton.transform.position = confirmButton.transform.position - new Vector3(0.5f, 0f, 0f);
             newButton.transform.localScale *= 0.8f;
             newButton.layer = 5;
@@ -63,8 +60,7 @@ namespace RolesMods.Systems.Swapper {
                 return;
 
             for (var i = 0; i < __instance.playerStates.Length; i++)
-                GenButton(i, __instance.playerStates[i].isDead);
+                GenButton(i, __instance.playerStates[i].AmDead);
         }
     }
 }
-*/

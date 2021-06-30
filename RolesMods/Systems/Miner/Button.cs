@@ -12,7 +12,7 @@ namespace RolesMods.Systems.Miner {
             Roles = MinerRoles.Instance;
             UseNumber = 1;
             DecreamteUseNimber = UseNumberDecremantion.OnClick;
-            SetSprite("RolesMods.Resources.Rewind.png", 250);
+            SetSprite(ResourceLoader.RewindRedSprite);
         }
 
         public override void OnClick() => VentUtils.PlaceVent(PlayerControl.LocalPlayer.transform.position);
