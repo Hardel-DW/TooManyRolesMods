@@ -19,6 +19,7 @@ namespace RolesMods {
         public static Sprite OverlaySprite;
         public static Sprite AbstainButton;
         public static Sprite SwapSprite;
+        public static Sprite SwapDisableSprite;
 
         public static void LoadAssets() {
             var resourceSteam = myAsembly.GetManifestResourceStream("RolesMods.Resources.bundle-toomanyrole");
@@ -34,7 +35,8 @@ namespace RolesMods {
             FootprintRoundSprite = assetBundle.LoadAsset<Sprite>("Footprint-Round").DontDestroy();
             OverlaySprite = assetBundle.LoadAsset<Sprite>("Overlay").DontDestroy();
             AbstainButton = assetBundle.LoadAsset<Sprite>("Abstain").DontDestroy();
-            SwapSprite = assetBundle.LoadAsset<Sprite>("Swap").DontDestroy();
+            SwapSprite = assetBundle.LoadAsset<Sprite>("Switch").DontDestroy();
+            SwapDisableSprite = assetBundle.LoadAsset<Sprite>("SwitchDisabled").DontDestroy();
         }
     }
 }

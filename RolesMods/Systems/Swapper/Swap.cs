@@ -22,7 +22,7 @@ namespace RolesMods.Systems.Swapper {
         [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.VotingComplete))]
         public static class VotingComplete {
             public static void Postfix(MeetingHud __instance) {
-                if (Swap1 == null || Swap2 == null)
+                if (!((Swap1 != null) & (Swap2 != null)))
                     return;
 
                 if (Roles.Swapper.Instance.HasRole(PlayerControl.LocalPlayer))

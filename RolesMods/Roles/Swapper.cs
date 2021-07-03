@@ -34,6 +34,11 @@ namespace RolesMods.Roles {
             NumberPlayers = (int) NumberSwapper.GetValue();
         }
 
+        public override void OnMeetingStart(MeetingHud instance) {
+            Systems.Swapper.SwapVotes.Swap1 = null;
+            Systems.Swapper.SwapVotes.Swap2 = null;
+        }
+
         private void GameOptionFormat() {
             SwapperPercent.ValueStringFormat = (option, value) => $"{value}%";
             SwapperPercent.ShowChildrenConidtion = () => SwapperPercent.GetValue() > 0;
