@@ -118,7 +118,7 @@ namespace RolesMods.Systems.Mayor {
             Roles.Mayor.VotedOnce = false;
         }
 
-        private static void Vote(MeetingHud __instance, GameData.PlayerInfo votingPlayer, int amountOfVotes, Component origin, bool isMayor = false) {
+        private static void Vote(MeetingHud __instance, GameData.PlayerInfo votingPlayer, int amountOfVotes, GameObject origin, bool isMayor = false) {
             SpriteRenderer renderer = Object.Instantiate(__instance.PlayerVotePrefab);
             if (PlayerControl.GameOptions.AnonymousVotes && isMayor)
                 PlayerControl.SetPlayerMaterialColors(Palette.DisabledGrey, renderer);
@@ -153,7 +153,7 @@ namespace RolesMods.Systems.Mayor {
                             __instance.BloopAVoteIcon(playerInfo, amountOfSkippedVoters, __instance.SkippedVoting.transform);
                             amountOfSkippedVoters++;
                         } else if (voteState.VotedForId == playerVoteArea.TargetPlayerId) {
-                            Vote(__instance, playerInfo, allNums[i], playerVoteArea);
+                            Vote(__instance, playerInfo, allNums[i], playerVoteArea.gameObject);
                             allNums[i]++;
                         }
                     }
@@ -175,7 +175,7 @@ namespace RolesMods.Systems.Mayor {
                                 if (extraVote != area.TargetPlayerId)
                                     continue;
 
-                                Vote(__instance, playerInfo, allNums[i], area, true);
+                                Vote(__instance, playerInfo, allNums[i], area.gameObject, true);
                                 allNums[i]++;
                             }
                         }
